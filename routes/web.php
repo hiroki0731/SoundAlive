@@ -16,9 +16,10 @@ Route::get('/', function () {
     return view('top');
 });
 
-/* ログイン */
-Route::get('/login', 'LoginController@index');
+/* ログイン・新規登録 */
+Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-/* 新規登録 */
-Route::get('/register', 'RegisterController@index');
-Route::post('/register', 'RegisterController@postRegister');
+
+/* マイページ */
+Route::get('/mypage', 'MypageController@index')->name('mypage');
