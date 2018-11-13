@@ -11,6 +11,14 @@
 |
 */
 
+/* トップページ */
 Route::get('/', function () {
-    return view('test');
+    return view('top');
 });
+
+/* ログイン */
+Route::get('/login', 'LoginController@index');
+
+/* 新規登録 */
+Route::get('/register', 'RegisterController@index');
+Route::post('/register', 'RegisterController@postRegister');
