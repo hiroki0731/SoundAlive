@@ -27,4 +27,11 @@
         </div>
     </div>
     <script src="js/mypage.js"></script>
+
+    {{--<div id="modal-content">--}}
+        {{--<p>おめでとうございます！ライブの新規登録が完了しました！</p>--}}
+        {{--<p><a id="modal-close" class="button-link">閉じる</a></p>--}}
+    {{--</div>--}}
+    {{--<div id="modal-overlay"></div>--}}
+    {{--<p><a id="modal-open" class="button-link">クリックするとモーダルウィンドウを開きます。</a></p>--}}
 @endsection

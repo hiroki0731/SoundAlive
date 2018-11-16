@@ -3,6 +3,8 @@
 
     <div class="card-body">
         <p>※星マークの欄は入力が必須です。</p>
+        <img src="{{ asset('/storage/2UiC2fCSjH03Cx2Fke5GkTJTMeBae7TXud6szqP3.png') }}" alt="">
+
         <form name="concertForm" enctype="multipart/form-data" action="/mypage/create" method="post">
             {{ csrf_field() }}
 
@@ -18,7 +20,7 @@
 
             <div class="row concertInput">
                 <label class="col-sm-2">メンバー</label>
-                <input class="col-sm-10" name="concert_member" type="text"
+                <input class="col-sm-10" name="band_member" type="text"
                        placeholder="例) 高田大輝 (pf), 辰巳浩之 (dr), 牛山健太郎 (bs)">
             </div>
 
@@ -54,7 +56,7 @@
 
             <div class="row concertInput">
                 <label class="col-sm-2"><i class="far fa-star"></i>会場最寄駅</label>
-                <input class="col-sm-10" name="place_name" type="text" placeholder="例) 渋谷駅">
+                <input class="col-sm-10" name="place_station" type="text" placeholder="例) 渋谷駅">
             </div>
 
             <div class="row concertInput">
@@ -67,7 +69,7 @@
 
             <div class="row concertInput">
                 <label class="col-sm-2">会場住所</label>
-                <input class="col-sm-10" name="place_city" type="text" placeholder="例) 神奈川県横浜市港北区テスト町1-1-1">
+                <input class="col-sm-10" name="place_address" type="text" placeholder="例) 神奈川県横浜市港北区テスト町1-1-1">
             </div>
 
             <div class="row concertInput">
@@ -77,7 +79,7 @@
 
             <div class="row concertInput">
                 <label class="col-sm-2">自由紹介文</label>
-                <textarea class="col-sm-10" name="place_building" placeholder="例) ライブを自由に紹介してください。(200文字以内)"></textarea>
+                <textarea class="col-sm-10" name="concert_introduction" placeholder="例) ライブを自由に紹介してください。(200文字以内)"></textarea>
             </div>
 
             <input type="submit" value="確認">
