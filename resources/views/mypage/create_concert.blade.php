@@ -81,7 +81,7 @@
                 <textarea class="col-sm-10" name="concert_introduction" placeholder="例) ライブを自由に紹介してください。(200文字以内)"></textarea>
             </div>
 
-            <input type="submit" value="確認">
+            <input type="submit" value="登録">
         </form>
     </div>
 </div>
