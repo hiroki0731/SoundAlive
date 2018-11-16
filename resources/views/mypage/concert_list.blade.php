@@ -9,16 +9,18 @@
         @endif
 
         @foreach($concerts as $concert)
-            <?php $detail_info = json_decode($concert->detail_info) ?>
+            @php
+                $detail_info = json_decode($concert->detail_info);
+            @endphp
             <div class="mypage-concert-list">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src={{ asset('public/storage/concert_images/'. $detail_info->concert_img) }} />
+                        <img src={{ asset('storage/images/'. $detail_info->concert_img) }} style="width:100%">
                     </div>
                     <div class="col-md-9" style="float:left">
-                        <p>{{ $detail_info->concert_name }}</p>
-                        <p>{{ $detail_info->band_name }}</p>
-                        <p>{{ $detail_info->concert_date }}</p>
+                        <p>タイトル：{{ $detail_info->concert_name }}</p>
+                        <p>バンド名：{{ $detail_info->band_name }}</p>
+                        <p>開催日：{{ $detail_info->concert_date }}</p>
                     </div>
                 </div>
             </div>

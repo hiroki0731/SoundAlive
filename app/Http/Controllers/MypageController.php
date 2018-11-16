@@ -68,7 +68,7 @@ class MypageController extends Controller
         }
 
         //アップロードされた画像を保存してパスを格納
-        $filePath = Storage::putFile('public/storage/concert_images', $request->file('concert_img'));
+        $filePath = Storage::putFile('/images', $request->file('concert_img'));
         $inputData['concert_img'] = basename($filePath);
 
         //抽出した値をjsonにパースし、新規ライブ情報に追加
@@ -92,14 +92,12 @@ class MypageController extends Controller
         //新規ライブ情報を登録
         $model = $this->concertService->createConcert($concertArray);
 
-        $concerts = $this->concertService->getByUserId($userId);
-
         if (empty($model)) {
             //登録失敗ページを表示
-            return redirect('mypage/mypage')->with('userName', $userName)->with('concerts', $concerts);
+            return redirect('/mypage');
         } else {
             //登録完了ページを表示
-            return redirect('mypage/mypage')->with('userName', $userName)->with('concerts', $concerts);
+            return redirect('/mypage');
         }
     }
 }

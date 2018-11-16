@@ -3,7 +3,6 @@
 
     <div class="card-body">
         <p>※星マークの欄は入力が必須です。</p>
-        <img src="{{ asset('/storage/2UiC2fCSjH03Cx2Fke5GkTJTMeBae7TXud6szqP3.png') }}" alt="">
 
         <form name="concertForm" enctype="multipart/form-data" action="/mypage/create" method="post">
             {{ csrf_field() }}

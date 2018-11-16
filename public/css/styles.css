@@ -275,8 +275,8 @@ footer {
 
 .mypage-concert-list {
     width: 100%;
-    background-color: blue;
     margin: 0 auto;
+    border-bottom: 1px solid #0c5460;
 }
 
 /**** ここからコピペ ****/
