@@ -1,5 +1,5 @@
-@extends('layouts.base')
-@section('main')
+@extends('layouts.app')
+@section('content')
 <div class="top-wrapper">
     <div class="container">
         <h1>Sound A<span style="color: #ffe70a;">LIVE</span></h1>
@@ -8,7 +8,7 @@
         <p>有名バンドやフェス以外にも、素敵なライブがそこかしこで開かれています。</p>
         <p>さあ、近場のライブを検索してみましょう。</p>
         <p>ミュージシャンは自分のライブを登録してみましょう。</p>
-        <a href="#" class="btn signup"><i class="fas fa-address-book"></i> ミュージシャンはこちらから登録</a>
+        <a href="{{ url('/register') }}" class="btn signup"><i class="fas fa-address-book"></i> ミュージシャンはこちらから登録</a>
     </div>
 </div>
 <div class="content-wrapper">
