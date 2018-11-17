@@ -54,7 +54,6 @@ class MypageController extends Controller
         }
 
         $userId = Auth::id();
-        $userName = Auth::user()->name;
 
         //新規ライブ情報の配列を作成
         $concertArray = [];
@@ -92,6 +91,7 @@ class MypageController extends Controller
         //新規ライブ情報を登録
         $model = $this->concertService->createConcert($concertArray);
 
+        // TODO:失敗時の処理
         if (empty($model)) {
             //登録失敗ページを表示
             return redirect('/mypage');
@@ -100,4 +100,12 @@ class MypageController extends Controller
             return redirect('/mypage');
         }
     }
+
+    public function deleteConcert(Request $request)
+    {
+        $concertId = $request->get('id');
+        $this->concertService->deleteById($concertId);
+        return redirect('/mypage');
+    }
+
 }

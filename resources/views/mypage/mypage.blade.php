@@ -10,7 +10,7 @@
                         <div class="card-header">{{ $userName }}のマイページ</div>
                         <div class="card-body mypage-menu">
                             <p @click='switchDisplay(displays.list)' :class="{active: !activateArray.dispNonList}">ライブ一覧</p>
-                            <p @click='switchDisplay(displays.create)' :class="{active: !activateArray.dispNonCreate}">ライブ新規追加</p>
+                            <p @click='switchDisplay(displays.create)' :class="{active: !activateArray.dispNonCreate}">ライブ新規作成</p>
                         </div>
                     </div>
                 </div>

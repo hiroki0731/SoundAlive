@@ -17,7 +17,7 @@
                 <h2>このサイトの活用方法</h2>
             </div>
             <div class="contents">
-                <div class="content">
+                <div class="content pointer" @click="moveToSearch()">
                     <h3>ライブを検索しよう</h3>
                     <div class="content-icon">
                         <img src="{{ asset('/img/search.png') }}" width="50%">
@@ -25,7 +25,7 @@
                     <p class="text-contents">
                         ライブをジャンル・場所・日時などで検索しましょう。近場のライブハウスやジャズバーでは、今日も魂の込もった音楽が演奏されて、誰かの心を動かしています。</p>
                 </div>
-                <div class="content">
+                <div class="content pointer" @click="moveToRegister()">
                     <h3>登録してライブを告知しよう</h3>
                     <div class="content-icon">
                         <img src="{{ asset('/img/regist.png') }}" width="50%">
@@ -39,14 +39,14 @@
     </div>
     <div class="content-wrapper">
         <div class="heading">
-            <h2>おすすめライブ</h2>
+            <h2>新着ライブ！</h2>
         </div>
         <div class="contents">
             @foreach($concerts as $concert)
                 @php
                     $detail_info = json_decode($concert->detail_info);
                 @endphp
-                <div class="content">
+                <div class="content pointer" @click="moveToDetail({{ $concert->id }})">
                     <h4>{{ $detail_info->band_name }}</h4>
                     <div class="content-icon">
                         <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}" width="50%">
@@ -61,4 +61,5 @@
             <div class="clear"></div>
         </div>
     </div>
+    <script src="js/top.js"></script>
 @endsection

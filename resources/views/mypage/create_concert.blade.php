@@ -35,7 +35,7 @@
 
             <div class="row concertInput">
                 <label class="col-sm-2"><i class="far fa-star"></i>終了時間</label>
-                <input class="col-sm-10" name="end_date" type="time">
+                <input class="col-sm-10" name="end_time" type="time">
             </div>
 
             <div class="row concertInput">

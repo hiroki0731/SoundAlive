@@ -1,7 +1,7 @@
 <header>
     <div class="container">
         <div class="header-left">
-            <img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png">
+            <a href="{{ url('/') }}"><img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png"></a>
         </div>
         {{--<span class="fa fa-bars menu-icon"></span>--}}
         <div class="header-right">

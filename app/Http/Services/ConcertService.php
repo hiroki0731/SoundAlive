@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Http\Models\Concert;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Filesystem\Cache;
 
 /**
  * Concertモデルのビジネスロジッククラス
@@ -52,7 +53,7 @@ class ConcertService extends Model
     }
 
     /**
-     * ユーザIDをキーにライブを取得
+     * ユーザIDをキーに取得
      * @param $userId
      * @return mixed
      */
@@ -62,6 +63,17 @@ class ConcertService extends Model
     }
 
     /**
+     * コンサートテーブルIDをキーに取得
+     * @param $concertId
+     * @return mixed
+     */
+    public function findByConcertId($concertId)
+    {
+        return $this->model->find($concertId);
+    }
+
+    /**
+     * 配列情報を元に登録
      * @param $concertData(array)
      * @return mixed
      */
@@ -69,4 +81,15 @@ class ConcertService extends Model
     {
         return $this->model->create($concertData);
     }
+
+    /**
+     * idで検索して削除
+     * @param $id
+     * @return mixed
+     */
+    public function deleteById($id)
+    {
+        return $this->model->find($id)->delete();
+    }
+
 }

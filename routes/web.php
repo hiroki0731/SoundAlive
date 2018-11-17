@@ -13,6 +13,7 @@
 
 /* トップページ */
 Route::get('/', 'TopController@index')->name('top');
+Route::get('/detail', 'TopController@showDetail');
 
 
 /* 下記のルートを作成 */
@@ -40,3 +41,5 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 /* マイページ */
 Route::get('/mypage', 'MypageController@index')->name('mypage');
 Route::post('/mypage/create', 'MypageController@createConcert');
+Route::get('/mypage/update', 'MypageController@updateConcert');
+Route::get('/mypage/delete', 'MypageController@deleteConcert');

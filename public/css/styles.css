@@ -120,8 +120,6 @@ header {
 }
 
 .content-wrapper {
-    /*background-image: url("/img/img8.jpg");*/
-    /*background-size: cover;*/
     border-top: 1px solid #eee;
     padding-bottom: 80px;
     padding-left: 5%;
@@ -139,6 +137,13 @@ header {
 
 .heading h2 {
     font-weight: normal;
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    /*font-weight: bold;*/
 }
 
 .content {
@@ -149,8 +154,14 @@ header {
 
 .content h3 {
     color: #5f5d60;
-    font-weight: normal;
     margin-bottom: 0px;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
 .content-icon {
@@ -168,7 +179,7 @@ header {
     width: 80%;
     display: inline-block;
     font-size: 14px;
-    color: #b3aeb5;
+    color: #5f5d60;
 }
 
 .heading h3 {
@@ -293,7 +304,16 @@ footer {
     margin: 10px 0px;
 }
 
-/*.page-link {*/
-/*color: aquamarine;*/
-/*background-color: rgba(0, 0, 0, 0.6);*/
-/*}*/
+.pointer {
+    opacity: 1;
+    cursor: pointer;
+    /*transition: all 0.9s;*/
+}
+
+.pointer:hover{
+    opacity: 0.8;
+}
+
+.detail-wrapper {
+    padding: 180px 0 100px 0;
+}

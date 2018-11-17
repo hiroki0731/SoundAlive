@@ -5,7 +5,7 @@
 </head>
 <body>
 @include('layouts.header')
-<main>
+<main id="vue-contents">
     @yield('content')
 </main>
 <footer>
