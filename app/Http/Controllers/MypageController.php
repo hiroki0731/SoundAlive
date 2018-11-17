@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Services\ConcertService;
 use Mockery\Exception;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CreateConcertValidation;
 
 class MypageController extends Controller
 {
@@ -47,7 +48,7 @@ class MypageController extends Controller
      * @param Request $request
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function createConcert(Request $request)
+    public function createConcert(CreateConcertValidation $request)
     {
         if (!Auth::check()) {
             return redirect('/');

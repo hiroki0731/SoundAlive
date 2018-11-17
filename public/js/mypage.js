@@ -4,6 +4,7 @@
     var vm = new Vue({
             el: '#mypage',
             data: {
+                nowDisp: '',
                 displays: {
                     list: 'dispNonList',
                     create: 'dispNonCreate',
@@ -12,6 +13,15 @@
                     dispNonList: false,
                     dispNonCreate: true,
                 }
+            },
+            watch : {
+              nowDisp: function(){
+                  localStorage.setItem('nowDisp', JSON.stringify(this.nowDisp));
+              }
+            },
+            mounted: function() {
+                this.nowDisp = JSON.parse(localStorage.getItem('nowDisp')) || 'dispNonList';
+                this.switchDisplay(this.nowDisp);
             },
             methods: {
                 switchDisplay: function (name) {
@@ -23,6 +33,7 @@
                             obj[key] = true;
                         }
                     });
+                    this.nowDisp = name;
                     this.activateArray = obj;
                 },
             }

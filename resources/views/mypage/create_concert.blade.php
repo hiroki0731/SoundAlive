@@ -4,6 +4,16 @@
     <div class="card-body">
         <p>※星マークの欄は入力が必須です。</p>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form name="concertForm" enctype="multipart/form-data" action="/mypage/create" method="post">
             {{ csrf_field() }}
 
@@ -13,7 +23,7 @@
             </div>
 
             <div class="row concertInput">
-                <label class="col-sm-2">バンド名</label>
+                <label class="col-sm-2"><i class="far fa-star"></i>バンド名</label>
                 <input class="col-sm-10" name="band_name" type="text" placeholder="例) 高田大輝TORIO">
             </div>
 
@@ -72,12 +82,12 @@
             </div>
 
             <div class="row concertInput">
-                <label class="col-sm-2">ライブ紹介画像</label>
+                <label class="col-sm-2"><i class="far fa-star"></i>ライブ画像</label>
                 <input name="concert_img" type="file">
             </div>
 
             <div class="row concertInput">
-                <label class="col-sm-2">自由紹介文</label>
+                <label class="col-sm-2"><i class="far fa-star"></i>ライブ紹介文</label>
                 <textarea class="col-sm-10" name="concert_introduction" placeholder="例) ライブを自由に紹介してください。(200文字以内)"></textarea>
             </div>
 
