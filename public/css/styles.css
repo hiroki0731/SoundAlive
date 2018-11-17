@@ -8,7 +8,8 @@ body {
 }
 
 a {
-    text-decoration: none;
+    color: white;
+    text-decoration: none !important;
 }
 
 .clear {
@@ -72,13 +73,17 @@ a {
     opacity: 0.9;
     font-size: 50px;
     letter-spacing: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    line-height: inherit;
 }
 
 .top-wrapper p {
     opacity: 0.9;
+    font-weight: bold;
 }
 
-.btn {
+.top-btn {
     padding: 8px 24px;
     color: white;
     display: inline-block;
@@ -87,8 +92,14 @@ a {
     text-align: center;
 }
 
-.btn:hover {
-    opacity: 1;
+.top-btn a {
+    color: white;
+}
+
+.top-btn:hover {
+    color: white;
+    text-decoration: none;
+    opacity: 1 !important;
 }
 
 .signup {
@@ -103,12 +114,10 @@ header {
     height: 65px;
     width: 100%;
     background-color: rgba(34, 49, 52, 0.9);
-    position :fixed;
+    position: fixed;
     top: 0;
     z-index: 10;
 }
-
-
 
 .content-wrapper {
     /*background-image: url("/img/img8.jpg");*/
@@ -137,7 +146,8 @@ header {
     float: left;
     width: 50%;
 }
-.content h3{
+
+.content h3 {
     color: #5f5d60;
     font-weight: normal;
     margin-bottom: 0px;
@@ -224,12 +234,12 @@ footer {
     width: 10%;
 }
 
-.card-body input{
+.card-body input {
     opacity: 0.7;
 }
 
 .invalid-feedback {
-    background-color: rgba(250,250,100,0.7);
+    background-color: rgba(250, 250, 100, 0.7);
 }
 
 .mypage-wrapper {
@@ -241,14 +251,14 @@ footer {
 }
 
 .card {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .mypage-wrapper .card-header {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-.concertForm input{
+.concertForm input {
     width: 80%;
 }
 
@@ -261,7 +271,7 @@ footer {
 }
 
 .dispnon {
-     display: none;
+    display: none;
 }
 
 .mypage-menu p {
@@ -284,6 +294,6 @@ footer {
 }
 
 /*.page-link {*/
-    /*color: aquamarine;*/
-    /*background-color: rgba(0, 0, 0, 0.6);*/
+/*color: aquamarine;*/
+/*background-color: rgba(0, 0, 0, 0.6);*/
 /*}*/

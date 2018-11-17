@@ -30,8 +30,11 @@ class ConcertService extends Model
       'concert_introduction',
     ];
 
+    private const NUMBER_OF_CONCERTS_ON_TOP = 10;
+    private const NUMBER_OF_PAGINATION_ON_MYPAGE = 2;
+
     /**
-     * ConcertモデルのDI
+     * コンストラクタ
      * @param Concert $concert
      */
     public function __construct(Concert $concert)
@@ -40,12 +43,22 @@ class ConcertService extends Model
     }
 
     /**
+     * 新着10件を取得
+     * @return mixed
+     */
+    public function getAll()
+    {
+        return $this->model->orderBy('created_at', 'desc')->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
+    }
+
+    /**
+     * ユーザIDをキーにライブを取得
      * @param $userId
      * @return mixed
      */
     public function getByUserId($userId)
     {
-        return $this->model->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(2);
+        return $this->model->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_MYPAGE);
     }
 
     /**

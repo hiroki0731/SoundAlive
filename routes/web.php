@@ -12,9 +12,8 @@
 */
 
 /* トップページ */
-Route::get('/', function () {
-    return view('top');
-});
+Route::get('/', 'TopController@index')->name('top');
+
 
 /* 下記のルートを作成 */
 Auth::routes();
