@@ -64,7 +64,6 @@ a {
 .top-wrapper {
     padding: 180px 0 100px 0;
     background-image: url("/img/live1.png");
-    background-attachment: fixed;
     background-size: cover;
     color: white;
     text-align: center;
@@ -130,6 +129,7 @@ header {
 }
 
 .heading {
+    text-decoration: underline;
     padding-top: 60px;
     padding-bottom: 0px;
     color: #5f5d60;
@@ -138,11 +138,12 @@ header {
 .heading h2 {
     font-weight: normal;
     display: block;
-    /*background-color: rgba(250, 250, 0, 0.3);*/
-    padding: 10px 0;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    /*font-weight: bold;*/
 }
 
 .content {
@@ -215,9 +216,7 @@ footer p {
 }
 
 footer {
-    background-image: url("/img/live1.png");
-    background-attachment: fixed;
-    background-size: cover;
+    border-top: 1px solid #eee;
     padding-top: 30px;
     padding-bottom: 20px;
 }
@@ -225,7 +224,6 @@ footer {
 .login-wrapper {
     padding: 100px 0 100px 0;
     background-image: url("/img/live1.png");
-    background-attachment: fixed;
     background-size: cover;
     color: white;
     text-align: center;
@@ -312,75 +310,10 @@ footer {
     /*transition: all 0.9s;*/
 }
 
-.pointer:hover {
+.pointer:hover{
     opacity: 0.8;
 }
 
 .detail-wrapper {
-    background-image: url("/img/detail.jpg");
-    background-attachment: fixed;
-    background-size: cover;
-    color: white;
-    padding: 100px 0 100px 0;
-}
-
-.detail-border{
-    padding: 10px 0 0 10px;
-    background-color: rgba(10,10,10,0.8);
-    margin: 0 auto;
-    width: 80%;
-    border: 1px solid #dee2e6;
-}
-
-.detail-title {
-    padding: 10px;
-    background-color: rgba(10,10,10,0.8);
-}
-
-.detail-introduction {
-    width: 80%;
-    margin: 0 auto;
-}
-
-/* ------------ */
-
-.concert-wrapper {
-    border-top: 1px solid #eee;
-    padding-bottom: 80px;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: #f7f7f7;
-    text-align: center;
-    /*background-image: url("/img/img8.jpg");*/
-    /*background-attachment: fixed;*/
-    /*background-size: cover;*/
-}
-
-.concert {
-    text-align: center;
-    float: left;
-    width: 33%;
-}
-
-.concert h3 {
-    color: #5f5d60;
-    margin-bottom: 0px;
-    display: block;
-    font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-
-.concert-icon {
-    position: relative;
-}
-
-.concert-icon p {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    color: black;
+    padding: 180px 0 100px 0;
 }

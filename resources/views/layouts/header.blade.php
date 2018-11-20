@@ -6,6 +6,7 @@
         {{--<span class="fa fa-bars menu-icon"></span>--}}
         <div class="header-right">
             <a href="#"><i class="fas fa-search"></i> ライブ検索</a>
+            <a href="#"><i class="fas fa-book"></i> このサイトについて</a>
             <?php $check = \Illuminate\Support\Facades\Auth::check(); ?>
             @if(!$check)
                 <a href="{{ url('/register') }}"><i class="fas fa-address-book"></i> 新規登録</a>
