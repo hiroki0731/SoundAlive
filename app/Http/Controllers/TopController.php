@@ -26,13 +26,12 @@ class TopController extends Controller
 
     /**
      * ライブ詳細画面の表示
-     * @param Request $request
+     * @param $id
      * @return $this
      */
-    public function showDetail(Request $request)
+    public function showDetail($id)
     {
-        $concertId = $request->get('id');
-        $concert = $this->concertService->findByConcertId($concertId);
+        $concert = $this->concertService->findByConcertId($id);
         return view('/detail')->with('concert', $concert);
     }
 }

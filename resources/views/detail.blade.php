@@ -21,7 +21,8 @@
                         <p>{{ $detail_info->band_member }}</p>
                     </div>
                     <div class="detail-border">
-                        <p>ライブ日程：{{ $detail_info->concert_date }} {{ $detail_info->start_time ?? ''}}
+                        <p>ライブ日程：{{ $detail_info->concert_date }} </p>
+                        <p>開催時間：{{ $detail_info->start_time ?? ''}}
                             ~ {{ $detail_info->end_time ?? ''}}</p>
                         <p>ライブ会場：{{ $detail_info->place_name ?? ''}}</p>
                         <p>最寄駅：{{ $detail_info->place_station ?? ''}}</p>
@@ -41,5 +42,5 @@
                 </div>
             </div>
         </div>
-
+    </div>
 @endsection

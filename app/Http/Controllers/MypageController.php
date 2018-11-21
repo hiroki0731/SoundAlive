@@ -45,15 +45,11 @@ class MypageController extends Controller
      * TODO: Validation
      * 新規ライブ情報の登録
      *
-     * @param Request $request
+     * @param CreateConcertValidation $request
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function createConcert(CreateConcertValidation $request)
     {
-        if (!Auth::check()) {
-            return redirect('/');
-        }
-
         $userId = Auth::id();
 
         //新規ライブ情報の配列を作成
@@ -102,10 +98,45 @@ class MypageController extends Controller
         }
     }
 
-    public function deleteConcert(Request $request)
+    /**
+     * ライブ情報の登録
+     */
+    public function storeConcert()
     {
-        $concertId = $request->get('id');
-        $this->concertService->deleteById($concertId);
+
+    }
+
+    /**
+     * ライブ情報の編集ページ表示
+     * @param $concertId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function updateConcert($concertId)
+    {
+        $concert = $this->concertService->findByConcertId($concertId);
+
+        // ライブ作成者idとユーザidを照合
+        if($concert->user_id != Auth::id()){
+            return redirect('/mypage');
+        }
+        return view('/detail_update')->with('concert', $concert);
+    }
+
+    /**
+     * ライブの論理削除
+     * @param $concertId
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function deleteConcert($concertId)
+    {
+        $concert = $this->concertService->findByConcertId($concertId);
+
+        // ライブ作成者idとユーザidを照合
+        if($concert->user_id != Auth::id()){
+            return redirect('/mypage');
+        }
+
+        $this->concertService->deleteById($concert->id);
         return redirect('/mypage');
     }
 

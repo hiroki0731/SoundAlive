@@ -77,6 +77,7 @@ a {
     margin-bottom: 5px;
     font-weight: bold;
     line-height: inherit;
+    text-shadow: 1px 1px 1px blue;
 }
 
 .top-wrapper p {
@@ -114,7 +115,7 @@ a {
 header {
     height: 65px;
     width: 100%;
-    background-color: rgba(34, 49, 52, 0.9);
+    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     top: 0;
     z-index: 10;
@@ -215,9 +216,9 @@ footer p {
 }
 
 footer {
-    background-image: url("/img/live1.png");
-    background-attachment: fixed;
-    background-size: cover;
+    /*background-image: url("/img/live1.png");*/
+    /*background-attachment: fixed;*/
+    /*background-size: cover;*/
     padding-top: 30px;
     padding-bottom: 20px;
 }
@@ -309,7 +310,6 @@ footer {
 .pointer {
     opacity: 1;
     cursor: pointer;
-    /*transition: all 0.9s;*/
 }
 
 .pointer:hover {
@@ -342,6 +342,21 @@ footer {
     margin: 0 auto;
 }
 
+.detail-update input,textarea{
+    color: white;
+    outline: 0;
+    border: 0px;
+    background: transparent;
+    width: 100%;
+}
+
+.detail-update textarea{
+    font-size: 18px;
+    width: 100%;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
+
 /* ------------ */
 
 .concert-wrapper {
@@ -351,9 +366,6 @@ footer {
     padding-right: 5%;
     background-color: #f7f7f7;
     text-align: center;
-    /*background-image: url("/img/img8.jpg");*/
-    /*background-attachment: fixed;*/
-    /*background-size: cover;*/
 }
 
 .concert {
@@ -383,4 +395,8 @@ footer {
     top: 10%;
     width: 100%;
     color: black;
+}
+
+.input-group-addon {
+    margin: auto 0;
 }
