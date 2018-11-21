@@ -8,6 +8,7 @@ use App\Http\Services\ConcertService;
 use Mockery\Exception;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateConcertValidation;
+use App\Http\Requests\UpdateConcertValidation;
 
 class MypageController extends Controller
 {
@@ -42,7 +43,6 @@ class MypageController extends Controller
 
 
     /**
-     * TODO: Validation
      * 新規ライブ情報の登録
      *
      * @param CreateConcertValidation $request
@@ -55,7 +55,48 @@ class MypageController extends Controller
         //新規ライブ情報の配列を作成
         $concertArray = [];
         $concertArray['user_id'] = $userId;
+        try {
+            $concertArray['detail_info'] = $this->storeProcess($request);
+        } catch (Exception $e) {
+            // TODO:エラー処理
+            dd($e->getMessage());
+        }
 
+        //新規ライブ情報を登録
+        $this->concertService->createConcert($concertArray);
+
+        return redirect('/mypage');
+    }
+
+    /**
+     * 編集したライブ情報の更新処理
+     * @param UpdateConcertValidation $request
+     * @param $concertId
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateConcert(UpdateConcertValidation $request, $concertId)
+    {
+        $concert = $this->concertService->findByConcertId($concertId);
+        $detail_info = json_decode($concert->detail_info);
+
+        try {
+            $concert->detail_info = $this->storeProcess($request, $detail_info->concert_img);
+        } catch (Exception $e) {
+            // TODO:エラー処理
+            dd($e->getMessage());
+        }
+        $concert->save();
+        return redirect('/mypage');
+    }
+
+    /**
+     * 共通登録処理
+     * @param $request
+     * @param $concertImg (更新処理の時のみ)
+     * @return string
+     */
+    private function storeProcess($request, $concertImg = null)
+    {
         //インプット情報からコンサートテーブルのカラムに対応する値のみを抽出
         foreach ($request->except('_token') as $key => $val) {
             if (in_array($key, $this->concertService::CONCERT_TABLE_COLUMNS)) {
@@ -63,47 +104,28 @@ class MypageController extends Controller
             }
         }
 
-        //アップロードされた画像を保存してパスを格納
-        $filePath = Storage::putFile('/images', $request->file('concert_img'));
-        $inputData['concert_img'] = basename($filePath);
-
-        //抽出した値をjsonにパースし、新規ライブ情報に追加
-        $detail_info = json_encode($inputData ?? []);
-        if (json_last_error() === JSON_ERROR_NONE) {
-            $concertArray['detail_info'] = $detail_info;
+        //アップロードされた画像を保存してパスを格納（編集時はnullのことがある）
+        if (empty($request->file('concert_img'))) {
+            $inputData['concert_img'] = $concertImg;
         } else {
+            $filePath = Storage::putFile('/images', $request->file('concert_img'));
+            $inputData['concert_img'] = basename($filePath);
+        }
+
+        //抽出した値をjsonにパース
+        $detail_info = json_encode($inputData ?? []);
+
+        if (json_last_error() != JSON_ERROR_NONE) {
             logs()->error('-------------------------------------¥n');
             logs()->error('json_encodeでエラー。エラーコード：' . json_last_error() . '¥n');
             logs()->error('- - - - - - - - - - - - - - - - - - -¥n');
             logs()->error('エラー発生時のインプット：' . print_r($request->except('_token'), true) . '¥n');
             logs()->error('-------------------------------------¥n');
-
             // TODO: Exception吐きすてて終了ってのをどうにかする
-            throw new Exception();
+            throw new Exception('ライブ情報JSONのパースに失敗しました');
         }
 
-        // TODO:削除
-        logs()->debug('input内容：' . print_r($concertArray, true));
-
-        //新規ライブ情報を登録
-        $model = $this->concertService->createConcert($concertArray);
-
-        // TODO:失敗時の処理
-        if (empty($model)) {
-            //登録失敗ページを表示
-            return redirect('/mypage');
-        } else {
-            //登録完了ページを表示
-            return redirect('/mypage');
-        }
-    }
-
-    /**
-     * ライブ情報の登録
-     */
-    public function storeConcert()
-    {
-
+        return $detail_info;
     }
 
     /**
@@ -111,12 +133,12 @@ class MypageController extends Controller
      * @param $concertId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function updateConcert($concertId)
+    public function showUpdate($concertId)
     {
         $concert = $this->concertService->findByConcertId($concertId);
 
         // ライブ作成者idとユーザidを照合
-        if($concert->user_id != Auth::id()){
+        if ($concert->user_id != Auth::id()) {
             return redirect('/mypage');
         }
         return view('/detail_update')->with('concert', $concert);
@@ -132,7 +154,7 @@ class MypageController extends Controller
         $concert = $this->concertService->findByConcertId($concertId);
 
         // ライブ作成者idとユーザidを照合
-        if($concert->user_id != Auth::id()){
+        if ($concert->user_id != Auth::id()) {
             return redirect('/mypage');
         }
 

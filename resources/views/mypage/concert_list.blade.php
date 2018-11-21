@@ -26,8 +26,8 @@
                     </div>
                 </div>
             </div>
-            <p>{{ $concerts->links() }}</p>
         @endforeach
+        <p>{{ $concerts->links() }}</p>
 
         @if (empty($concerts) || count($concerts) === 0)
             <p>ライブが登録されていません。</p>

@@ -32,7 +32,7 @@ class ConcertService extends Model
     ];
 
     private const NUMBER_OF_CONCERTS_ON_TOP = 10;
-    private const NUMBER_OF_PAGINATION_ON_MYPAGE = 2;
+    private const NUMBER_OF_PAGINATION_ON_MYPAGE = 5;
 
     /**
      * コンストラクタ

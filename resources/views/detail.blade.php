@@ -37,7 +37,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="detail-introduction">
-                        <p style="font-size: 20px">{{ $detail_info->concert_introduction }}</p>
+                        <label for="title">ライブ自由紹介</label>
+                        <p>{!! nl2br(e($detail_info->concert_introduction)) !!}</p>
                     </div>
                 </div>
             </div>

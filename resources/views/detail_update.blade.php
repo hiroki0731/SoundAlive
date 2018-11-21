@@ -3,11 +3,20 @@
     @php
         $detail_info = json_decode($concert->detail_info);
     @endphp
-    <form name="concertForm" enctype="multipart/form-data" action="{{ url('/mypage/create') }}" method="post">
+    <form name="concertForm" enctype="multipart/form-data" action="/mypage/update/{{ $concert->id }}" method="post">
         {{ csrf_field() }}
 
         <div class="detail-wrapper detail-update">
-            <h4 class="text-center">ライブ情報を登録・編集できます。完了したら登録を押下してください。</h4>
+            <h4 class="text-center">ライブ編集ページ</h4>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -19,13 +28,13 @@
                 <br>
                 <div class="row">
                     <div class="col-md-6" id="mypage">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">ライブ紹介用の画像を選んでください。</h4>
-                                <img v-show="!uploadedImage" src="{{ asset('storage/images/'.$detail_info->concert_img) }}" style="width: 100%;">
-                                <img v-show="uploadedImage" :src="uploadedImage" style="width: 100%;"/>
-                                <input type="file" @change="onFileChange">
-                            </div>
+                        <div>
+                            <p class="card-title">※ライブ紹介用の画像を選んでください。</p>
+                            <img v-show="!uploadedImage" src="{{ asset('storage/images/'.$detail_info->concert_img) }}"
+                                 style="width: 100%;">
+                            <img v-show="uploadedImage" :src="uploadedImage" style="width: 100%;"/>
+                            <input type="file" @change="onFileChange" name="concert_img"
+                                   value="{{ $detail_info->concert_img }}">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -55,27 +64,35 @@
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">ライブ会場：</p>
-                                <input class="form-control" type="text" name="place_name" value="{{ $detail_info->place_name ?? ''}}" placeholder="例) ライブハウス○○">
+                                <input class="form-control" type="text" name="place_name"
+                                       value="{{ $detail_info->place_name ?? ''}}" placeholder="例) ライブハウス○○">
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">最寄駅：</p>
-                                <input class="form-control" type="text" name="place_station" value="{{ $detail_info->place_station ?? ''}}" placeholder="例) 渋谷駅">
+                                <input class="form-control" type="text" name="place_station"
+                                       value="{{ $detail_info->place_station ?? ''}}" placeholder="例) 渋谷駅">
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">ジャンル：</p>
-                                <input class="form-control" type="text" name="music_type" value="{{ $detail_info->music_type ?? ''}}" placeholder="例) ロック、ジャズ">
+                                <input class="form-control" type="text" name="music_type"
+                                       value="{{ $detail_info->music_type ?? ''}}" placeholder="例) ロック、ジャズ">
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">チャージ：</p>
-                                <input class="form-control" type="text" name="concert_money" value="{{ $detail_info->concert_money ?? ''}}" placeholder="例) 3,500円(税込)">
+                                <input class="form-control" type="text" name="concert_money"
+                                       value="{{ $detail_info->concert_money ?? ''}}" placeholder="例) 3,500円(税込)">
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">会場住所：</p>
-                                <input class="form-control" type="text" name="place_address" value="{{ $detail_info->place_address ?? ''}}" placeholder="例) 神奈川県横浜市港北区テスト町1-1-1">
+                                <input class="form-control" type="text" name="place_address"
+                                       value="{{ $detail_info->place_address ?? ''}}"
+                                       placeholder="例) 神奈川県横浜市港北区テスト町1-1-1">
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">URL：</p>
-                                <input class="form-control" type="text" name="place_url" value="{{ $detail_info->place_url ?? ''}}" placeholder="例) http://sample.concert.place.com">
+                                <input class="form-control" type="text" name="place_url"
+                                       value="{{ $detail_info->place_url ?? ''}}"
+                                       placeholder="例) http://sample.concert.place.com">
                             </div>
                         </div>
                     </div>
@@ -85,12 +102,15 @@
                     <div class="col-md-12">
                         <div class="detail-introduction">
                             <label for="title">ライブ自由紹介</label>
-                            <textarea name="concert_introduction" placeholder="例) ライブを自由に紹介してください。(200文字以内)">{{ trim($detail_info->concert_introduction ?? '') }}</textarea>
+                            <textarea name="concert_introduction"
+                                      placeholder="例) ライブを自由に紹介してください。(200文字以内)">{!! $detail_info->concert_introduction ?? '' !!}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
-            <input type="submit" value="登録・更新" style="background-color: blue">
+            <div class="detail-submit-btn">
+                <input type="submit" value="登録する" width="10%">
+            </div>
         </div>
     </form>
     <script src="{{ asset('/js/mypage.js') }}"></script>
