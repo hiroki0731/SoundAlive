@@ -65,12 +65,29 @@
                     <p class="text-contents">
                         開催日：{{ $detail_info->concert_date }}<br>
                         {{ $detail_info->concert_name }}<br>
-                        {{ $detail_info->concert_introduction }}
                     </p>
                 </div>
             @endforeach
             <div class="clear"></div>
         </div>
     </div>
-    <script src="js/top.js"></script>
+
+    <div class="contents-wrapper">
+        <div class="contents">
+            <div class="content">
+                <div class="vue-slider-content"
+                     v-for="(item, index) in contents"
+                     v-if="visibleContent === index"
+                     :key="index">
+                    <img :src="item.imgUrl" :alt="item.title" style="width: 100%;">
+                </div>
+
+                <button @click="showPrevImg()">戻る</button>
+                <button @click="showNextImg()">次へ</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{{ asset('js/top.js') }}"></script>
 @endsection

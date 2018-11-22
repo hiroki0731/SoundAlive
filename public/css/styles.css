@@ -377,8 +377,7 @@ footer {
 
 .concert {
     text-align: center;
-    float: left;
-    width: 33%;
+    width: 100%;
 }
 
 .concert h3 {
@@ -417,3 +416,14 @@ footer {
     background-color: rgba(250, 250, 100, 0.5);
     transition: all 0.3s;
 }
+
+
+
+
+
+
+
+
+
+
+/* スライドサンプル */
