@@ -48,45 +48,31 @@
             </div>
         </div>
     </div>
-    <div class="concert-wrapper">
-        <div class="heading">
-            <h2>新着ライブ！</h2>
-        </div>
-        <div class="concerts">
-            @foreach($concerts as $concert)
-                @php
-                    $detail_info = json_decode($concert->detail_info);
-                @endphp
-                <div class="concert pointer" @click="moveToDetail({{ $concert->id }})">
-                    <h4>{{ $detail_info->band_name }}</h4>
-                    <div class="concert-icon">
-                        <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}" width="50%">
-                    </div>
-                    <p class="text-contents">
-                        開催日：{{ $detail_info->concert_date }}<br>
-                        {{ $detail_info->concert_name }}<br>
-                    </p>
-                </div>
-            @endforeach
-            <div class="clear"></div>
-        </div>
+    <div class="heading" style="text-align: center">
+        <h2>新着ライブ！</h2>
     </div>
-
-    <div class="contents-wrapper">
-        <div class="contents">
-            <div class="content">
-                <div class="vue-slider-content"
-                     v-for="(item, index) in contents"
-                     v-if="visibleContent === index"
-                     :key="index">
-                    <img :src="item.imgUrl" :alt="item.title" style="width: 100%;">
+    <div class="concerts" :style="parentSlider">
+        @foreach($concerts as $concert)
+            @php
+                $detail_info = json_decode($concert->detail_info);
+                $count = count($concerts) ?? 0;
+            @endphp
+            <div class="concert pointer" @click="moveToDetail({{ $concert->id }})" :style="childSlider">
+                <h4>{{ $detail_info->band_name }}</h4>
+                <div class="concert-icon">
+                    <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}" width="50%">
                 </div>
-
-                <button @click="showPrevImg()">戻る</button>
-                <button @click="showNextImg()">次へ</button>
+                <p class="text-contents">
+                    開催日：{{ $detail_info->concert_date }}<br>
+                    {{ $detail_info->concert_name }}<br>
+                </p>
             </div>
-        </div>
+        @endforeach
+        <span ref="slideNum" style="display: none">{{ $count }}</span>
+        <div class="clear"></div>
     </div>
+    <button @click="changeSlide(false)">戻る</button>
+    <button @click="changeSlide(true)">次へ</button>
 
 
     <script src="{{ asset('js/top.js') }}"></script>
