@@ -57,10 +57,20 @@
                 $detail_info = json_decode($concert->detail_info);
                 $count = count($concerts) ?? 0;
             @endphp
-            <div class="concert pointer" @click="moveToDetail({{ $concert->id }})" :style="childSlider">
+            <div class="concert" :style="childSlider">
                 <h4>{{ $detail_info->band_name }}</h4>
                 <div class="concert-icon">
-                    <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}" width="50%">
+                    <div class="row">
+                        <div class="col-sm-1 text-center">
+                            <a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)"><i class="fas fa-chevron-left"></i></a>
+                        </div>
+                        <div class="col-sm-10 pointer" @click="moveToDetail({{ $concert->id }})">
+                            <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}" width="50%">
+                        </div>
+                        <div class="col-sm-1 text-center">
+                            <a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)"><i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
                 </div>
                 <p class="text-contents">
                     開催日：{{ $detail_info->concert_date }}<br>
@@ -71,9 +81,5 @@
         <span ref="slideNum" style="display: none">{{ $count }}</span>
         <div class="clear"></div>
     </div>
-    <button @click="changeSlide(false)">戻る</button>
-    <button @click="changeSlide(true)">次へ</button>
-
-
     <script src="{{ asset('js/top.js') }}"></script>
 @endsection
