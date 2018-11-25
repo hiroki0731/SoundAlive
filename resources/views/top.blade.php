@@ -19,8 +19,11 @@
             <div class="contents">
                 <div class="content pointer" @click="moveToSearch()">
                     <h3>すぐにライブを検索しよう</h3>
-                    <div class="content-icon">
-                        <img src="{{ asset('/img/search.png') }}" width="50%">
+                    <div class="content-icon concert-img">
+                        <img src="{{ asset('/img/search.png') }}" width="100%">
+                        <div class="mask">
+                            <div class="caption text-black-50">Search...</div>
+                        </div>
                     </div>
                     <p class="text-contents">
                         ライブをジャンル・場所・日時などで検索しましょう。近場のライブハウスやジャズバーでは、今日も魂の込もった音楽が演奏されて、誰かの心を動かしています。
@@ -28,8 +31,11 @@
                 </div>
                 <div class="content pointer" @click="moveToRegister()">
                     <h3>登録してライブを告知しよう</h3>
-                    <div class="content-icon">
-                        <img src="{{ asset('/img/regist.png') }}" width="50%">
+                    <div class="content-icon concert-img">
+                        <img src="{{ asset('/img/regist.png') }}" width="100%">
+                        <div class="mask">
+                            <div class="caption text-black-50">Register...</div>
+                        </div>
                     </div>
                     <p class="text-contents">
                         ミュージシャンは無料登録をして自分のライブをどんどん告知しましょう。ライブハウスのウェブサイトや自分のSNS以外の強力な広告ツールとして活用してください。
@@ -37,8 +43,11 @@
                 </div>
                 <div class="content pointer" @click="moveToRegister()">
                     <h3>もっと詳しく知りたいなら</h3>
-                    <div class="content-icon">
-                        <img src="{{ asset('/img/book.png') }}" width="50%">
+                    <div class="content-icon concert-img">
+                        <img src="{{ asset('/img/book.png') }}" width="100%">
+                        <div class="mask">
+                            <div class="caption text-black-50">Detail...</div>
+                        </div>
                     </div>
                     <p class="text-contents">
                         このサイトの特徴や活用方法をもっと詳しく記載したページをこちらからご覧ください
@@ -61,7 +70,9 @@
                     $count = count($concerts) ?? 0;
                 @endphp
                 <div class="concert" :style="childSlider">
-                    <h4>{{ $detail_info->band_name }}</h4>
+                    <div class="band-name">
+                        <h3>{{ $detail_info->band_name }}</h3>
+                    </div>
                     <div class="concert-icon">
                         <div class="row">
                             <div class="col-sm-1">
@@ -71,7 +82,7 @@
                                 <div class="concert-img" @click="moveToDetail({{ $concert->id }})">
                                     <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}" width="100%">
                                     <div class="mask">
-                                        <div class="caption">詳しくみる...</div>
+                                        <div class="caption">ライブの詳細をみる</div>
                                     </div>
                                 </div>
                             </div>

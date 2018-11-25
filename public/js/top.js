@@ -28,10 +28,10 @@
             this.parentWidth = (window.innerWidth * this.slideCount);
             //画面幅をcssにセット
             this.parentSlider.width = this.parentWidth.toString() + "px";
-            console.log("parentSlider:" + (window.innerWidth * this.slideCount).toString());
+            // console.log("parentSlider:" + (window.innerWidth * this.slideCount).toString()); TODO:削除
             //100% / スライドの数の割り当て
             this.childSlider.width = (100 / this.slideCount).toString() + "%";
-            console.log("childSlider:" + this.childSlider.width);
+            // console.log("childSlider:" + this.childSlider.width); TODO:削除
         },
         methods: {
             moveToDetail: function (id) {

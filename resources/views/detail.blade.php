@@ -21,15 +21,71 @@
                         <p>{{ $detail_info->band_member }}</p>
                     </div>
                     <div class="detail-border">
-                        <p>ライブ日程：{{ $detail_info->concert_date }} </p>
-                        <p>開催時間：{{ $detail_info->start_time ?? ''}}
-                            ~ {{ $detail_info->end_time ?? ''}}</p>
-                        <p>ライブ会場：{{ $detail_info->place_name ?? ''}}</p>
-                        <p>最寄駅：{{ $detail_info->place_station ?? ''}}</p>
-                        <p>ジャンル：{{ $detail_info->music_type }}</p>
-                        <p>チャージ：{{ $detail_info->concert_money }}</p>
-                        <p>会場住所：{{ $detail_info->place_address ?? ''}}</p>
-                        <p>URL：{{ $detail_info->place_url ?? ''}}</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ ライブ日程</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->concert_date }} </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ 開催時間</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->start_time ?? ''}}
+                                    ~ {{ $detail_info->end_time ?? ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ ライブ会場</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->place_name ?? ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ 最寄駅</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->place_station ?? ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ ジャンル</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->music_type ?? ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ チャージ</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->concert_money ?? ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ 会場住所</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p id="concert-address">{{ $detail_info->place_address ?? ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>■ 会場URL</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ $detail_info->place_url ?? ''}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,11 +93,29 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="detail-introduction">
-                        <label for="title">ライブ自由紹介</label>
+                        <label for="title">ライブ説明</label>
                         <p>{!! nl2br(e($detail_info->concert_introduction)) !!}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="detail-introduction">
+                        <label for="title">会場アクセスマップ</label>
+                        <div id="address-map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="detail-introduction">
+                        <label for="title">YouTube動画</label>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{ asset('/js/map.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZowbweHM-maatrVX4XYk0z9P6nVCU9KU&callback=initMap" type="text/javascript"></script>
 @endsection
