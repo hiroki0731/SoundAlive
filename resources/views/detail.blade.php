@@ -2,6 +2,7 @@
 @section('content')
     @php
         $detail_info = json_decode($concert->detail_info);
+        $station_code = $detail_info->station ?? '';
     @endphp
     <div class="detail-wrapper">
         <div class="container">
@@ -51,7 +52,7 @@
                                 <p>■ 最寄駅</p>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ $detail_info->place_station ?? ''}}</p>
+                                <p>{{ Helper::getStationLine($station_code) }} {{ Helper::getStationName($station_code) }}駅</p>
                             </div>
                         </div>
                         <div class="row">
@@ -117,5 +118,6 @@
         </div>
     </div>
     <script src="{{ asset('/js/map.js') }}"></script>
+    {{--TODO:apikeyをgithubから消す--}}
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZowbweHM-maatrVX4XYk0z9P6nVCU9KU&callback=initMap" type="text/javascript"></script>
 @endsection

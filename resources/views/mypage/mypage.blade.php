@@ -22,6 +22,7 @@
                     <div id="create" :class="{dispnon: activateArray.dispNonCreate}">
                         @include('mypage.create_concert')
                     </div>
+                    <p @click="showSelectBox()">aaaa</p>
                 </div>
             </div>
         </div>
