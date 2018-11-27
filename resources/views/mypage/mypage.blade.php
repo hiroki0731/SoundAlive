@@ -22,10 +22,10 @@
                     <div id="create" :class="{dispnon: activateArray.dispNonCreate}">
                         @include('mypage.create_concert')
                     </div>
-                    <p @click="showSelectBox()">aaaa</p>
                 </div>
             </div>
         </div>
     </div>
     <script src="{{ asset('/js/mypage.js') }}"></script>
+    <script src="{{ asset('/js/area.js') }}"></script>
 @endsection

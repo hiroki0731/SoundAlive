@@ -11,12 +11,7 @@
 |
 */
 
-/* トップページ */
-Route::get('/', 'TopController@index')->name('top');
-Route::get('/detail/{id}', 'TopController@showDetail')->where('id', '[1-9][0-9]*');
-
-
-/* 下記のルートを作成 */
+/* 認証用のルート作成 */
 Auth::routes();
 /*
 // Authentication Routes...
@@ -35,8 +30,11 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 */
 
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
+/* トップページ */
+Route::get('/', 'TopController@index')->name('top');
+Route::get('/detail/{id}', 'TopController@showDetail')->where('id', '[1-9][0-9]*');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 /* マイページ */
 Route::get('/mypage', 'MypageController@index')->name('mypage');
@@ -44,3 +42,6 @@ Route::post('/mypage/create', 'MypageController@createConcert');
 Route::get('/mypage/update/{concertId}', 'MypageController@showUpdate')->where('id', '[1-9][0-9]*');
 Route::post('/mypage/update/{concertId}', 'MypageController@updateConcert')->where('id', '[1-9][0-9]*');
 Route::get('/mypage/delete/{concertId}', 'MypageController@deleteConcert')->where('id', '[1-9][0-9]*');
+
+/* 検索ページ */
+Route::get('/search', 'SearchController@index')->name('search');

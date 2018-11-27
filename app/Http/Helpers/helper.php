@@ -3,6 +3,8 @@
 namespace App\Http\Helpers;
 
 
+use Illuminate\Support\Facades\Config;
+
 class Helper
 {
     const URL_FOR_LINE = 'http://www.ekidata.jp/api/l/';
@@ -51,6 +53,15 @@ class Helper
         }
 
         return (string)$stationXml->station->line_name ?? '';
+    }
+
+    /**
+     * 都道府県のデータを連想配列で返す。
+     * @return array
+     */
+    public static function getPref():array
+    {
+        return Config::get('const.prefecture') ?? array();
     }
 
 }
