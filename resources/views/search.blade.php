@@ -7,20 +7,29 @@
                 <div class="card">
                     <div class="card-header">検索条件選択</div>
                     <div class="card-body">
-                        <lavel>開催日付</lavel>
+                        <label>日付を指定</label>
                         <input type="date" name="date" value="">
-                        <lavel>都道府県</lavel>
-                        <select name="pref" onChange="setMenuItem(false, this[this.selectedIndex].value)">
+
+                        <label>エリアを指定</label>
+                        <select name="pref" id="pref" onChange="setMenuItem(false, this[this.selectedIndex].value)">
                             <option value="0" selected>都道府県を選択</option>
                             @foreach(Helper::getPref() as $key => $val)
                                 <option value={{ $key }}>{{ $val }}</option>
                             @endforeach
                         </select>
-                        <select name="line" onChange="setMenuItem(true, this[this.selectedIndex].value)">
+                        <select name="line" id="line" onChange="setMenuItem(true, this[this.selectedIndex].value)">
                             <option selected>路線を選択
                         </select>
-                        <select name="station">
+                        <select name="station" id="station">
                             <option selected>駅を選択
+                        </select>
+
+                        <label>ジャンルを指定</label>
+                        <select name="music_type" id="music_type">
+                            <option value="0" selected>音楽ジャンルを選択</option>
+                            @foreach(Helper::getMusicType() as $key => $val)
+                                <option value={{ $key }}>{{ $val }}</option>
+                            @endforeach
                         </select>
 
                     </div>
@@ -59,4 +68,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('/js/area.js') }}"></script>
 @endsection

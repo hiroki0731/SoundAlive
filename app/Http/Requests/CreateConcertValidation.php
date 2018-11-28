@@ -48,6 +48,7 @@ class CreateConcertValidation extends FormRequest
         return [
           'concert_name.required' => 'ライブタイトルは必須です',
           'band_name.required' => 'バンド名は必須です',
+          'band_member.required' => 'バンドメンバーは必須です',
           'concert_date.required' => 'ライブ日付は必須です',
           'start_time.required' => '開始時間は必須です',
           'end_time.required' => '終了時間は必須です',
@@ -57,6 +58,7 @@ class CreateConcertValidation extends FormRequest
           'pref.required' => '都道府県は必須です',
           'line.required' => '路線は必須です',
           'station.required' => '最寄駅は必須です',
+          'place_address.required' => '会場住所は必須です',
           'concert_img.required' => 'ライブ紹介画像は必須です',
           'concert_introduction.required' => 'ライブ説明は必須です',
         ];

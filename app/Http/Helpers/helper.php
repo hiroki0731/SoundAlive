@@ -64,4 +64,13 @@ class Helper
         return Config::get('const.prefecture') ?? array();
     }
 
+    /**
+     * 音楽ジャンルのデータを連想配列で返す
+     * @return array
+     */
+    public static function getMusicType():array
+    {
+        return Config::get('const.music_type') ?? array();
+    }
+
 }

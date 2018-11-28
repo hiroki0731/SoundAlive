@@ -73,27 +73,31 @@
                                 <p class="input-group-addon now-data">{{ Helper::getStationLine($station_code) }} {{ Helper::getStationName($station_code) }}
                                     駅</p>
                                 <button id="show-area-button" type="button" @click="toggleSelectBox">変更</button>
-                                <div id="show-select-box" :class="{dispnon: hideSelectBox}">
+                                <div id="show-select-box area" :class="{dispnon: hideSelectBox}" style="margin-top: 3px;">
                                     <select id="pref" name="pref"
                                             onChange="setMenuItem(false, this[this.selectedIndex].value)">
-                                        <option value="{{ $detail_info->pref }}" selected>都道府県を選択
+                                        <option value="{{ $detail_info->pref ?? ''}}" selected>都道府県を選択
                                         @foreach(Helper::getPref() as $key => $val)
                                             <option value={{ $key }}>{{ $val }}</option>
                                         @endforeach
                                     </select>
                                     <select name="line" id="line"
                                             onChange="setMenuItem(true, this[this.selectedIndex].value)">
-                                        <option value="{{ $detail_info->line }}" selected>路線を選択</option>
+                                        <option value="{{ $detail_info->line ?? '' }}" selected>路線を選択</option>
                                     </select>
                                     <select name="station" id="station">
-                                        <option value="{{ $detail_info->station }}" selected>駅を選択</option>
+                                        <option value="{{ $detail_info->station ?? '' }}" selected>駅を選択</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">ジャンル：</p>
-                                <input class="form-control" type="text" name="music_type"
-                                       value="{{ $detail_info->music_type ?? ''}}" placeholder="例) ロック、ジャズ">
+                                <select name="music_type" id="music_type">
+                                    <option value="" selected>一番近いジャンルを選択</option>
+                                    @foreach(Helper::getMusicType() as $key => $val)
+                                        <option value={{ $key }} @if($key == $detail_info->music_type) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">チャージ：</p>
