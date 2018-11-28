@@ -24,4 +24,28 @@ class SearchController extends Controller
         return view('/search')->with('concerts', $concerts);
     }
 
+    /**
+     * ライブを検索して結果をコレクションで返す
+     * @param Request $request
+     * @return mixed
+     */
+    public function search(Request $request)
+    {
+        $inputs = $request->except('_token');
+        foreach ($inputs as $key => $val) {
+            if (empty($val)) {
+                continue;
+            } else {
+                $conditions[$key] = $val;
+            }
+        }
+        if (empty($conditions)) {
+            $concerts = $this->concertService->getAll();
+        } else {
+            $concerts = $this->concertService->getByCondition($conditions);
+        }
+
+        return view('/search')->with('concerts', $concerts)->with('conditions', $conditions ?? array());
+    }
+
 }

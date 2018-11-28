@@ -44,4 +44,5 @@ Route::post('/mypage/update/{concertId}', 'MypageController@updateConcert')->whe
 Route::get('/mypage/delete/{concertId}', 'MypageController@deleteConcert')->where('id', '[1-9][0-9]*');
 
 /* 検索ページ */
-Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/search', 'SearchController@index');
+Route::post('/search', 'SearchController@search');

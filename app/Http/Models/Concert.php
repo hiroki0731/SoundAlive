@@ -12,5 +12,9 @@ class Concert extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'json_column' => 'detail_info'
+    ];
+
     protected $dates = ['deleted_at'];
 }
