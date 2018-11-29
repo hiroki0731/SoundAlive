@@ -14,6 +14,7 @@ class ConcertService extends Model
 {
     private $model;
 
+    // detail_infoカラムに登録できる値を設定
     public const CONCERT_TABLE_COLUMNS = [
         'concert_name',
         'band_name',
@@ -32,9 +33,17 @@ class ConcertService extends Model
         'concert_img',
         'concert_introduction',
     ];
-
+    // フリーワード検索をさせるカラムを設定
+    private const WORD_SEARCH_ARRAY = [
+        'band_name',
+        'place_name',
+    ];
+    // トップページに表示するライブ数
     private const NUMBER_OF_CONCERTS_ON_TOP = 10;
+    // マイページのページネーション
     private const NUMBER_OF_PAGINATION_ON_MYPAGE = 5;
+    // 検索ページのページネーション
+    private const NUMBER_OF_PAGINATION_ON_SEARCH = 5;
 
     /**
      * コンストラクタ
@@ -64,6 +73,11 @@ class ConcertService extends Model
         return $this->model->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_MYPAGE);
     }
 
+    /**
+     * 絞り込み検索結果を取得
+     * @param $conditions
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getByCondition($conditions)
     {
         $conditions = $this->formatCondition($conditions);
@@ -72,7 +86,8 @@ class ConcertService extends Model
             if (empty($val)) {
                 continue;
             }
-            if ($key == 'band_name') {
+
+            if (in_array($key, self::WORD_SEARCH_ARRAY)) {
                 $query->where("detail_info->$key", 'like', "%$val%");
             } elseif ($key == 'stations') {
                 $query->whereIn("detail_info->station", $conditions[$key]);
@@ -80,32 +95,36 @@ class ConcertService extends Model
                 $query->where("detail_info->$key", '=', $val);
             }
         }
-        return $query->get();
+        return $query->orderBy('detail_info->concert_date', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_SEARCH);
     }
 
-    private function formatCondition($conditions)
+    /**
+     * エリア検索用に条件の配列を整形して返す
+     * @param $conditions
+     * @return array
+     */
+    private function formatCondition($conditions = array()): array
     {
-        // pref,line,stationの存在確認
+        //pref,line,stationの存在確認
         $existPref = array_key_exists('pref', $conditions);
         $existLine = array_key_exists('line', $conditions);
         $existStation = array_key_exists('station', $conditions);
 
-        if ($existPref && !$existStation && !$existLine) { //都道府県のみ指定した場合、
-            //データ整形処理をしない
+        if ($existPref && !$existStation && !$existLine) { //都道府県のみ指定した場合
             $format_conditions = $conditions;
-        } else if ($existLine && !$existStation) { //路線を指定した場合、
+        } else if ($existLine && !$existStation) { //路線まで指定した場合
             //都道府県と路線を検索条件から外す
             $format_conditions = $conditions;
             unset($format_conditions['pref']);
             unset($format_conditions['line']);
 
-            //路線上にある全ての駅コードを取得して新たな検索キーに格納
-            $arrays = \Helper::getStationsByLine($conditions['line']);
-            foreach ($arrays as $array) {
-                $stations[] = (int)$array->station_cd;
+            //路線上にある全ての駅コードを取得して格納
+            $stations = \Helper::getStationsByLine($conditions['line']);
+            foreach ($stations as $station) {
+                $stationCodes[] = (int)$station->station_cd;
             }
-            $format_conditions['stations'] = $stations ?? array();
-        } else { //駅指定の場合
+            $format_conditions['stations'] = $stationCodes ?? array();
+        } else { //駅まで指定した場合
             //prefとlineを検索条件から外す
             unset($conditions['pref']);
             unset($conditions['line']);

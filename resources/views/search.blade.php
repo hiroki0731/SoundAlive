@@ -48,9 +48,21 @@
                                 <div class="col-sm-3">
                                     <label>バンド名で検索</label>
                                     <br>
-                                    <input type="text" name="band_name" placeholder="バンド名を入力">
+                                    <input type="text" name="band_name" placeholder="バンド名を入力"
+                                           value="{{old('band_name')}}">
+                                    <br>
+                                    <label>ライブ会場名で検索</label>
+                                    <br>
+                                    <input type="text" name="place_name" placeholder="会場名を入力"
+                                           value="{{old('place_name')}}">
                                 </div>
                             </div>
+                            @if(isset($conditions))
+                                指定した検索条件
+                                @foreach($conditions as $key => $val)
+                                    <p>{{ $key }} : {{$val}}</p>
+                                @endforeach
+                            @endif
 
                             <input type="submit" value="検索">
                         </form>
@@ -67,9 +79,8 @@
                             @php
                                 $detail_info = json_decode($concert->detail_info);
                                 $music_type = Helper::getMusicTypeName($detail_info->music_type);
-                                $station_code = $detail_info->station ?? '';
-                                $station_line = Helper::getStationLine($station_code);
-                                $station_name = Helper::getStationName($station_code);
+                                $station_line = Helper::getLineName($detail_info->line ?? '');
+                                $station_name = Helper::getStationName($detail_info->station ?? '');
                                 $pref_name = Helper::getPrefName($detail_info->pref ?? '');
                             @endphp
                             <div class="mypage-concert-list-wrapper">
@@ -78,17 +89,16 @@
                                         <img src={{ asset('storage/images/'. $detail_info->concert_img) }} style="width:100%">
                                     </div>
                                     <div class="col-md-9">
-                                        <p>都道府県：{{ $pref_name }}</p>
                                         <p>開催日：{{ $detail_info->concert_date }}</p>
                                         <p>バンド名：{{ $detail_info->band_name }}</p>
                                         <p>音楽ジャンル：{{ $music_type }}</p>
-                                        <p>最寄駅：{{ $station_line }} {{ $station_name }}駅</p>
+                                        <p>最寄アクセス：{{ $pref_name }} {{ $station_line }} {{ $station_name }}駅</p>
                                         <p>ライブタイトル：{{ $detail_info->concert_name }}</p>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                        {{--<p>{{ $concerts->links() }}</p>--}}
+                        <p>{{ $concerts->links() }}</p>
 
                         @if (empty($concerts) || count($concerts) === 0)
                             <p>検索結果なし</p>

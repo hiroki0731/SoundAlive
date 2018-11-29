@@ -3,6 +3,7 @@
     @php
         $detail_info = json_decode($concert->detail_info);
         $station_code = $detail_info->station ?? '';
+        $line_code = $detail_info->line ?? '';
     @endphp
     <div class="detail-wrapper">
         <div class="container">
@@ -52,7 +53,7 @@
                                 <p>■ 最寄駅</p>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ Helper::getStationLine($station_code) }} {{ Helper::getStationName($station_code) }}駅</p>
+                                <p>{{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}駅</p>
                             </div>
                         </div>
                         <div class="row">

@@ -1,258 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-}
-
-a {
-    color: white;
-    text-decoration: none !important;
-}
-
-.clear {
-    clear: left;
-}
-
-.container {
-    max-width: 1170px;
-    width: 100%;
-    padding: 0 15px;
-    margin: 0 auto;
-}
-
-/* menu関連 */
-.logo {
-    width: 124px;
-    margin-top: 20px;
-}
-
-.header-left {
-    float: left;
-}
-
-.header-right {
-    float: right;
-    margin-right: -25px;
-}
-
-.header-right a {
-    line-height: 65px;
-    padding: 0 25px;
-    color: white;
-    display: block;
-    float: left;
-    transition: all 0.7s;
-}
-
-.header-right a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-/* menu-iconのCSSを貼り付けてください */
-.menu-icon {
-    color: white;
-    float: right;
-    font-size: 25px;
-    padding: 21px 0;
-    /* displayをnoneに指定してください */
-    display: none;
-}
-
-.top-wrapper {
-    padding: 180px 0 100px 0;
-    background-image: url("/img/live1.png");
-    background-size: cover;
-    color: white;
-    text-align: center;
-}
-
-.top-wrapper h1 {
-    opacity: 0.9;
-    font-size: 50px;
-    letter-spacing: 5px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    line-height: inherit;
-}
-
-.top-wrapper p {
-    opacity: 0.9;
-    font-weight: bold;
-}
-
-.top-btn {
-    padding: 8px 24px;
-    color: white;
-    display: inline-block;
-    opacity: 0.9;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.top-btn a {
-    color: white;
-}
-
-.top-btn:hover {
-    color: white;
-    text-decoration: none;
-    opacity: 1 !important;
-}
-
-.signup {
-    background-color: #c69500;
-}
-
-.fa {
-    margin-right: 5px;
-}
-
-header {
-    height: 65px;
-    width: 100%;
-    background-color: rgba(34, 49, 52, 0.9);
-    position: fixed;
-    top: 0;
-    z-index: 10;
-}
-
-.content-wrapper {
-    border-top: 1px solid #eee;
-    padding-bottom: 80px;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: #f7f7f7;
-    text-align: center;
-}
-
-.heading {
-    text-decoration: underline;
-    padding-top: 60px;
-    padding-bottom: 0px;
-    color: #5f5d60;
-}
-
-.heading h2 {
-    font-weight: normal;
-    display: block;
-    font-size: 1.5em;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    /*font-weight: bold;*/
-}
-
-.content {
-    text-align: center;
-    float: left;
-    width: 33%;
-}
-
-.content h3 {
-    color: #5f5d60;
-    margin-bottom: 0px;
-    display: block;
-    font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-
-.content-icon {
-    position: relative;
-}
-
-.content-icon p {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    color: black;
-}
-
-.text-contents {
-    width: 80%;
-    display: inline-block;
-    font-size: 14px;
-    color: #5f5d60;
-}
-
-.heading h3 {
-    font-weight: normal;
-}
-
-.message-wrapper {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 80px;
-    text-align: center;
-}
-
-.message {
-    padding: 15px 40px;
-    background-color: #5dca88;
-    cursor: pointer;
-    box-shadow: 0 7px #1a7940;
-}
-
-.message:active {
-    position: relative;
-    top: 7px;
-    box-shadow: none;
-}
-
-footer img {
-    width: 125px;
-}
-
-footer p {
-    text-align: center;
-    color: #b3aeb5;
-    font-size: 12px;
-}
-
-footer {
-    border-top: 1px solid #eee;
-    padding-top: 30px;
-    padding-bottom: 20px;
-}
-
-.login-wrapper {
-    padding: 100px 0 100px 0;
-    background-image: url("/img/live1.png");
-    background-size: cover;
-    color: white;
-    text-align: center;
-}
-
-.login-wrapper .userinput {
-    opacity: 0.8;
-    padding: 10px;
-    width: 40%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-
-.login-wrapper .submit-btn {
-    margin-top: 40px;
-    opacity: 0.8;
-    padding: 10px;
-    width: 10%;
-}
-
-.card-body input {
-    opacity: 0.7;
-}
-
-.invalid-feedback {
-    background-color: rgba(250, 250, 100, 0.7);
-}
-
 .mypage-wrapper {
     padding: 100px 0 100px 0;
     background-image: url("/img/img10.jpg");
@@ -262,6 +7,7 @@ footer {
 }
 
 .card {
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -304,16 +50,64 @@ footer {
     margin: 10px 0px;
 }
 
+.createForm label {
+    text-align: left;
+}
+
 .pointer {
     opacity: 1;
     cursor: pointer;
-    /*transition: all 0.9s;*/
 }
 
-.pointer:hover{
-    opacity: 0.8;
+.pointer:hover {
+    /*background-color: rgba(200,200,100,0.8);*/
+    opacity: 0.9;
 }
 
 .detail-wrapper {
-    padding: 180px 0 100px 0;
+    background-image: url("/img/detail.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    padding: 100px 0 100px 0;
+}
+
+.detail-border {
+    padding: 10px 0 0 10px;
+    background-color: rgba(10, 10, 10, 0.8);
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid #dee2e6;
+}
+
+.detail-title {
+    padding: 10px;
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+.detail-introduction {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.detail-update input, textarea {
+    color: white;
+    outline: 0;
+    border: 0px;
+    background: transparent;
+    width: 100%;
+}
+
+.detail-introduction textarea, .detail-introduction p {
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
+
+.detail-update input[type=submit] {
+    color: white;
+    border: 1px solid #dee2e6;
+    padding: 3px;
+    width: 10%;
 }

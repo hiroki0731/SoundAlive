@@ -1,7 +1,10 @@
 <?php
 
-return [
+/**
+ * 定義ファイル
+ */
 
+return [
     'prefecture' => [
         "1" => "北海道",
         "2" => "青森県",
@@ -64,4 +67,12 @@ return [
         "9" => "その他",
     ],
 
+    'conditions' => [
+        "pref" => "都道府県",
+        "line" => "路線名",
+        "station" => "駅名",
+        "band_name" => "バンド名",
+        "place_name" => "会場名",
+        "concert_date" => "開催日付",
+    ],
 ];

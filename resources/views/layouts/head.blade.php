@@ -20,4 +20,5 @@
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+<link href="{{ asset('css/mypage.css') }}" rel="stylesheet">
 {{--<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">--}}

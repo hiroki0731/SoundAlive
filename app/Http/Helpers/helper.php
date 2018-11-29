@@ -35,25 +35,25 @@ class Helper
     }
 
     /**
-     * 駅コードを渡すと路線名を返す。
-     * @param $stationCode
+     * 路線コードを渡すと路線名を返す。
+     * @param $lineCode
      * @return string
      */
-    public static function getStationLine($stationCode): string
+    public static function getLineName($lineCode): string
     {
-        if (empty($stationCode) || !is_numeric($stationCode)) {
+        if (empty($lineCode) || !is_numeric($lineCode)) {
             return self::NO_DATA;
         }
 
-        $url = self::URL_FOR_STATION . $stationCode . self::DATA_TYPE_XML;
+        $url = self::URL_FOR_LINE . $lineCode . self::DATA_TYPE_XML;
 
-        $stationXml = simplexml_load_file($url);
+        $lineXml = simplexml_load_file($url);
 
-        if ($stationXml === false) {
+        if ($lineXml === false) {
             return self::NO_DATA;
         }
 
-        return (string)$stationXml->station->line_name ?? '';
+        return (string)$lineXml->line->line_name ?? '';
     }
 
     /**

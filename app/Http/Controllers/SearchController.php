@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Services\ConcertService;
+use Illuminate\Support\Facades\Config;
+use App\Http\Helpers\Helper;
 
 class SearchController extends Controller
 {
@@ -20,7 +22,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $concerts = $this->concertService->getAll();
+        $concerts = $this->concertService->getByCondition(array());
         return view('/search')->with('concerts', $concerts);
     }
 
@@ -39,13 +41,34 @@ class SearchController extends Controller
                 $conditions[$key] = $val;
             }
         }
-        if (empty($conditions)) {
-            $concerts = $this->concertService->getAll();
-        } else {
-            $concerts = $this->concertService->getByCondition($conditions);
-        }
 
+        $concerts = $this->concertService->getByCondition($conditions ?? array());
+        $conditions = $this->replaceConditionName($conditions ?? array());
         return view('/search')->with('concerts', $concerts)->with('conditions', $conditions ?? array());
+    }
+
+    /**
+     * 検索条件の中身を文字列に変換する
+     * @param $conditions
+     * @return array
+     */
+    private function replaceConditionName($conditions = array()): array
+    {
+        $const = Config::get('const.conditions') ?? array();
+
+        foreach ($conditions as $key => $val) {
+            if($key == "pref"){
+                $val = Helper::getPrefName($val);
+            }else if($key == "line"){
+                $val = Helper::getLineName($val);
+            }else if($key == "station"){
+                $val = Helper::getStationName($val);
+            }
+            if(key_exists($key, $const)){
+                $replacedConditions[$const[$key]] = $val;
+            }
+        }
+        return $replacedConditions ?? array();
     }
 
 }

@@ -3,6 +3,7 @@
     @php
         $detail_info = json_decode($concert->detail_info);
         $station_code = $detail_info->station ?? '';
+        $line_code = $detail_info->line ?? '';
     @endphp
     <form name="concertForm" enctype="multipart/form-data" action="/mypage/update/{{ $concert->id }}" method="post" id="mypage">
         {{ csrf_field() }}
@@ -70,7 +71,7 @@
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">最寄駅：</p>
-                                <p class="input-group-addon now-data">{{ Helper::getStationLine($station_code) }} {{ Helper::getStationName($station_code) }}
+                                <p class="input-group-addon now-data">{{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}
                                     駅</p>
                                 <button id="show-area-button" type="button" @click="toggleSelectBox">変更</button>
                                 <div id="show-select-box area" :class="{dispnon: hideSelectBox}" style="margin-top: 3px;">
