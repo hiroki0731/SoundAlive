@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="mypage" class="mypage-wrapper">
+    <div class="search-wrapper">
         <div class="container">
             <div class="row">
                 <div class="card">
@@ -13,48 +13,56 @@
                                 <div class="col-sm-3">
                                     <label>日付を指定</label>
                                     <br>
-                                    <input type="date" name="concert_date" value="">
+                                    <div class="search-selectbox">
+                                        <input type="date" name="concert_date" value="">
+                                    </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>エリアを指定</label>
                                     <br>
-                                    <select name="pref" id="pref"
-                                            onChange="setMenuItem(false, this[this.selectedIndex].value)">
-                                        <option value="0" selected>都道府県を選択</option>
-                                        @foreach(Helper::getPref() as $key => $val)
-                                            <option value={{ $key }}>{{ $val }}</option>
-                                        @endforeach
-                                    </select>
-                                    <br>
-                                    <select name="line" id="line"
-                                            onChange="setMenuItem(true, this[this.selectedIndex].value)">
-                                        <option value="" selected>路線を選択
-                                    </select>
-                                    <br>
-                                    <select name="station" id="station">
-                                        <option value="" selected>駅を選択
-                                    </select>
+                                    <div class="search-selectbox">
+                                        <select name="pref" id="pref"
+                                                onChange="setMenuItem(false, this[this.selectedIndex].value)">
+                                            <option value="0" selected>都道府県を選択</option>
+                                            @foreach(Helper::getPref() as $key => $val)
+                                                <option value={{ $key }}>{{ $val }}</option>
+                                            @endforeach
+                                        </select>
+                                        <br>
+                                        <select name="line" id="line"
+                                                onChange="setMenuItem(true, this[this.selectedIndex].value)">
+                                            <option value="" selected>路線を選択
+                                        </select>
+                                        <br>
+                                        <select name="station" id="station">
+                                            <option value="" selected>駅を選択
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>ジャンルを指定</label>
                                     <br>
-                                    <select name="music_type" id="music_type">
-                                        <option value="0" selected>音楽ジャンルを選択</option>
-                                        @foreach(Helper::getMusicType() as $key => $val)
-                                            <option value={{ $key }}>{{ $val }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="search-selectbox">
+                                        <select name="music_type" id="music_type">
+                                            <option value="0" selected>音楽ジャンルを選択</option>
+                                            @foreach(Helper::getMusicType() as $key => $val)
+                                                <option value={{ $key }}>{{ $val }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>バンド名で検索</label>
-                                    <br>
-                                    <input type="text" name="band_name" placeholder="バンド名を入力"
-                                           value="{{old('band_name')}}">
-                                    <br>
-                                    <label>ライブ会場名で検索</label>
-                                    <br>
-                                    <input type="text" name="place_name" placeholder="会場名を入力"
-                                           value="{{old('place_name')}}">
+                                    <div class="search-selectbox">
+                                        <label>バンド名で検索</label>
+                                        <br>
+                                        <input type="text" name="band_name" placeholder="バンド名を入力"
+                                               value="{{old('band_name')}}">
+                                        <br>
+                                        <label>ライブ会場名で検索</label>
+                                        <br>
+                                        <input type="text" name="place_name" placeholder="会場名を入力"
+                                               value="{{old('place_name')}}">
+                                    </div>
                                 </div>
                             </div>
                             @if(isset($conditions))
@@ -64,7 +72,7 @@
                                 @endforeach
                             @endif
 
-                            <input type="submit" value="検索">
+                            <input class="search-submit" type="submit" value="検索">
                         </form>
                     </div>
                 </div>
@@ -83,9 +91,9 @@
                                 $station_name = Helper::getStationName($detail_info->station ?? '');
                                 $pref_name = Helper::getPrefName($detail_info->pref ?? '');
                             @endphp
-                            <div class="mypage-concert-list-wrapper">
-                                <div class="row mypage-concert-list pointer">
-                                    <div class="col-md-3">
+                            <div class="search-concert-list-wrapper">
+                                <div class="row search-concert-list pointer">
+                                    <div class="col-md-3 icon-img">
                                         <img src={{ asset('storage/images/'. $detail_info->concert_img) }} style="width:100%">
                                     </div>
                                     <div class="col-md-9">

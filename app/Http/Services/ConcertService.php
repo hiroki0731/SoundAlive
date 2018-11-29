@@ -32,6 +32,7 @@ class ConcertService extends Model
         'place_address',
         'concert_img',
         'concert_introduction',
+        'movie_id',
     ];
     // フリーワード検索をさせるカラムを設定
     private const WORD_SEARCH_ARRAY = [

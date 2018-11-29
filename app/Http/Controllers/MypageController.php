@@ -100,6 +100,9 @@ class MypageController extends Controller
         //インプット情報からコンサートテーブルのカラムに対応する値のみを抽出
         foreach ($request->except('_token') as $key => $val) {
             if (in_array($key, $this->concertService::CONCERT_TABLE_COLUMNS)) {
+                if ($key == "movie_id") {
+                    $val = $this->extractMovieId($val);
+                }
                 $inputData[$key] = $val;
             }
         }
@@ -161,5 +164,21 @@ class MypageController extends Controller
         $this->concertService->deleteById($concert->id);
         return redirect('/mypage');
     }
+
+    /**
+     * Youtubeリンクから動画idを抽出して返却する
+     * @param $paramUrl
+     * @return string
+     */
+    private function extractMovieId($paramUrl): string
+    {
+        if (preg_match('#https?://www.youtube.com/watch\?v=([^\&]*\&?)#', $paramUrl, $matches)) {
+            if (!empty($matches[1])) {
+                $movieId = rtrim($matches[1], '&');
+            }
+        }
+        return $movieId ?? '';
+    }
+
 
 }

@@ -6,7 +6,7 @@
         $line_code = $detail_info->line ?? '';
     @endphp
     <div class="detail-wrapper">
-        <div class="container">
+        <div class="detail-container">
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="text-center detail-title">{{ $detail_info->concert_name }}</h1>
@@ -18,6 +18,22 @@
                     <img src="{{ asset('storage/images/'.$detail_info->concert_img) }}" style="width: 100%;">
                 </div>
                 <div class="col-md-6">
+                    <div class="row">
+                        {{-- FBシェアボタン --}}
+                        <div class="col-md-6 text-center">
+                            <div class="fb-share-button"
+                                 data-href="{{ Request::url()}}"
+                                 data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                            </div>
+                        </div>
+                        {{-- Tweetボタン --}}
+                        <div class="col-md-6 text-center">
+                            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                               data-show-count="false">Tweet</a>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
+                    <br>
                     <div class="text-center">
                         <h2>{{ $detail_info->band_name }}</h2>
                         <p>{{ $detail_info->band_member }}</p>
@@ -25,7 +41,7 @@
                     <div class="detail-border">
                         <div class="row">
                             <div class="col-md-4">
-                                <p>■ ライブ日程</p>
+                                <p>■ 日付</p>
                             </div>
                             <div class="col-md-8">
                                 <p>{{ $detail_info->concert_date }} </p>
@@ -33,7 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <p>■ 開催時間</p>
+                                <p>■ 時間</p>
                             </div>
                             <div class="col-md-8">
                                 <p>{{ $detail_info->start_time ?? ''}}
@@ -50,10 +66,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <p>■ 最寄駅</p>
+                                <p>■ 最寄アクセス</p>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}駅</p>
+                                <p>{{ Helper::getPrefName($detail_info->pref ?? '') }} {{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}
+                                    駅</p>
                             </div>
                         </div>
                         <div class="row">
@@ -61,7 +78,7 @@
                                 <p>■ ジャンル</p>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ $detail_info->music_type ?? ''}}</p>
+                                <p>{{ Helper::getMusicTypeName($detail_info->music_type ?? '')}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -108,17 +125,24 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="detail-introduction">
-                        <label for="title">YouTube動画</label>
-
+            @if(isset($detail_info->movie_id))
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="detail-introduction">
+                            <label for="title">紹介動画</label>
+                            <br>
+                            <div class="youtube">
+                                <iframe width="560" height="315"
+                                        src="https://www.youtube.com/embed/{{ $detail_info->movie_id }}" frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
     <script src="{{ asset('/js/map.js') }}"></script>
-    {{--TODO:apikeyをgithubから消す--}}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZowbweHM-maatrVX4XYk0z9P6nVCU9KU&callback=initMap" type="text/javascript"></script>
+    @include('map_api')
 @endsection

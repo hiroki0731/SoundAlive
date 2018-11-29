@@ -9,8 +9,8 @@
                     <div class="card">
                         <div class="card-header">{{ $userName }}のマイページ</div>
                         <div class="card-body mypage-menu">
-                            <p @click='switchDisplay(displays.list)' :class="{active: !activateArray.dispNonList}">ライブ一覧</p>
-                            <p @click='switchDisplay(displays.create)' :class="{active: !activateArray.dispNonCreate}">ライブ新規作成</p>
+                            <p @click='switchDisplay(displays.list)' :class="{active_page: !activateArray.dispNonList}">ライブ一覧</p>
+                            <p @click='switchDisplay(displays.create)' :class="{active_page: !activateArray.dispNonCreate}">ライブ新規作成</p>
                         </div>
                     </div>
                 </div>

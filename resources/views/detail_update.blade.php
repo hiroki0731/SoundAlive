@@ -5,11 +5,12 @@
         $station_code = $detail_info->station ?? '';
         $line_code = $detail_info->line ?? '';
     @endphp
-    <form name="concertForm" enctype="multipart/form-data" action="/mypage/update/{{ $concert->id }}" method="post" id="mypage">
+    <form name="concertForm" enctype="multipart/form-data" action="/mypage/update/{{ $concert->id }}" method="post"
+          id="mypage">
         {{ csrf_field() }}
 
         <div class="detail-wrapper detail-update">
-            <h4 class="text-center">ライブ編集ページ</h4>
+            <h4 class="text-center">ライブ登録・編集ページ</h4>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -19,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            <div class="container">
+            <div class="detail-container">
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="detail-title"><input class="text-center" type="text" name="concert_name"
@@ -74,7 +75,8 @@
                                 <p class="input-group-addon now-data">{{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}
                                     駅</p>
                                 <button id="show-area-button" type="button" @click="toggleSelectBox">変更</button>
-                                <div id="show-select-box area" :class="{dispnon: hideSelectBox}" style="margin-top: 3px;">
+                                <div id="show-select-box area" :class="{dispnon: hideSelectBox}"
+                                     style="margin-top: 3px;">
                                     <select id="pref" name="pref"
                                             onChange="setMenuItem(false, this[this.selectedIndex].value)">
                                         <option value="{{ $detail_info->pref ?? ''}}" selected>都道府県を選択
@@ -110,6 +112,7 @@
                                 <input class="form-control" type="text" name="place_address"
                                        value="{{ $detail_info->place_address ?? ''}}"
                                        placeholder="例) 神奈川県横浜市港北区テスト町1-1-1">
+                                <p id="concert-address" style="display: none">{{ $detail_info->place_address ?? ''}}</p>
                             </div>
                             <div class="input-group">
                                 <p class="input-group-addon">URL：</p>
@@ -124,9 +127,34 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="detail-introduction">
-                            <label for="title">ライブ自由紹介</label>
+                            <label for="title">ライブ説明</label>
                             <textarea name="concert_introduction"
                                       placeholder="例) ライブを自由に紹介してください。(200文字以内)">{!! $detail_info->concert_introduction ?? '' !!}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="detail-introduction">
+                            <label for="title">会場アクセスマップ</label> ※正しい会場住所を入れて登録すると表示されます。
+                            <div id="address-map"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="detail-introduction">
+                            <label for="title">紹介動画</label> ※正しい動画URLを貼って登録すると表示されます。
+                            <br>
+                            <input type="text" name="movie_id"
+                                   value="https://www.youtube.com/embed/{{ $detail_info->movie_id }}" placeholder="任意でYouTube動画リンクを入力。例)https://www.youtube.com/watch?v=ZpbkJTdgVzA">
+                            <div class="youtube">
+                                <iframe width="560" height="315"
+                                        src="https://www.youtube.com/embed/{{ $detail_info->movie_id ?? '' }}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,5 +166,7 @@
     </form>
     <script src="{{ asset('/js/mypage.js') }}"></script>
     <script src="{{ asset('/js/area.js') }}"></script>
+    <script src="{{ asset('/js/map.js') }}"></script>
+    @include('map_api')
 
 @endsection

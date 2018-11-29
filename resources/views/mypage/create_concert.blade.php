@@ -93,16 +93,21 @@
             </div>
             <br>
 
-            <p>※以下にライブ会場の住所を正しく入力すると、マップにピンが立って検索されやすくなります。</p>
-
             <div class="row concertInput">
                 <label class="col-sm-2"><i class="far fa-star"></i>会場住所</label>
                 <input class="col-sm-10" name="place_address" type="text" placeholder="例) 神奈川県横浜市港北区テスト町1-1-1" value="{{old('place_address')}}">
             </div>
+            <p>※ライブ会場の住所を正しく入力すると、アクセスマップにピンが立って検索されやすくなります。</p>
 
             <div class="row concertInput">
                 <label class="col-sm-2"><i class="far fa-star"></i>ライブ画像</label>
                 <input name="concert_img" type="file">
+            </div>
+            <p>※画像は最大1MB。画像軽量化は<a href="https://tinypng.com/">こちらのサイト</a>から簡単にできます。</p>
+
+            <div class="row concertInput">
+                <label class="col-sm-2"><i class="far fa-star"></i>YouTube</label>
+                <input class="col-sm-10" name="movie_id" type="text" placeholder="任意でYouTube動画リンクを入力。例)https://www.youtube.com/watch?v=ZpbkJTdgVzA">
             </div>
 
             <div class="row concertInput">

@@ -1,0 +1,36 @@
+.search-wrapper {
+    padding: 100px 0 100px 0;
+    background-image: url("/img/spray_crystal.jpg");
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.search-concert-list-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid #0c5460;
+}
+
+.search-concert-list {
+    margin: 10px 0px;
+}
+
+.search-wrapper .card-body {
+    border: 1px solid #0c5460;
+}
+
+.search-wrapper .card-header {
+    border-top: 1px solid #0c5460;
+    border-right: 1px solid #0c5460;
+    border-left: 1px solid #0c5460;
+    background-color: rgba(100, 100, 100, 0.3)
+}
+
+.search-selectbox select, .search-selectbox input{
+    width: 100%;
+}
+
+.search-submit {
+    width: 30%;
+}
