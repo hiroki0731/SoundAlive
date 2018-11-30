@@ -117,14 +117,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="detail-introduction">
-                        <label for="title">会場アクセスマップ</label>
-                        <div id="address-map"></div>
-                    </div>
-                </div>
-            </div>
             @if(isset($detail_info->movie_id))
                 <div class="row">
                     <div class="col-md-12">
@@ -141,6 +133,14 @@
                     </div>
                 </div>
             @endif
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="detail-introduction">
+                        <label for="title">会場アクセスマップ</label>
+                        <div id="address-map"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ asset('/js/map.js') }}"></script>

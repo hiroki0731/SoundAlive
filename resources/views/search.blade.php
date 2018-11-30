@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="search-wrapper">
+    <div class="search-wrapper" id="search">
         <div class="container">
             <div class="row">
                 <div class="card">
@@ -58,7 +58,7 @@
                                         <input type="text" name="band_name" placeholder="バンド名を入力"
                                                value="{{old('band_name')}}">
                                         <br>
-                                        <label>ライブ会場名で検索</label>
+                                        <label style="margin-top: 5px">ライブ会場名で検索</label>
                                         <br>
                                         <input type="text" name="place_name" placeholder="会場名を入力"
                                                value="{{old('place_name')}}">
@@ -92,7 +92,7 @@
                                 $pref_name = Helper::getPrefName($detail_info->pref ?? '');
                             @endphp
                             <div class="search-concert-list-wrapper">
-                                <div class="row search-concert-list pointer">
+                                <div class="row search-concert-list pointer" @click="moveToDetail({{$concert->id}})">
                                     <div class="col-md-3 icon-img">
                                         <img src={{ asset('storage/images/'. $detail_info->concert_img) }} style="width:100%">
                                     </div>
@@ -117,4 +117,5 @@
         </div>
     </div>
     <script src="{{ asset('/js/area.js') }}"></script>
+    <script src="{{ asset('/js/search.js') }}"></script>
 @endsection

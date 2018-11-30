@@ -33,6 +33,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /* トップページ */
 Route::get('/', 'TopController@index')->name('top');
+Route::get('/about', 'TopController@showAbout');
 Route::get('/detail/{id}', 'TopController@showDetail')->where('id', '[1-9][0-9]*');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 

@@ -25,6 +25,15 @@ class TopController extends Controller
     }
 
     /**
+     * このページについて画面の表示
+     * @return $this
+     */
+    public function showAbout()
+    {
+        return view('/about');
+    }
+
+    /**
      * ライブ詳細画面の表示
      * @param $id
      * @return $this
