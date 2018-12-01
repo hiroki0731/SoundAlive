@@ -3,18 +3,22 @@
 namespace App\Http\Services;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Illuminate\Support\Facades\Config;
 
 class TwitterService
 {
-    // Twitter投稿
+    /**
+     * Concert情報を受け取り、Twitterへ画像付き投稿をする
+     * @param $concert
+     */
     public function tweet($concert)
     {
         $detailInfo = json_decode($concert->detail_info);
         $twitter = new TwitterOAuth(
-            env('TWITTER_CLIENT_ID'),
-            env('TWITTER_CLIENT_SECRET'),
-            env('TWITTER_CLIENT_ID_ACCESS_TOKEN'),
-            env('TWITTER_CLIENT_ID_ACCESS_TOKEN_SECRET')
+            Config::get('keys.twitter.client_id'),
+            Config::get('keys.twitter.client_secret'),
+            Config::get('keys.twitter.client_id_access_token'),
+            Config::get('keys.twitter.client_id_access_token_secret')
         );
         $media = $twitter->upload('media/upload', ['media' => '/vagrant/src/public/storage/images/' . $detailInfo->concert_img]);
 
