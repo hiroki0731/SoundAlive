@@ -46,4 +46,5 @@ Route::get('/mypage/delete/{concertId}', 'MypageController@deleteConcert')->wher
 
 /* 検索ページ */
 Route::get('/search', 'SearchController@index');
+Route::get('/twitter', 'TwitterController@tweet');
 Route::post('/search', 'SearchController@search');

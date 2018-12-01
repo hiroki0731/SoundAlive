@@ -116,7 +116,22 @@
                           placeholder="例) ライブを自由に紹介してください。(最大500文字以内)" maxlength="500">{{old('concert_introduction')}}</textarea>
             </div>
 
-            <input type="submit" value="登録">
+            <input type="submit" value="登録" @click.prevent="popupToggle()">
+
+            <div class="modal-back" :style="popupOpacity">
+                <div class="modal-panel">
+                    <div class="modal-panel-content">
+                        <h3>このライブをSoundAlive公式SNSに投稿できます！</h3>
+                        <p>あなたのライブを公式SNSへ投稿しても宜しいですか？<br>(公式SNS投稿は1ライブ1回のみになります)</p>
+                        <p>※ライブタイトルとライブ紹介画像が告知内容に使用されます</p>
+                        <button type="submit" name="sns" value="true"><i class="fab fa-twitter-square"></i> <i class="fab fa-facebook-square"></i> はい、公式SNSで告知します</button>
+                        <br>
+                        <button type="submit" name="sns" value="false">いいえ、公式SNSで告知しません</button>
+                        <br>
+                        <button type="button" @click="closePopup()">キャンセルして編集する</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>

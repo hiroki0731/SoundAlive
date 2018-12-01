@@ -10,7 +10,7 @@
         {{ csrf_field() }}
 
         <div class="detail-wrapper detail-update">
-            <h4 class="text-center">ライブ登録・編集ページ</h4>
+            <h4 class="text-center">ライブ編集ページ</h4>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -133,6 +133,26 @@
                         </div>
                     </div>
                 </div>
+                @if(isset($detail_info->movie_id))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="detail-introduction">
+                                <label for="title">紹介動画</label> ※正しい動画URLを貼って登録すると表示されます。
+                                <br>
+                                <input type="text" name="movie_id"
+                                       value="https://www.youtube.com/embed/{{ $detail_info->movie_id}}"
+                                       placeholder="任意でYouTube動画リンクを入力。例)https://www.youtube.com/watch?v=ZpbkJTdgVzA">
+                                <div class="youtube">
+                                    <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/{{ $detail_info->movie_id}}"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <div class="detail-introduction">
@@ -141,32 +161,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="detail-introduction">
-                            <label for="title">紹介動画</label> ※正しい動画URLを貼って登録すると表示されます。
-                            <br>
-                            <input type="text" name="movie_id"
-                                   value="https://www.youtube.com/embed/{{ $detail_info->movie_id }}" placeholder="任意でYouTube動画リンクを入力。例)https://www.youtube.com/watch?v=ZpbkJTdgVzA">
-                            <div class="youtube">
-                                <iframe width="560" height="315"
-                                        src="https://www.youtube.com/embed/{{ $detail_info->movie_id ?? '' }}"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="detail-submit-btn">
-                <input type="submit" value="登録する" width="10%">
+                <input type="submit" value="編集を完了する" width="10%">
             </div>
         </div>
     </form>
     <script src="{{ asset('/js/mypage.js') }}"></script>
     <script src="{{ asset('/js/area.js') }}"></script>
     <script src="{{ asset('/js/map.js') }}"></script>
-    @include('map_api')
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ Helper::getGoogleMapKey() }}&callback=initMap"
+            type="text/javascript"></script>
 
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\TwitterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\ConcertService;
@@ -46,9 +47,10 @@ class MypageController extends Controller
      * 新規ライブ情報の登録
      *
      * @param CreateConcertValidation $request
+     * @param TwitterService $twitterService
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function createConcert(CreateConcertValidation $request)
+    public function createConcert(CreateConcertValidation $request, TwitterService $twitterService)
     {
         $userId = Auth::id();
 
@@ -63,7 +65,12 @@ class MypageController extends Controller
         }
 
         //新規ライブ情報を登録
-        $this->concertService->createConcert($concertArray);
+        $registerdConcert = $this->concertService->createConcert($concertArray);
+
+        //SNS告知
+        if ($request->get('sns')) {
+            $twitterService->tweet($registerdConcert);
+        }
 
         return redirect('/mypage');
     }

@@ -22,10 +22,6 @@ input, textarea {
     color: #FFFFFF;
 }
 
-input::placeholder {
-    color: #FFFFFF;
-}
-
 input[type="submit"] {
     width: 30%;
     border-bottom: none;

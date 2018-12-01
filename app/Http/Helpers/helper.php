@@ -111,4 +111,13 @@ class Helper
         return $musicTypes[$code] ?? self::NO_DATA;
     }
 
+    /**
+     * Google MapのAPIキーを返す
+     * @return string
+     */
+    public static function getGoogleMapKey(): string
+    {
+        return Config::get('keys.google_map');
+    }
+
 }

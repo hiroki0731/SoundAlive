@@ -10,7 +10,7 @@ use Illuminate\Filesystem\Cache;
  * Concertモデルのビジネスロジッククラス
  * @package App\Http\Service
  */
-class ConcertService extends Model
+class ConcertService
 {
     private $model;
 

@@ -6,6 +6,10 @@
             data: {
                 nowDisp: '',
                 hideSelectBox: true,
+                popupOpacity: {
+                    "opacity": "",
+                    "pointer-events": ""
+                },
                 displays: {
                     list: 'dispNonList',
                     create: 'dispNonCreate',
@@ -65,6 +69,14 @@
                     };
                     reader.readAsDataURL(file);
                 },
+                popupToggle: function() {
+                    this.popupOpacity.opacity = '1';
+                    this.popupOpacity["pointer-events"] = 'auto';
+                },
+                closePopup: function() {
+                    this.popupOpacity.opacity = '0';
+                    this.popupOpacity["pointer-events"] = 'none';
+                }
             }
         })
     ;

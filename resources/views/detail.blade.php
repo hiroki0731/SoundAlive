@@ -144,5 +144,6 @@
         </div>
     </div>
     <script src="{{ asset('/js/map.js') }}"></script>
-    @include('map_api')
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ Helper::getGoogleMapKey() }}&callback=initMap" type="text/javascript"></script>
+
 @endsection
