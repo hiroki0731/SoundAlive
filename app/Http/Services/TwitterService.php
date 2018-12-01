@@ -26,7 +26,8 @@ class TwitterService
             "status" =>
                 $detailInfo->concert_date . "開催！" .
                 $detailInfo->band_name . "の新ライブをお見逃しなく！詳しくは下記のリンクをクリック！" . PHP_EOL .
-                'http://soundalive.com/detail/' . $concert->id,
+                'http://soundalive.com/detail/' . $concert->id . PHP_EOL .
+                "#$detailInfo->band_name #ライブ #soundalive",
             "media_ids" => implode(',', [$media->media_id_string])
         ]);
     }

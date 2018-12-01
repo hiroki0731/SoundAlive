@@ -18,21 +18,6 @@
                     <img src="{{ asset('storage/images/'.$detail_info->concert_img) }}" style="width: 100%;">
                 </div>
                 <div class="col-md-6">
-                    <div class="row">
-                        {{-- FBシェアボタン --}}
-                        <div class="col-md-6 text-center">
-                            <div class="fb-share-button"
-                                 data-href="{{ Request::url()}}"
-                                 data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                            </div>
-                        </div>
-                        {{-- Tweetボタン --}}
-                        <div class="col-md-6 text-center">
-                            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-                               data-show-count="false">Tweet</a>
-                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
-                    </div>
                     <br>
                     <div class="text-center">
                         <h2>{{ $detail_info->band_name }}</h2>
@@ -117,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            @if(isset($detail_info->movie_id))
+            @if(!empty($detail_info->movie_id))
                 <div class="row">
                     <div class="col-md-12">
                         <div class="detail-introduction">
@@ -138,6 +123,28 @@
                     <div class="detail-introduction">
                         <label for="title">会場アクセスマップ</label>
                         <div id="address-map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="detail-introduction">
+                        <label for="title">ライブを共有しよう</label>
+                        <div class="row">
+                            {{-- FBシェアボタン --}}
+                            <div class="col-md-2 text-center">
+                                <div class="fb-share-button"
+                                     data-href="{{ Request::url()}}"
+                                     data-layout="button_count" data-size="large" data-mobile-iframe="true">
+                                </div>
+                            </div>
+                            {{-- Tweetボタン --}}
+                            <div class="col-md-2">
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                                   data-show-count="false" data-size="large">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
