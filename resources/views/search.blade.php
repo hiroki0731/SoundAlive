@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             @if(isset($conditions))
-                                指定した検索条件
+                                指定した検索条件<br>
                                 @foreach($conditions as $key => $val)
                                     <p>{{ $key }} : {{$val}}</p>
                                 @endforeach

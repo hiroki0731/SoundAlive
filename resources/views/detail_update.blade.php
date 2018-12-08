@@ -133,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                @if(isset($detail_info->movie_id))
+                @if(!empty($detail_info->movie_id))
                     <div class="row">
                         <div class="col-md-12">
                             <div class="detail-introduction">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Services\ConcertService;
 use Illuminate\Support\Facades\Config;
@@ -22,8 +23,9 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $concerts = $this->concertService->getByCondition(array());
-        return view('/search')->with('concerts', $concerts);
+        //最初は明日開催のもののみをピックアップ
+        $concerts = $this->concertService->getByCondition(array('concert_date', Carbon::tomorrow()));
+        return view('/search', compact('concerts'));
     }
 
     /**
@@ -44,7 +46,8 @@ class SearchController extends Controller
 
         $concerts = $this->concertService->getByCondition($conditions ?? array());
         $conditions = $this->replaceConditionName($conditions ?? array());
-        return view('/search')->with('concerts', $concerts)->with('conditions', $conditions ?? array());
+
+        return view('/search' , compact('concerts', 'conditions'));
     }
 
     /**

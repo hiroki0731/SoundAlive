@@ -394,6 +394,10 @@ footer {
     transition: all 0.3s;
 }
 
+.detail-pic {
+    margin:auto;
+}
+
 .slide_btn {
     position: absolute;
     display: inline-block;

@@ -5,6 +5,11 @@ namespace App\Http\Helpers;
 
 use Illuminate\Support\Facades\Config;
 
+/**
+ * View Helperとして活用できる静的関数クラス。
+ *
+ * @package App\Http\Helpers
+ */
 class Helper
 {
     const URL_FOR_LINE = 'http://www.ekidata.jp/api/l/';
@@ -22,16 +27,19 @@ class Helper
         if (empty($stationCode) || !is_numeric($stationCode)) {
             return self::NO_DATA;
         }
-
         $url = self::URL_FOR_STATION . $stationCode . self::DATA_TYPE_XML;
+        $result = self::curl_get_contents($url, 120);
 
-        $stationXml = simplexml_load_file($url);
+        if (isset($result)) {
+            $stationXml = simplexml_load_string($result);
 
-        if ($stationXml === false) {
+            if ($stationXml === false) {
+                return self::NO_DATA;
+            }
+            return (string)$stationXml->station->station_name ?? '';
+        } else {
             return self::NO_DATA;
         }
-
-        return (string)$stationXml->station->station_name ?? '';
     }
 
     /**
@@ -44,16 +52,20 @@ class Helper
         if (empty($lineCode) || !is_numeric($lineCode)) {
             return self::NO_DATA;
         }
-
         $url = self::URL_FOR_LINE . $lineCode . self::DATA_TYPE_XML;
+        $result = self::curl_get_contents($url, 120);
 
-        $lineXml = simplexml_load_file($url);
+        if (isset($result)) {
+            $lineXml = simplexml_load_string($result);
 
-        if ($lineXml === false) {
+            if ($lineXml === false) {
+                return self::NO_DATA;
+            }
+            return (string)$lineXml->line->line_name ?? '';
+        } else {
             return self::NO_DATA;
         }
 
-        return (string)$lineXml->line->line_name ?? '';
     }
 
     /**
@@ -64,7 +76,8 @@ class Helper
     public static function getStationsByLine($lineCode): array
     {
         $url = self::URL_FOR_LINE . $lineCode . self::DATA_TYPE_XML;
-        $lineXml = simplexml_load_file($url);
+        $result = self::curl_get_contents($url, 120);
+        $lineXml = simplexml_load_string($result);
         $lineArray = get_object_vars($lineXml);
         return $lineArray['station'];
     }
@@ -120,4 +133,21 @@ class Helper
         return Config::get('keys.google_map');
     }
 
+    /**
+     * CurlでAPIにアクセスする
+     * @param $url
+     * @param int $timeout
+     * @return mixed
+     */
+    private static function curl_get_contents($url, $timeout = 60)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
 }

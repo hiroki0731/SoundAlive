@@ -33,18 +33,22 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /* トップページ */
 Route::get('/', 'TopController@index')->name('top');
-Route::get('/about', 'TopController@showAbout');
-Route::get('/detail/{id}', 'TopController@showDetail')->where('id', '[1-9][0-9]*');
+Route::get('/about', 'TopController@showAbout')->name('about');
+Route::get('/detail/{id}', 'TopController@showDetail')->where('id', '[1-9][0-9]*')->name('detail');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
-/* マイページ */
-Route::get('/mypage', 'MypageController@index')->name('mypage');
-Route::post('/mypage/create', 'MypageController@createConcert');
-Route::get('/mypage/update/{concertId}', 'MypageController@showUpdate')->where('id', '[1-9][0-9]*');
-Route::post('/mypage/update/{concertId}', 'MypageController@updateConcert')->where('id', '[1-9][0-9]*');
-Route::get('/mypage/delete/{concertId}', 'MypageController@deleteConcert')->where('id', '[1-9][0-9]*');
 
 /* 検索ページ */
 Route::get('/search', 'SearchController@index');
-Route::get('/twitter', 'TwitterController@tweet');
 Route::post('/search', 'SearchController@search');
+
+/* マイページ */
+Route::prefix('/mypage')->group(function () {
+    Route::get('/', 'MypageController@index')->name('mypage');
+    Route::post('/create', 'MypageController@createConcert');
+    Route::get('/update/{concertId}', 'MypageController@showUpdate')->where('id', '[1-9][0-9]*');
+    Route::post('/update/{concertId}', 'MypageController@updateConcert')->where('id', '[1-9][0-9]*');
+    Route::get('/delete/{concertId}', 'MypageController@deleteConcert')->where('id', '[1-9][0-9]*');
+});
+
+/* SNS */
+Route::get('/twitter', 'TwitterController@tweet');

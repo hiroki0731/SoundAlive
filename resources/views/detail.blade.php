@@ -14,7 +14,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 detail-pic">
                     <img src="{{ asset('storage/images/'.$detail_info->concert_img) }}" style="width: 100%;">
                 </div>
                 <div class="col-md-6">
@@ -151,6 +151,8 @@
         </div>
     </div>
     <script src="{{ asset('/js/map.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ Helper::getGoogleMapKey() }}&callback=initMap" type="text/javascript"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ Helper::getGoogleMapKey() }}&callback=initMap"
+            type="text/javascript"></script>
 
 @endsection

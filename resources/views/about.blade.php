@@ -11,13 +11,13 @@
             </div>
         </div>
         <div class="heading" style="width: 100%">
-            <h2>一般の方の使い方</h2>
+            <h2>ライブをお探しの方</h2>
         </div>
         <div class="about-content-wrapper">
             <div class="container">
                 <div class="row user-explain">
                     <div class="col-sm-4" @click="moveToSearch()">
-                        <h3><i class="far fa-hand-point-right"></i> 簡単ライブ検索!!</h3>
+                        <h3><i class="far fa-hand-point-right"></i> 簡単にライブが検索できる！</h3>
                         <div class="content-icon concert-img">
                             <img src="{{ asset('/img/search.png') }}" width="100%">
                             <div class="mask">
@@ -35,13 +35,13 @@
             </div>
         </div>
         <div class="heading" style="width: 100%">
-            <h2>ミュージシャンに嬉しい機能</h2>
+            <h2>ライブを告知したい方</h2>
         </div>
         <div class="about-content-wrapper">
             <div class="container">
                 <div class="row user-explain">
                     <div class="col-sm-4">
-                        <h3><i class="far fa-hand-point-right"></i> このウェブサイトにライブを無料掲載できる</h3>
+                        <h3><i class="far fa-hand-point-right"></i> このウェブサイトにライブを無料掲載できる！</h3>
                         <div class="content-icon about-img">
                             <img src="{{ asset('/img/pc.png') }}" width="100%">
                         </div>
@@ -53,35 +53,35 @@
                     </div>
                 </div>
                 <div class="row user-explain">
+                    <div class="col-sm-4">
+                        <h3><i class="far fa-hand-point-right"></i> SoundAlive公式SNSがライブを告知してくれる！</h3>
+                        <div class="content-icon about-img">
+                            <img src="{{ asset('/img/sns.png') }}" width="100%">
+                        </div>
+                    </div>
                     <div class="col-sm-8 text-middle">
                         <div>
-                            <p>SoundAliveは公式のFaceBook、Twitterを持っています。</p>
+                            <p>SoundAliveは公式のSNS（現在はTwitter）を持っています。</p>
                             <p>ライブを作成した後に、公式SNSで拡散ボタンを押すと、あなたのライブ情報を公式SNSに投稿できます！</p>
                             <p>もちろんその投稿をあなた自身のSNSでシェアし直すこともできます。</p>
                             <p>あなたのライブ告知を加速させるツールとして活用してください。</p>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <h3><i class="far fa-hand-point-right"></i> SoundAlive公式SNSがライブを告知してくれる!!</h3>
-                        <div class="content-icon about-img">
-                            <img src="{{ asset('/img/sns.png') }}" width="100%">
-                        </div>
-                    </div>
                 </div>
-                <div class="row user-explain">
-                    <div class="col-sm-4">
-                        <h3><i class="far fa-hand-point-right"></i> 簡単にライブのチラシが作成できる!</h3>
-                        <div class="content-icon about-img">
-                            <img src="{{ asset('/img/printer.png') }}" width="100%">
-                        </div>
-                    </div>
-                    <div class="col-sm-8 text-middle">
-                        <p>ライブのチラシを作成するのって以外と面倒ではありませんか？</p>
-                        <p>このサイトでライブを作成すると、そのライブ情報の画面をそのまま画像としてダウンロードできるので</p>
-                        <p>それをそのままチラシとして印刷することができます。</p>
-                        <p>背景は何種類もありますので、あなたのライブとマッチするものをお選びください。</p>
-                    </div>
-                </div>
+                {{--<div class="row user-explain">--}}
+                    {{--<div class="col-sm-4">--}}
+                        {{--<h3><i class="far fa-hand-point-right"></i> 簡単にライブのチラシが作成できる!</h3>--}}
+                        {{--<div class="content-icon about-img">--}}
+                            {{--<img src="{{ asset('/img/printer.png') }}" width="100%">--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-sm-8 text-middle">--}}
+                        {{--<p>ライブのチラシを作成するのって以外と面倒ではありませんか？</p>--}}
+                        {{--<p>このサイトでライブを作成すると、そのライブ情報の画面をそのまま画像としてダウンロードできるので</p>--}}
+                        {{--<p>それをそのままチラシとして印刷することができます。</p>--}}
+                        {{--<p>背景は何種類もありますので、あなたのライブとマッチするものをお選びください。</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
