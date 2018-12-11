@@ -59,58 +59,60 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="text-align: center;">
-            <div class="heading">
-                <h2>新着ライブ！</h2>
+        @if(count($concerts) > 0)
+            <div class="container" style="text-align: center;">
+                <div class="heading">
+                    <h2>新着ライブ！</h2>
+                </div>
             </div>
-        </div>
-        <div class="concert-wrapper">
-            <div class="concerts" :style="parentSlider">
-                @foreach($concerts as $concert)
-                    @php
-                        $detail_info = json_decode($concert->detail_info);
-                        $count = count($concerts) ?? 0;
-                        $station_code = $detail_info->station ?? '';
-                        $line_code = $detail_info->line ?? '';
-                    @endphp
-                    <div class="concert" :style="childSlider">
-                        <div class="band-name">
-                            <h3>{{ $detail_info->band_name }}</h3>
-                        </div>
-                        <div class="concert-icon">
-                            <div class="row">
-                                <div class="col-sm-1">
-                                    <a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)"><i
-                                                class="fas fa-chevron-left"></i></a>
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="concert-img" @click="moveToDetail({{ $concert->id }})">
-                                        <div style="max-height: 350px">
-                                            <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}"
-                                                 width="100%" height="">
-                                        </div>
-                                        <div class="mask">
-                                            <div class="caption">ライブの詳細をみる</div>
+            <div class="concert-wrapper">
+                <div class="concerts" :style="parentSlider">
+                    @foreach($concerts as $concert)
+                        @php
+                            $detail_info = json_decode($concert->detail_info);
+                            $count = count($concerts);
+                            $station_code = $detail_info->station ?? '';
+                            $line_code = $detail_info->line ?? '';
+                        @endphp
+                        <div class="concert" :style="childSlider">
+                            <div class="band-name">
+                                <h3>{{ $detail_info->band_name }}</h3>
+                            </div>
+                            <div class="concert-icon">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)"><i
+                                                    class="fas fa-chevron-left"></i></a>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="concert-img" @click="moveToDetail({{ $concert->id }})">
+                                            <div style="max-height: 350px">
+                                                <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}"
+                                                     width="100%" height="">
+                                            </div>
+                                            <div class="mask">
+                                                <div class="caption">ライブの詳細をみる</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)"><i
-                                                class="fas fa-chevron-right"></i></a>
+                                    <div class="col-sm-1">
+                                        <a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)"><i
+                                                    class="fas fa-chevron-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="concert-text-contents">開催日：{{ $detail_info->concert_date }}</p>
+                            <p class="concert-text-contents">
+                                開催場所：{{ Helper::getPrefName($detail_info->pref ?? '') }} {{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}
+                                駅</p>
+                            <p>{{ $detail_info->concert_name }}</p>
                         </div>
-                        <p class="concert-text-contents">開催日：{{ $detail_info->concert_date }}</p>
-                        <p class="concert-text-contents">
-                            開催場所：{{ Helper::getPrefName($detail_info->pref ?? '') }} {{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}
-                            駅</p>
-                        <p>{{ $detail_info->concert_name }}</p>
-                    </div>
-                @endforeach
-                <span ref="slideNum" style="display: none">{{ $count }}</span>
-                <div class="clear"></div>
+                    @endforeach
+                    <span ref="slideNum" style="display: none">{{ $count }}</span>
+                    <div class="clear"></div>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <script src="{{ asset('js/top.js') }}"></script>
 @endsection

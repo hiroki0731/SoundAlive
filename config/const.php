@@ -73,5 +73,6 @@ return [
         "band_name" => "バンド名",
         "place_name" => "会場名",
         "concert_date" => "開催日付",
+        "music_type" => "音楽ジャンル",
     ],
 ];

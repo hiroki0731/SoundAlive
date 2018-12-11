@@ -3,10 +3,11 @@
 namespace App\Http\Models;
 
 use App\Http\Contracts\ConcertInterface;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class Concert extends Model implements ConcertInterface
 {
@@ -40,7 +41,7 @@ class Concert extends Model implements ConcertInterface
      */
     public function getNew(): ?Collection
     {
-        return $this->orderBy('created_at', 'desc')->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
+        return $this->orderByNewestWithinLimit(Carbon::now()->addDay(7))->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
     }
 
     /**
@@ -50,7 +51,7 @@ class Concert extends Model implements ConcertInterface
      */
     public function getByUserId(int $userId): ?LengthAwarePaginator
     {
-        return $this->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_MYPAGE);
+        return $this->where('user_id', $userId)->orderByNewest()->paginate(self::NUMBER_OF_PAGINATION_ON_MYPAGE);
     }
 
     /**
@@ -62,10 +63,6 @@ class Concert extends Model implements ConcertInterface
     {
         $query = $this->query();
         foreach ($conditions as $key => $val) {
-            if (empty($val)) {
-                continue;
-            }
-
             if (in_array($key, self::WORD_SEARCH_ARRAY)) {
                 $query->where("detail_info->$key", 'like', "%$val%");
             } elseif ($key == 'stations') {
@@ -74,7 +71,7 @@ class Concert extends Model implements ConcertInterface
                 $query->where("detail_info->$key", '=', $val);
             }
         }
-        return $query->orderBy('detail_info->concert_date', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_SEARCH);
+        return $query->orderByNewest()->paginate(self::NUMBER_OF_PAGINATION_ON_SEARCH);
     }
 
     /**
@@ -108,12 +105,23 @@ class Concert extends Model implements ConcertInterface
     }
 
     /**
-     * 最新順に並び替える
+     * 開催日の新しい順に並び替える
      * @param $query
      * @return mixed
      */
-    private function scopeOrderByNewest($query)
+    public function scopeOrderByNewest($query)
     {
-        return $query->orderBy('created_at', 'desc');
+        return $query->orderBy('detail_info->concert_date', 'desc');
+    }
+
+    /**
+     * 今日から指定期間内に開催されるライブを取得する
+     * @param $query
+     * @param $limit
+     * @return mixed
+     */
+    public function scopeOrderByNewestWithinLimit($query, $limit)
+    {
+        return $query->where('detail_info->concert_date', '<', $limit)->where('detail_info->concert_date', '>=', Carbon::now());
     }
 }

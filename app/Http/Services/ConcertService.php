@@ -7,7 +7,7 @@ use App\Http\Contracts\ConcertInterface;
 use App\Http\Models\Concert;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Concertモデルのビジネスロジッククラス
@@ -70,6 +70,7 @@ class ConcertService implements ConcertInterface
 
     /**
      * 絞り込み検索結果を取得
+     *
      * @param array $conditions
      * @return LengthAwarePaginator
      */

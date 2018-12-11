@@ -55,6 +55,8 @@ class SearchController extends Controller
                 $val = Helper::getLineName($val);
             }else if($key == "station"){
                 $val = Helper::getStationName($val);
+            }else if($key == "music_type"){
+                $val = Helper::getMusicTypeName($val);
             }
             if(key_exists($key, $const)){
                 $replacedConditions[$const[$key]] = $val;
