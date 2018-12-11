@@ -7,8 +7,9 @@
                 <div class="card">
                     <div class="card-header">検索条件選択</div>
                     <div class="card-body">
-                        <form action="{{ url('/search') }}" method="post">
-                            {{ csrf_field() }}
+                        <form action="{{ url('/search') }}" method="get">
+
+                            <input type="hidden" value="{{ csrf_token() }}">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label>日付を指定</label>
@@ -106,7 +107,8 @@
                                 </div>
                             </div>
                         @endforeach
-                        <p>{{ $concerts->links() }}</p>
+
+                        <p>{{ $concerts->appends(Request::query())->links() }}</p>
 
                         @if (empty($concerts) || count($concerts) === 0)
                             <p>検索結果なし</p>

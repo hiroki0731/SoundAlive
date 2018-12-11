@@ -1,16 +1,19 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Services;
 
+use App\Http\Contracts\ConcertInterface;
 use App\Http\Models\Concert;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Filesystem\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Concertモデルのビジネスロジッククラス
  * @package App\Http\Service
  */
-class ConcertService
+class ConcertService implements ConcertInterface
 {
     private $model;
 
@@ -34,17 +37,6 @@ class ConcertService
         'concert_introduction',
         'movie_id',
     ];
-    // フリーワード検索をさせるカラムを設定
-    private const WORD_SEARCH_ARRAY = [
-        'band_name',
-        'place_name',
-    ];
-    // トップページに表示するライブ数
-    private const NUMBER_OF_CONCERTS_ON_TOP = 10;
-    // マイページのページネーション
-    private const NUMBER_OF_PAGINATION_ON_MYPAGE = 5;
-    // 検索ページのページネーション
-    private const NUMBER_OF_PAGINATION_ON_SEARCH = 5;
 
     /**
      * コンストラクタ
@@ -56,47 +48,37 @@ class ConcertService
     }
 
     /**
-     * 新着10件を取得
-     * @return mixed
+     * @inheritdoc
+     * @see ConcertInterface
+     *
+     * @return Collection|null
      */
-    public function getAll()
+    public function getNew(): ?Collection
     {
-        return $this->model->orderBy('created_at', 'desc')->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
+        return $this->model->getNew();
     }
 
     /**
-     * ユーザIDをキーに取得
-     * @param $userId
-     * @return mixed
+     * 管理ユーザIDをキーに取得
+     * @param int $userId
+     * @return LengthAwarePaginator|null
      */
-    public function getByUserId($userId)
+    public function getByUserId(int $userId): ?LengthAwarePaginator
     {
-        return $this->model->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_MYPAGE);
+        return $this->model->getByUserId($userId);
     }
 
     /**
      * 絞り込み検索結果を取得
-     * @param $conditions
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param array $conditions
+     * @return LengthAwarePaginator
      */
-    public function getByCondition($conditions)
+    public function getByCondition($conditions): ?LengthAwarePaginator
     {
+        //絞り込み条件の整形
         $conditions = $this->formatCondition($conditions);
-        $query = $this->model->query();
-        foreach ($conditions as $key => $val) {
-            if (empty($val)) {
-                continue;
-            }
 
-            if (in_array($key, self::WORD_SEARCH_ARRAY)) {
-                $query->where("detail_info->$key", 'like', "%$val%");
-            } elseif ($key == 'stations') {
-                $query->whereIn("detail_info->station", $conditions[$key]);
-            } else {
-                $query->where("detail_info->$key", '=', $val);
-            }
-        }
-        return $query->orderBy('detail_info->concert_date', 'desc')->paginate(self::NUMBER_OF_PAGINATION_ON_SEARCH);
+        return $this->model->getByCondition($conditions);
     }
 
     /**
@@ -137,32 +119,32 @@ class ConcertService
 
     /**
      * コンサートテーブルIDをキーに取得
-     * @param $concertId
-     * @return mixed
+     * @param int $concertId
+     * @return Model|null
      */
-    public function findByConcertId($concertId)
+    public function findByConcertId(int $concertId): ?Model
     {
-        return $this->model->find($concertId);
+        return $this->model->findByConcertId($concertId);
     }
 
     /**
      * 配列情報を元に登録
      * @param $concertData (array)
-     * @return mixed
+     * @return Model
      */
-    public function createConcert($concertData)
+    public function createConcert(array $concertData): Model
     {
-        return $this->model->create($concertData);
+        return $this->model->createConcert($concertData);
     }
 
     /**
      * idで検索して削除
-     * @param $id
-     * @return mixed
+     * @param int $id
+     * @return Model
      */
-    public function deleteById($id)
+    public function deleteById(int $id): Model
     {
-        return $this->model->find($id)->delete();
+        return $this->model->deleteById($id);
     }
 
 }

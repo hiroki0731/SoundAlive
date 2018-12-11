@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\TwitterService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Services\ConcertService;
-use Mockery\Exception;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateConcertValidation;
 use App\Http\Requests\UpdateConcertValidation;
+use App\Http\Services\ConcertService;
+use App\Http\Services\TwitterService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Exception;
 
 class MypageController extends Controller
 {
@@ -36,12 +35,11 @@ class MypageController extends Controller
             return redirect('/');
         }
 
-        // TODO: ユーザーIDをキーにしてコンサートテーブルの情報を取得してviewに渡す
         $concerts = $this->concertService->getByUserId(Auth::id());
+        $userName = Auth::user()->name;
 
-        return view('mypage/mypage')->with('userName', Auth::user()->name)->with('concerts', $concerts);
+        return view('mypage/mypage', compact('userName', 'concerts'));
     }
-
 
     /**
      * 新規ライブ情報の登録
@@ -99,8 +97,9 @@ class MypageController extends Controller
     /**
      * 共通登録処理
      * @param $request
-     * @param $concertImg (更新処理の時のみ)
+     * @param null $concertImg(更新処理の時のみ)
      * @return string
+     * @throws Exception
      */
     private function storeProcess($request, $concertImg = null)
     {
@@ -151,7 +150,7 @@ class MypageController extends Controller
         if ($concert->user_id != Auth::id()) {
             return redirect('/mypage');
         }
-        return view('/detail_update')->with('concert', $concert);
+        return view('/detail_update', compact('concert'));
     }
 
     /**

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Services\ConcertService;
-use Illuminate\Support\Facades\Config;
 use App\Http\Helpers\Helper;
+use App\Http\Services\ConcertService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class SearchController extends Controller
 {
@@ -18,17 +17,6 @@ class SearchController extends Controller
     }
 
     /**
-     * トップ画面の表示
-     * @return $this
-     */
-    public function index()
-    {
-        //最初は明日開催のもののみをピックアップ
-        $concerts = $this->concertService->getByCondition(array('concert_date', Carbon::tomorrow()));
-        return view('/search', compact('concerts'));
-    }
-
-    /**
      * ライブを検索して結果をコレクションで返す
      * @param Request $request
      * @return mixed
@@ -36,8 +24,9 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $inputs = $request->except('_token');
+
         foreach ($inputs as $key => $val) {
-            if (empty($val)) {
+            if (empty($val) || $key === "page") {
                 continue;
             } else {
                 $conditions[$key] = $val;

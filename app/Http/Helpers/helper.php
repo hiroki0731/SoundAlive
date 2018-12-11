@@ -2,7 +2,8 @@
 
 namespace App\Http\Helpers;
 
-
+use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
 /**
@@ -15,10 +16,14 @@ class Helper
     const URL_FOR_LINE = 'http://www.ekidata.jp/api/l/';
     const URL_FOR_STATION = 'http://www.ekidata.jp/api/s/';
     const DATA_TYPE_XML = '.xml';
-    const NO_DATA = 'unknown';
+    const NO_DATA = 'データなし';
+    const CACHE_MINUTES = 1440 * 7; // 1日 * 7 = 1週間
+    const CURL_TIMEOUT_SECOND = 120;
 
     /**
      * 駅コードを渡すと駅名を返す。
+     *
+     * URLをそのままkeyにして、Cacheに入れる
      * @param $stationCode
      * @return string
      */
@@ -27,23 +32,32 @@ class Helper
         if (empty($stationCode) || !is_numeric($stationCode)) {
             return self::NO_DATA;
         }
+        // APIから駅情報を取得
         $url = self::URL_FOR_STATION . $stationCode . self::DATA_TYPE_XML;
-        $result = self::curl_get_contents($url, 120);
-
-        if (isset($result)) {
+        $result = Cache::remember($url, self::CACHE_MINUTES, function () use ($url) {
+            return $result = self::curl_get_contents($url, self::CURL_TIMEOUT_SECOND);
+        });
+        // API返却値不正の場合の処理
+        if (empty($result)) {
+            return self::NO_DATA;
+        }
+        try {
             $stationXml = simplexml_load_string($result);
-
             if ($stationXml === false) {
                 return self::NO_DATA;
             }
-            return (string)$stationXml->station->station_name ?? '';
-        } else {
+        } catch (Exception $e) {
             return self::NO_DATA;
         }
+
+        // 駅名を返却
+        return (string)$stationXml->station->station_name ?? '';
     }
 
     /**
      * 路線コードを渡すと路線名を返す。
+     *
+     * URLをそのままkeyにして、Cacheに入れる
      * @param $lineCode
      * @return string
      */
@@ -52,20 +66,26 @@ class Helper
         if (empty($lineCode) || !is_numeric($lineCode)) {
             return self::NO_DATA;
         }
+        // APIから路線情報を取得
         $url = self::URL_FOR_LINE . $lineCode . self::DATA_TYPE_XML;
-        $result = self::curl_get_contents($url, 120);
-
-        if (isset($result)) {
+        $result = Cache::remember($url, self::CACHE_MINUTES, function () use ($url) {
+            return $result = self::curl_get_contents($url, self::CURL_TIMEOUT_SECOND);
+        });
+        // API返却値不正の場合の処理
+        if (empty($result)) {
+            return self::NO_DATA;
+        }
+        try {
             $lineXml = simplexml_load_string($result);
-
             if ($lineXml === false) {
                 return self::NO_DATA;
             }
-            return (string)$lineXml->line->line_name ?? '';
-        } else {
+        } catch (Exception $e) {
             return self::NO_DATA;
         }
 
+        // 路線名を返却
+        return (string)$lineXml->line->line_name ?? '';
     }
 
     /**
@@ -75,9 +95,29 @@ class Helper
      */
     public static function getStationsByLine($lineCode): array
     {
+        if (empty($lineCode) || !is_numeric($lineCode)) {
+            return [];
+        }
+        // APIから路線情報を取得
         $url = self::URL_FOR_LINE . $lineCode . self::DATA_TYPE_XML;
-        $result = self::curl_get_contents($url, 120);
-        $lineXml = simplexml_load_string($result);
+        $result = Cache::remember($url, self::CACHE_MINUTES, function () use ($url) {
+            return $result = self::curl_get_contents($url, self::CURL_TIMEOUT_SECOND);
+        });
+
+        // API返却値不正の場合の処理
+        if (empty($result)) {
+            return [];
+        }
+        try {
+            $lineXml = simplexml_load_string($result);
+            if ($lineXml === false) {
+                return [];
+            }
+        } catch (Exception $e) {
+            return [];
+        }
+
+        // XMLを配列にパースして駅一覧を返却
         $lineArray = get_object_vars($lineXml);
         return $lineArray['station'];
     }
