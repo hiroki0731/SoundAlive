@@ -23,20 +23,16 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
-        $inputs = $request->except('_token');
+        $inputs = $request->except(['_token', 'page']);
 
-        foreach ($inputs as $key => $val) {
-            if (empty($val) || $key === "page") {
-                continue;
-            } else {
-                $conditions[$key] = $val;
-            }
-        }
+        $conditions = array_filter($inputs, function ($val) {
+            return !empty($val);
+        });
 
-        $concerts = $this->concertService->getByCondition($conditions ?? array());
-        $conditions = $this->replaceConditionName($conditions ?? array());
+        $concerts = $this->concertService->getByCondition($conditions);
+        $conditions = $this->replaceConditionName($conditions);
 
-        return view('/search' , compact('concerts', 'conditions'));
+        return view('/search', compact('concerts', 'conditions'));
     }
 
     /**
@@ -44,21 +40,21 @@ class SearchController extends Controller
      * @param $conditions
      * @return array
      */
-    private function replaceConditionName($conditions = array()): array
+    private function replaceConditionName($conditions): array
     {
         $const = Config::get('const.conditions') ?? array();
 
         foreach ($conditions as $key => $val) {
-            if($key == "pref"){
+            if ($key == "pref") {
                 $val = Helper::getPrefName($val);
-            }else if($key == "line"){
+            } elseif ($key == "line") {
                 $val = Helper::getLineName($val);
-            }else if($key == "station"){
+            } elseif ($key == "station") {
                 $val = Helper::getStationName($val);
-            }else if($key == "music_type"){
+            } elseif ($key == "music_type") {
                 $val = Helper::getMusicTypeName($val);
             }
-            if(key_exists($key, $const)){
+            if (key_exists($key, $const)) {
                 $replacedConditions[$const[$key]] = $val;
             }
         }
