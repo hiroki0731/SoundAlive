@@ -45,6 +45,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run seeding
+      - run: php artisan key:generate
       - run: php artisan config:clear
       - run: php artisan migrate
       - run: php artisan db:seed
