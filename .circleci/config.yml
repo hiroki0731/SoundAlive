@@ -18,7 +18,7 @@ jobs:
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
-      - APP_KEY: ase64:tq/LkZL96h9rPxFy9AzqjEY8LubBVoGtvCMj65Bmglc=
+      - APP_KEY: base64:tq/LkZL96h9rPxFy9AzqjEY8LubBVoGtvCMj65Bmglc=
       - DB_CONNECTION: circle_test
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
@@ -45,8 +45,6 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run seeding
-      - run: php artisan key:generate
-      - run: php artisan config:clear
       - run: php artisan migrate
       - run: php artisan db:seed
 
