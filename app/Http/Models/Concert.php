@@ -41,7 +41,8 @@ class Concert extends Model implements ConcertInterface
      */
     public function getNew(): ?Collection
     {
-        return $this->orderByNewestWithinLimit(Carbon::now()->addDay(7))->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
+//        return $this->orderByNewestWithinLimit(Carbon::now()->addDay(7))->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
+        return $this->orderByNewest()->take(self::NUMBER_OF_CONCERTS_ON_TOP)->get();
     }
 
     /**

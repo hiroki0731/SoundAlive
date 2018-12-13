@@ -21,16 +21,9 @@
             },
         },
         mounted: function () {
+            window.addEventListener('resize', this.handleResize);
             if (this.$refs.slideNum != null) {
-                this.slideCount = this.$refs.slideNum.innerHTML;
-                //画面幅を取得
-                this.slideWidth = window.innerWidth;
-                //画面幅×スライド数をセット
-                this.parentWidth = (window.innerWidth * this.slideCount);
-                //画面幅をcssにセット
-                this.parentSlider.width = this.parentWidth.toString() + "px";
-                //100% / スライドの数の割り当て
-                this.childSlider.width = (100 / this.slideCount).toString() + "%";
+                this.setSlideShow();
             }
         },
         methods: {
@@ -63,6 +56,23 @@
                 this.parentSlider.transform = "translateX(-" + pageWidthStr + ")";
                 console.log("pageWidth:" + this.parentSlider.transform);
             },
+            handleResize: function () {
+                this.setSlideShow();
+            },
+            setSlideShow: _.debounce(function () {
+                this.slideCount = this.$refs.slideNum.innerHTML;
+                //画面幅を取得
+                this.slideWidth = window.innerWidth;
+                //画面幅×スライド数をセット
+                this.parentWidth = (window.innerWidth * this.slideCount);
+                //画面幅をcssにセット
+                this.parentSlider.width = this.parentWidth.toString() + "px";
+                //100% / スライドの数の割り当て
+                this.childSlider.width = (100 / this.slideCount).toString() + "%";
+            }, 50),
+        },
+        beforeDestroy: function () {
+            window.removeEventListener('resize', this.handleResize);
         }
     });
 })();
