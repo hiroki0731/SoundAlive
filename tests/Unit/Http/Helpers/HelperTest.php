@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 
-class helperTest extends TestCase
+class HelperTest extends TestCase
 {
 
     /**************************************************
