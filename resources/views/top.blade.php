@@ -18,8 +18,8 @@
                 <div class="heading">
                     <h2>このサイトの活用方法</h2>
                 </div>
-                <div class="contents">
-                    <div class="content" @click="moveToSearch()">
+                <div class="contents row">
+                    <div class="content col-md-4" @click="moveToSearch()">
                         <h3>すぐにライブを検索しよう</h3>
                         <div class="content-icon concert-img">
                             <img src="{{ asset('/img/search.png') }}" width="100%">
@@ -31,7 +31,7 @@
                             ライブをジャンル・場所・日時などで検索しましょう。近場のライブハウスやジャズバーでは、今日も魂の込もった音楽が演奏されて、誰かの心を動かしています。
                         </p>
                     </div>
-                    <div class="content" @click="moveToRegister()">
+                    <div class="content col-md-4" @click="moveToRegister()">
                         <h3>登録してライブを告知しよう</h3>
                         <div class="content-icon concert-img">
                             <img src="{{ asset('/img/regist.png') }}" width="100%">
@@ -43,7 +43,7 @@
                             ミュージシャンは無料登録をして自分のライブをどんどん告知しましょう。ライブハウスのウェブサイトや自分のSNS以外の強力な広告ツールとして活用してください。
                         </p>
                     </div>
-                    <div class="content" @click="moveToAbout()">
+                    <div class="content col-md-4" @click="moveToAbout()">
                         <h3>もっと詳しく知りたいなら</h3>
                         <div class="content-icon concert-img">
                             <img src="{{ asset('/img/book.png') }}" width="100%">
@@ -81,8 +81,8 @@
                             <div class="concert-icon">
                                 <div class="row">
                                     <div class="col-sm-1">
-                                        <a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)"><i
-                                                    class="fas fa-chevron-left"></i></a>
+                                        {{--<a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)"><i--}}
+                                        {{--class="fas fa-chevron-left"></i></a>--}}
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="concert-img" @click="moveToDetail({{ $concert->id }})">
@@ -96,8 +96,8 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-1">
-                                        <a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)"><i
-                                                    class="fas fa-chevron-right"></i></a>
+                                        {{--<a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)"><i--}}
+                                        {{--class="fas fa-chevron-right"></i></a>--}}
                                     </div>
                                 </div>
                             </div>
@@ -111,6 +111,12 @@
                     <span ref="slideNum" style="display: none">{{ $count }}</span>
                     <div class="clear"></div>
                 </div>
+                <a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
         @endif
     </div>

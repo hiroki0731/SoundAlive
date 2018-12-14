@@ -11,7 +11,7 @@
         <div class="header-left">
             <a href="{{ url('/') }}"><img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png"></a>
         </div>
-        {{--<span class="fa fa-bars menu-icon"></span>--}}
+        <i class="fas fa-bars menu-icon"></i>
         <div class="header-right">
             <a href="{{ url('/search') }}"><i class="fas fa-search"></i> ライブ検索</a>
             <a href="{{ url('/about') }}"><i class="fas fa-book"></i> このサイトについて</a>

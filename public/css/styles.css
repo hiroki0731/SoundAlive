@@ -5,6 +5,9 @@
 body {
     margin: 0;
     font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+.body-wrapper{
     overflow-x: hidden;
 }
 
@@ -45,6 +48,14 @@ select {
     padding: 20px;
     color: #fff;
     background-color: transparent;
+}
+
+.menu-icon {
+    color: white;
+    float: right;
+    font-size: 25px;
+    padding: 21px 0;
+    display: none;
 }
 
 .page-link {
@@ -206,8 +217,6 @@ header {
 
 .content {
     text-align: center;
-    float: left;
-    width: 33%;
 }
 
 .content h3 {
@@ -315,6 +324,7 @@ footer {
 }
 
 .concert-wrapper {
+    position: relative;
     color: white;
     background-image: url("/img/live1.png");
     background-attachment: fixed;
@@ -398,6 +408,10 @@ footer {
     margin:auto;
 }
 
+.button-area{
+    position: relative;
+}
+
 .slide_btn {
     position: absolute;
     display: inline-block;
@@ -416,12 +430,12 @@ footer {
 
 .slide_btn_left {
     top: 40%;
-    left: 30%;
+    left: 2%;
 }
 
 .slide_btn_right {
     top: 40%;
-    right: 30%;
+    right: 2%;
 }
 
 .slide_btn:hover {
