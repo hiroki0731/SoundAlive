@@ -7,7 +7,7 @@ body {
     font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 }
 
-.body-wrapper{
+.body-wrapper {
     overflow-x: hidden;
 }
 
@@ -55,6 +55,10 @@ select {
     float: right;
     font-size: 25px;
     padding: 21px 0;
+    display: none;
+}
+
+#mobile-menu {
     display: none;
 }
 
@@ -283,11 +287,13 @@ footer p {
 }
 
 footer {
-    /*background-image: url("/img/live1.png");*/
-    /*background-attachment: fixed;*/
-    /*background-size: cover;*/
     padding-top: 30px;
     padding-bottom: 20px;
+    background-color: black;
+}
+
+.footer-icon {
+    color: white;
 }
 
 .login-wrapper {
@@ -405,10 +411,10 @@ footer {
 }
 
 .detail-pic {
-    margin:auto;
+    margin: auto;
 }
 
-.button-area{
+.button-area {
     position: relative;
 }
 
@@ -417,9 +423,9 @@ footer {
     display: inline-block;
     text-decoration: none;
     color: black;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
     border-radius: 50%;
     text-align: center;
     vertical-align: middle;
@@ -489,7 +495,6 @@ footer {
     border-radius: 10px;
 }
 
-
 .about-wrapper {
     padding: 180px 0 100px 0;
     background-image: url("/img/spray_black.jpg");
@@ -511,7 +516,7 @@ footer {
 
 .about-wrapper > .container {
     padding: 10px;
-    background-color: rgba(100,100,100,0.6);
+    background-color: rgba(100, 100, 100, 0.6);
 }
 
 .about-wrapper p {
@@ -524,9 +529,6 @@ footer {
 }
 
 .about-content-wrapper {
-    /*background-image: url("/img/bandlight_red.jpg");*/
-    /*background-attachment: fixed;*/
-    /*background-size: cover;*/
     border-top: 1px solid #eee;
     padding-left: 5%;
     padding-right: 5%;

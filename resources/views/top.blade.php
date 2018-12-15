@@ -70,7 +70,6 @@
                     @foreach($concerts as $concert)
                         @php
                             $detail_info = json_decode($concert->detail_info);
-                            $count = count($concerts);
                             $station_code = $detail_info->station ?? '';
                             $line_code = $detail_info->line ?? '';
                         @endphp
@@ -80,11 +79,7 @@
                             </div>
                             <div class="concert-icon">
                                 <div class="row">
-                                    <div class="col-sm-1">
-                                        {{--<a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)"><i--}}
-                                        {{--class="fas fa-chevron-left"></i></a>--}}
-                                    </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-12">
                                         <div class="concert-img" @click="moveToDetail({{ $concert->id }})">
                                             <div style="max-height: 350px">
                                                 <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}"
@@ -95,10 +90,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1">
-                                        {{--<a class="slide_btn slide_btn_right" @click.prevent="changeSlide(true)"><i--}}
-                                        {{--class="fas fa-chevron-right"></i></a>--}}
-                                    </div>
                                 </div>
                             </div>
                             <p class="concert-text-contents">開催日：{{ $detail_info->concert_date }}</p>
@@ -108,7 +99,7 @@
                             <p>{{ $detail_info->concert_name }}</p>
                         </div>
                     @endforeach
-                    <span ref="slideNum" style="display: none">{{ $count }}</span>
+                    <span ref="slideNum" style="display: none">{{ count($concerts) }}</span>
                     <div class="clear"></div>
                 </div>
                 <a class="slide_btn slide_btn_left" @click.prevent="changeSlide(false)">

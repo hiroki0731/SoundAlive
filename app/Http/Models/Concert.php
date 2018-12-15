@@ -27,11 +27,11 @@ class Concert extends Model implements ConcertInterface
         'place_name',
     ];
     // トップページに表示するライブ数
-    private const NUMBER_OF_CONCERTS_ON_TOP = 10;
+    private const NUMBER_OF_CONCERTS_ON_TOP = 15;
     // マイページのページネーション
-    private const NUMBER_OF_PAGINATION_ON_MYPAGE = 5;
+    private const NUMBER_OF_PAGINATION_ON_MYPAGE = 10;
     // 検索ページのページネーション
-    private const NUMBER_OF_PAGINATION_ON_SEARCH = 5;
+    private const NUMBER_OF_PAGINATION_ON_SEARCH = 10;
 
     /**
      * @inheritdoc
