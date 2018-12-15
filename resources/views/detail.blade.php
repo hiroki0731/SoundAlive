@@ -132,7 +132,7 @@
                         <label for="title">ライブを共有しよう</label>
                         <div class="row">
                             {{-- FBシェアボタン --}}
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-2">
                                 <div class="fb-share-button"
                                      data-href="{{ Request::url()}}"
                                      data-layout="button_count" data-size="large" data-mobile-iframe="true">

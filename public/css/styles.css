@@ -118,7 +118,7 @@ select {
 }
 
 .top-wrapper {
-    padding: 180px 0 100px 0;
+    padding: 150px 0 100px 0;
     background-image: url("/img/live1.png");
     background-attachment: fixed;
     background-size: cover;

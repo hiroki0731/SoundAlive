@@ -4,7 +4,8 @@
         <div class="top-wrapper">
             <div class="container">
                 <h1>Sound A<span style="color: #ffe70a;">LIVE</span></h1>
-                <h1>音楽は<span style="color: #ffe70a;">生</span>きてる。音楽は<span style="color: #ffe70a;">LIVE</span>だ。</h1>
+                <h1>音楽は<span style="color: #ffe70a;">生</span>きてる</h1>
+                <h1>音楽は<span style="color: #ffe70a;">LIVE</span>だ</h1>
                 <p>サウンドアライブは「もっとライブを身近に。」をモットーにした「総合ライブ検索・登録サービス」です。</p>
                 <p>有名バンドやフェス以外にも、素敵なライブがそこかしこで開かれています。</p>
                 <p>さあ、近場のライブを検索してみましょう！</p>
