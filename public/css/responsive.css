@@ -34,7 +34,11 @@
     }
 
     .top-wrapper h1 {
-        font-size: 35px;
+        font-size: 38px;
+    }
+
+    .top-wrapper h2 {
+        font-size: 25px;
     }
 
     .about-wrapper h1 {

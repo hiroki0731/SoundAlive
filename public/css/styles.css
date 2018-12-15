@@ -17,9 +17,6 @@ a {
 }
 
 input, textarea {
-    /*border-top: none;*/
-    /*border-right: none;*/
-    /*border-left: none;*/
     border: 1px solid #218BC3;
     background-color: transparent;
     color: #FFFFFF;
@@ -118,7 +115,7 @@ select {
 }
 
 .top-wrapper {
-    padding: 150px 0 100px 0;
+    padding: 130px 0 100px 0;
     background-image: url("/img/live1.png");
     background-attachment: fixed;
     background-size: cover;
@@ -128,7 +125,17 @@ select {
 
 .top-wrapper h1 {
     opacity: 0.9;
-    font-size: 50px;
+    font-size: 64px;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    line-height: inherit;
+    text-shadow: 1px 1px 1px blue;
+}
+
+.top-wrapper h2 {
+    opacity: 0.9;
+    font-size: 40px;
     letter-spacing: 5px;
     margin-bottom: 5px;
     font-weight: bold;
