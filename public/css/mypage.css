@@ -2,7 +2,7 @@
     padding: 100px 0 100px 0;
     background-image: url("/img/img10.jpg");
     background-size: cover;
-    color: white;
+    color: #FFF;
     text-align: center;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .concertInput input select {
-    background-color: white;
+    background-color: #FFF;
 }
 
 .dispnon {
@@ -70,7 +70,7 @@
     background-image: url("/img/detail.jpg");
     background-attachment: fixed;
     background-size: cover;
-    color: white;
+    color: #FFF;
     padding: 100px 0 100px 0;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .detail-update input, textarea {
-    color: white;
+    color: #FFF;
     outline: 0;
     border: 0px;
     background: transparent;
@@ -119,11 +119,10 @@
     text-decoration: underline;
     font-size: 18px;
     font-weight: bold;
-    /*color: rgba(250, 250, 100, 1.0);*/
 }
 
 .detail-update input[type=submit] {
-    color: white;
+    color: #FFF;
     border: 1px solid #0c5460;
     padding: 3px;
     width: 10%;
@@ -152,16 +151,27 @@
 
 .modal-panel {
     position: fixed;
-    left: 25%;
+    left: 5%;
     top: 25%;
-    width: 50%;
-    /*height: 50%;*/
-    background-color: white;
+    width: 90%;
+    background-color: #FFF;
     z-index: 100;
+    text-align: center;
+}
+
+.modal-panel button {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #0c5460;
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 1px;
 }
 
 .modal-panel-content {
     padding: 15px;
-    text-align: center;
     color: #5f5d60;
 }
