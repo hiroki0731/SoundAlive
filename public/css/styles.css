@@ -115,7 +115,7 @@ select {
 }
 
 .top-wrapper {
-    padding: 130px 0 100px 0;
+    padding: 120px 0 100px 0;
     background-image: url("/img/live1.png");
     background-attachment: fixed;
     background-size: cover;
@@ -503,7 +503,7 @@ footer {
 }
 
 .about-wrapper {
-    padding: 180px 0 100px 0;
+    padding: 120px 0 100px 0;
     background-image: url("/img/spray_black.jpg");
     background-attachment: fixed;
     background-size: cover;
@@ -541,6 +541,10 @@ footer {
     padding-right: 5%;
     background-color: #f7f7f7;
     text-align: center;
+}
+
+.about-content-wrapper p {
+    text-align: left;
 }
 
 .text-middle {

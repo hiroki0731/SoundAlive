@@ -33,6 +33,10 @@
         line-height: 50px;
     }
 
+    .top-wrapper {
+        text-align: center;
+    }
+
     .top-wrapper h1 {
         font-size: 38px;
     }
@@ -41,7 +45,21 @@
         font-size: 25px;
     }
 
+    .top-wrapper p {
+        text-align: left;
+    }
+
+    .about-wrapper {
+        text-align: left;
+    }
+
     .about-wrapper h1 {
+        text-align: center;
         font-size: 35px;
     }
+
+    .about-content-wrapper p {
+        text-align: left;
+    }
+
 }
