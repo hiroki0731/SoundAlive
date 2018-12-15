@@ -23,6 +23,10 @@
         list-style-type: none;
     }
 
+    #mobile-menu a {
+        font-size: 16px;
+    }
+
     .slide_btn {
         width: 50px;
         height: 50px;

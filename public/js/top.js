@@ -57,7 +57,7 @@
             handleResize: function () {
                 this.setSlideShow();
             },
-            setSlideShow: _.debounce(function () {
+            setSlideShow: function () {
                 if (this.$refs.slideNum != null) {
                     this.slideCount = this.$refs.slideNum.innerHTML;
                     //画面幅を取得
@@ -69,7 +69,7 @@
                     //100% / スライドの数の割り当て
                     this.childSlider.width = (100 / this.slideCount).toString() + "%";
                 }
-            }, 50),
+            },
         },
         beforeDestroy: function () {
             window.removeEventListener('resize', this.handleResize);

@@ -123,9 +123,14 @@
 
 .detail-update input[type=submit] {
     color: #FFF;
+    background-color: rgba(50, 150, 200, 0.7);
     border: 1px solid #0c5460;
     padding: 3px;
-    width: 10%;
+    width: 50%;
+}
+
+.detail-update input[type=submit]:hover {
+    background-color: rgba(50, 150, 200, 1.0);
 }
 
 .youtube {

@@ -163,7 +163,7 @@
                 </div>
             </div>
             <div class="detail-submit-btn">
-                <input type="submit" value="編集を完了する" width="10%">
+                <input type="submit" value="編集を完了する">
             </div>
         </div>
     </form>
