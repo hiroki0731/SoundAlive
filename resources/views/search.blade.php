@@ -8,14 +8,13 @@
                     <div class="card-header">検索条件選択</div>
                     <div class="card-body">
                         <form action="{{ url('/search') }}" method="get">
-
                             <input type="hidden" value="{{ csrf_token() }}">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label>日付を指定</label>
                                     <br>
                                     <div class="search-selectbox">
-                                        <input type="date" name="concert_date" value="">
+                                        <input type="date" name="concert_date" />
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
