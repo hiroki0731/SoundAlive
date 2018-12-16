@@ -20,13 +20,17 @@ function setMenuItem(isLine, code) {
     s.charset = "utf-8";
 
     if (isLine === false) {
-        for (i = 0; i <= lineElement.options.length; i++) {
+        for (let i = 0; i <= lineElement.options.length; i++) {
             lineElement.options[0] = null
         }	//沿線削除
-        for (j = 0; j <= stationElement.options.length; j++) {
-            stationElement.options[0] = null
+
+        let length = stationElement.options.length * 2;
+        for (let k = 0; k <= length; k++) {
+            stationElement.options[0] = null;
         }	//駅削除
         stationElement.options[0] = new Option(initStationMessage, 0);	//駅OPTIONを空に
+        console.log(stationElement.options[0]);
+
         if (code == 0) {
             lineElement.options[0] = new Option(initLineMessage, 0);
         } else {
@@ -62,18 +66,6 @@ function setMenuItem(isLine, code) {
                 var op_station_cd = station_l[i].station_cd;
                 stationElement.options[ii] = new Option(op_station_name, op_station_cd);
             }
-        }
-    }
-}
-
-function setPulldown(pref) {
-    var pulldown_option_pref = document.getElementById('pref').getElementsByTagName('option');
-
-    for (let i = 0; i < pulldown_option_pref.length; i++) {
-        if (pulldown_option_pref[i].value == pref) {
-            pulldown_option_pref[i].selected = true;
-            setMenuItem(false, pref);
-            break;
         }
     }
 }
