@@ -4,6 +4,7 @@
 
 body {
     margin: 0;
+    /*font-family: "Sawarabi Mincho";*/
     font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 }
 
@@ -80,8 +81,7 @@ select {
 
 /* menu関連 */
 .logo {
-    width: 124px;
-    margin-top: 20px;
+    height: 65px;
 }
 
 .header-left {
@@ -125,12 +125,12 @@ select {
 
 .top-wrapper h1 {
     opacity: 0.9;
-    font-size: 64px;
-    letter-spacing: 5px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    line-height: inherit;
-    text-shadow: 1px 1px 1px blue;
+    letter-spacing: 20px;
+    font-family: 'Wire One', sans-serif;
+    font-size: 110px;
+    text-shadow: 10px 10px 10px black;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.3);
 }
 
 .top-wrapper h2 {

@@ -11,7 +11,7 @@
     <header>
         <div class="container">
             <div class="header-left">
-                <a href="{{ url('/') }}"><img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png"></a>
+                <a href="{{ url('/') }}"><img class="logo" src="{{ asset('/img/sa.jpg') }}"></a>
             </div>
             <i class="fas fa-bars menu-icon" @click="toggleMobileMenu"></i>
             <div class="header-right">
