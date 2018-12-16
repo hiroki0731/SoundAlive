@@ -20,7 +20,7 @@
                     <div class="col-md-9">
                         <p>タイトル：{{ $detail_info->concert_name }}</p>
                         <p>バンド名：{{ $detail_info->band_name }}</p>
-                        <p>開催日：{{ $detail_info->concert_date }}</p>
+                        <p>開催日付：{{ Helper::formatConcertDate($detail_info->concert_date) }}</p>
                         <a href="/mypage/update/{{ $concert->id }}"><i class="fas fa-pencil-alt"></i> 編集する</a>
                         <a href="/mypage/delete/{{ $concert->id }}"><i class="far fa-trash-alt"></i> 削除する</a>
                     </div>

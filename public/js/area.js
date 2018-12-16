@@ -23,12 +23,12 @@ function setMenuItem(isLine, code) {
         for (i = 0; i <= lineElement.options.length; i++) {
             lineElement.options[0] = null
         }	//沿線削除
-        for (i = 0; i <= stationElement.options.length; i++) {
+        for (j = 0; j <= stationElement.options.length; j++) {
             stationElement.options[0] = null
         }	//駅削除
         stationElement.options[0] = new Option(initStationMessage, 0);	//駅OPTIONを空に
         if (code == 0) {
-            lineElement.options[0] = new Option(initLineMessage, 0);	//沿線OPTIONを空に
+            lineElement.options[0] = new Option(initLineMessage, 0);
         } else {
             s.src = "http://www.ekidata.jp/api/p/" + code + ".json";	//沿線JSONデータURL
         }

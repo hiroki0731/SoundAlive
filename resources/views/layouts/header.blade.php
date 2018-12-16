@@ -15,6 +15,7 @@
             </div>
             <i class="fas fa-bars menu-icon" @click="toggleMobileMenu"></i>
             <div class="header-right">
+                <a href="{{ url('/') }}"><i class="fas fa-home"></i> ホーム</a>
                 <a href="{{ url('/search') }}"><i class="fas fa-search"></i> ライブ検索</a>
                 <a href="{{ url('/about') }}"><i class="fas fa-book"></i> このサイトについて</a>
                 <?php $check = \Illuminate\Support\Facades\Auth::check(); ?>
@@ -30,6 +31,7 @@
     </header>
     <div id="mobile-menu" :style="mobileMenu">
         <ul>
+            <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> ホーム</a></li>
             <li><a href="{{ url('/search') }}"><i class="fas fa-search"></i> ライブ検索</a></li>
             <li><a href="{{ url('/about') }}"><i class="fas fa-book"></i> このサイトについて</a></li>
             <?php $check = \Illuminate\Support\Facades\Auth::check(); ?>

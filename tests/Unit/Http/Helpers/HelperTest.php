@@ -282,6 +282,14 @@ class HelperTest extends TestCase
         $this->assertEquals('データなし', $result);
     }
 
+    public function test_getMusicTypeName_OK()
+    {
+        $helper = app()->make(Helper::class);
+
+        $result = $helper::getMusicTypeName(1);
+        $this->assertEquals('ポップス', $result);
+    }
+
     /**************************************************
      *
      * 以下、getGoogleMapKeyのテスト
@@ -294,5 +302,27 @@ class HelperTest extends TestCase
 
         $result = $helper::getGoogleMapKey();
         $this->assertEquals(Config::get('keys.google_map'), $result);
+    }
+
+    /**************************************************
+     *
+     * 以下、formatConcertDateのテスト
+     *
+     **************************************************/
+
+    public function test_formatConcertDate_OK()
+    {
+        $helper = app()->make(Helper::class);
+
+        $result = $helper::formatConcertDate('2018-12-22');
+        $this->assertEquals('2018年12月22日(土)', $result);
+    }
+
+    public function test_formatConcertDate_NG_Empty()
+    {
+        $helper = app()->make(Helper::class);
+
+        $result = $helper::formatConcertDate('');
+        $this->assertEquals('', $result);
     }
 }

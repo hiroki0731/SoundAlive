@@ -4,7 +4,7 @@
         <div class="about-wrapper">
             <div class="container">
                 <h1>SoundAliveは<br>無料のライブ総合検索・告知サービスです</h1>
-                <p>ライブは「有名プロのチケットを事前予約して行くもの」ではありません </p>
+                <p>ライブは「有名プロのチケットを何ヶ月も前から予約合戦して行くもの」だけではありません </p>
                 <p>実はすぐそこのJazz BarやLive Houseは、今日も素敵なミュージシャンの演奏で溢れています</p>
                 <p>・・・にも関わらず、それを知るすべがあまりに限られてます</p>
                 <p>もっと多くの人にこんなにも素晴らしいライブがそこかしこで開かれていることを伝えたく、このサイトは生まれました</p>
@@ -31,6 +31,11 @@
                         <p>他にも駅の直接指定、バンド名の指定、ライブ会場名の指定、などの絞り込みが可能です。</p>
                         <p>色々なアーティストの音楽を聴いて、豊かな時間を送ってみませんか？</p>
                     </div>
+                </div>
+                <div class="row">
+                    <a href="{{ url('/search') }}" class="about-btn signup">
+                        <i class="fas fa-search"></i> ライブを検索する！
+                    </a>
                 </div>
             </div>
         </div>
@@ -68,20 +73,11 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="row user-explain">--}}
-                    {{--<div class="col-sm-4">--}}
-                        {{--<h3><i class="far fa-hand-point-right"></i> 簡単にライブのチラシが作成できる!</h3>--}}
-                        {{--<div class="content-icon about-img">--}}
-                            {{--<img src="{{ asset('/img/printer.png') }}" width="100%">--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-sm-8 text-middle">--}}
-                        {{--<p>ライブのチラシを作成するのって以外と面倒ではありませんか？</p>--}}
-                        {{--<p>このサイトでライブを作成すると、そのライブ情報の画面をそのまま画像としてダウンロードできるので</p>--}}
-                        {{--<p>それをそのままチラシとして印刷することができます。</p>--}}
-                        {{--<p>背景は何種類もありますので、あなたのライブとマッチするものをお選びください。</p>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                <div class="row">
+                    <a href="{{ url('/register') }}" class="about-btn">
+                        <i class="fas fa-address-book"></i> 無料登録してライブを告知する！
+                    </a>
+                </div>
             </div>
         </div>
     </div>

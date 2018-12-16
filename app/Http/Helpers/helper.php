@@ -190,4 +190,21 @@ class Helper
         curl_close($ch);
         return $result;
     }
+
+    /**
+     * コンサート日付をY年m月d日(D)に整形して返却する
+     * @param $concertDate
+     * @return string
+     */
+    public static function formatConcertDate($concertDate): string
+    {
+        if (empty($concertDate)) {
+            return $concertDate;
+        }
+        $weekNumber = date('w', strtotime($concertDate));
+        $weekArray = Config::get('const.week');
+        $concertDate = date('Y年m月d日', strtotime($concertDate));
+
+        return $concertDate . "(" . $weekArray[$weekNumber] . ")";
+    }
 }

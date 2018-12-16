@@ -56,7 +56,7 @@ class MypageController extends Controller
         $concertArray = [];
         $concertArray['user_id'] = $userId;
         try {
-            $concertArray['detail_info'] = $this->storeProcess($request);
+            $concertArray['detail_info'] = $this->concertService->storeProcess($request);
         } catch (Exception $e) {
             // TODO:エラー処理
             dd($e->getMessage());
@@ -85,56 +85,13 @@ class MypageController extends Controller
         $detail_info = json_decode($concert->detail_info);
 
         try {
-            $concert->detail_info = $this->storeProcess($request, $detail_info->concert_img);
+            $concert->detail_info = $this->concertService->storeProcess($request, $detail_info->concert_img);
         } catch (Exception $e) {
             // TODO:エラー処理
             dd($e->getMessage());
         }
         $concert->save();
         return redirect('/mypage');
-    }
-
-    /**
-     * 共通登録処理
-     * @param $request
-     * @param null $concertImg(更新処理の時のみ)
-     * @return string
-     * @throws Exception
-     */
-    private function storeProcess($request, $concertImg = null)
-    {
-        //インプット情報からコンサートテーブルのカラムに対応する値のみを抽出
-        foreach ($request->except('_token') as $key => $val) {
-            if (in_array($key, $this->concertService::CONCERT_TABLE_COLUMNS)) {
-                if ($key == "movie_id") {
-                    $val = $this->extractMovieId($val);
-                }
-                $inputData[$key] = $val;
-            }
-        }
-
-        //アップロードされた画像を保存してパスを格納（編集時はnullのことがある）
-        if (empty($request->file('concert_img'))) {
-            $inputData['concert_img'] = $concertImg;
-        } else {
-            $filePath = Storage::putFile('/images', $request->file('concert_img'));
-            $inputData['concert_img'] = basename($filePath);
-        }
-
-        //抽出した値をjsonにパース
-        $detail_info = json_encode($inputData ?? []);
-
-        if (json_last_error() != JSON_ERROR_NONE) {
-            logs()->error('-------------------------------------¥n');
-            logs()->error('json_encodeでエラー。エラーコード：' . json_last_error() . '¥n');
-            logs()->error('- - - - - - - - - - - - - - - - - - -¥n');
-            logs()->error('エラー発生時のインプット：' . print_r($request->except('_token'), true) . '¥n');
-            logs()->error('-------------------------------------¥n');
-            // TODO: Exception吐きすてて終了ってのをどうにかする
-            throw new Exception('ライブ情報JSONのパースに失敗しました');
-        }
-
-        return $detail_info;
     }
 
     /**
@@ -170,21 +127,4 @@ class MypageController extends Controller
         $this->concertService->deleteById($concert->id);
         return redirect('/mypage');
     }
-
-    /**
-     * Youtubeリンクから動画idを抽出して返却する
-     * @param $paramUrl
-     * @return string
-     */
-    private function extractMovieId($paramUrl): string
-    {
-        if (preg_match('#https?://www.youtube.com/watch\?v=([^\&]*\&?)#', $paramUrl, $matches)) {
-            if (!empty($matches[1])) {
-                $movieId = rtrim($matches[1], '&');
-            }
-        }
-        return $movieId ?? '';
-    }
-
-
 }

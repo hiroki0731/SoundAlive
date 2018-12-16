@@ -92,10 +92,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="concert-text-contents">開催日：{{ $detail_info->concert_date }}</p>
                             <p class="concert-text-contents">
-                                開催場所：{{ Helper::getPrefName($detail_info->pref ?? '') }} {{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}
-                                駅</p>
+                                開催日付：{{ Helper::formatConcertDate($detail_info->concert_date) }}
+                            </p>
+                            <p class="concert-text-contents">
+                                開催場所：{{ Helper::getPrefName($detail_info->pref ?? '') }} {{ Helper::getLineName($line_code) }} {{ Helper::getStationName($station_code) }}駅
+                            </p>
                             <p>{{ $detail_info->concert_name }}</p>
                         </div>
                     @endforeach

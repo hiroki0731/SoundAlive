@@ -14,8 +14,11 @@
                 <div class="footer-wrapper text-center">
                     <a href="https://twitter.com/SoundAlive2">
                         <i class="fab fa-twitter-square fa-3x footer-icon"></i>
-                        <p>SoundAlive公式</p>
                     </a>
+                    <a href="https://www.facebook.com/SoundAlive-%E3%83%90%E3%83%B3%E3%83%89%E7%B7%8F%E5%90%88%E6%A4%9C%E7%B4%A2%E3%82%B5%E3%82%A4%E3%83%88-2181257818792730">
+                        <i class="fab fa-facebook-square fa-3x footer-icon"></i>
+                    </a>
+                    <p>SoundAlive公式</p>
                     <p>Copyright © Freedom Freak All Rights Reserved.</p>
                 </div>
             </div>

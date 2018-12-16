@@ -98,7 +98,7 @@
                                         <img src={{ asset('storage/images/'. $detail_info->concert_img) }} style="width:100%">
                                     </div>
                                     <div class="col-md-9">
-                                        <p>開催日：{{ $detail_info->concert_date }}</p>
+                                        <p>開催日：{{ Helper::formatConcertDate($detail_info->concert_date) }}</p>
                                         <p>バンド名：{{ $detail_info->band_name }}</p>
                                         <p>音楽ジャンル：{{ $music_type }}</p>
                                         <p>最寄アクセス：{{ $pref_name }} {{ $station_line }} {{ $station_name }}駅</p>

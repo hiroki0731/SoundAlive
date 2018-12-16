@@ -5,9 +5,11 @@ namespace App\Http\Services;
 
 use App\Http\Contracts\ConcertInterface;
 use App\Http\Models\Concert;
+use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Concertモデルのビジネスロジッククラス
@@ -96,23 +98,25 @@ class ConcertService implements ConcertInterface
 
         if ($existPref && !$existStation && !$existLine) { //都道府県のみ指定した場合
             $format_conditions = $conditions;
-        } else if ($existLine && !$existStation) { //路線まで指定した場合
-            //都道府県と路線を検索条件から外す
-            $format_conditions = $conditions;
-            unset($format_conditions['pref']);
-            unset($format_conditions['line']);
+        } else {
+            if ($existLine && !$existStation) { //路線まで指定した場合
+                //都道府県と路線を検索条件から外す
+                $format_conditions = $conditions;
+                unset($format_conditions['pref']);
+                unset($format_conditions['line']);
 
-            //路線上にある全ての駅コードを取得して格納
-            $stations = \Helper::getStationsByLine($conditions['line']);
-            foreach ($stations as $station) {
-                $stationCodes[] = (int)$station->station_cd;
+                //路線上にある全ての駅コードを取得して格納
+                $stations = \Helper::getStationsByLine($conditions['line']);
+                foreach ($stations as $station) {
+                    $stationCodes[] = (int)$station->station_cd;
+                }
+                $format_conditions['stations'] = $stationCodes ?? array();
+            } else { //駅まで指定した場合
+                //prefとlineを検索条件から外す
+                unset($conditions['pref']);
+                unset($conditions['line']);
+                $format_conditions = $conditions;
             }
-            $format_conditions['stations'] = $stationCodes ?? array();
-        } else { //駅まで指定した場合
-            //prefとlineを検索条件から外す
-            unset($conditions['pref']);
-            unset($conditions['line']);
-            $format_conditions = $conditions;
         }
 
         return $format_conditions;
@@ -148,4 +152,62 @@ class ConcertService implements ConcertInterface
         return $this->model->deleteById($id);
     }
 
+    /**
+     * 共通登録処理
+     * @param $request
+     * @param null $concertImg (更新処理の時のみ)
+     * @return string
+     * @throws Exception
+     */
+    public function storeProcess($request, $concertImg = null)
+    {
+        //インプット情報からコンサートテーブルのカラムに対応する値のみを抽出
+        foreach ($request->except('_token') as $key => $val) {
+            if (in_array($key, self::CONCERT_TABLE_COLUMNS)) {
+                // Youtubeリンクの整形
+                if ($key == "movie_id" && !empty($val)) {
+                    $val = $this->extractMovieId($val);
+                }
+                $inputData[$key] = $val;
+            }
+        }
+
+        //アップロードされた画像を保存してパスを格納（編集時はnullのことがある）
+        if (empty($request->file('concert_img'))) {
+            $inputData['concert_img'] = $concertImg;
+        } else {
+            $filePath = Storage::putFile('/images', $request->file('concert_img'));
+            $inputData['concert_img'] = basename($filePath);
+        }
+
+        //抽出した値をjsonにパース
+        $detail_info = json_encode($inputData ?? []);
+
+        if (json_last_error() != JSON_ERROR_NONE) {
+            logs()->error('-------------------------------------¥n');
+            logs()->error('json_encodeでエラー。エラーコード：' . json_last_error() . '¥n');
+            logs()->error('- - - - - - - - - - - - - - - - - - -¥n');
+            logs()->error('エラー発生時のインプット：' . print_r($request->except('_token'), true) . '¥n');
+            logs()->error('-------------------------------------¥n');
+            // TODO: Exception吐きすてて終了ってのをどうにかする
+            throw new Exception('ライブ情報JSONのパースに失敗しました');
+        }
+
+        return $detail_info;
+    }
+
+    /**
+     * Youtubeリンクから動画idを抽出して返却する
+     * @param $paramUrl
+     * @return string
+     */
+    private function extractMovieId($paramUrl): string
+    {
+        if (preg_match('#https?://www.youtube.com/watch\?v=([^\&]*\&?)#', $paramUrl, $matches)) {
+            if (!empty($matches[1])) {
+                $movieId = rtrim($matches[1], '&');
+            }
+        }
+        return $movieId ?? '';
+    }
 }
