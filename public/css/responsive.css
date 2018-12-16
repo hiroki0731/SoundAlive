@@ -66,11 +66,20 @@
         text-align: left;
     }
 
-    .search-wrapper label{
+    .search-wrapper label {
         margin-top: 12px;
     }
 
-    .search-wrapper input{
+    .search-wrapper input {
+        border-radius: 0;
         height: 50px;
+    }
+
+    .mypage-menu-panel {
+        margin-top: 30px;
+    }
+
+    .mypage-menu-panel select {
+        width: 100%;
     }
 }

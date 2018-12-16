@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     {{--メインメニュー--}}
-                    <div class="col-md-9">
+                    <div class="col-md-9 mypage-menu-panel">
                         <div id="list" :class="{dispnon: activateArray.dispNonList}">
                             @include('mypage.concert_list')
                         </div>
