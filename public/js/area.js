@@ -34,7 +34,7 @@ function setMenuItem(isLine, code) {
         if (code == 0) {
             lineElement.options[0] = new Option(initLineMessage, 0);
         } else {
-            s.src = "http://www.ekidata.jp/api/p/" + code + ".json";	//沿線JSONデータURL
+            s.src = "https://www.ekidata.jp/api/p/" + code + ".json";	//沿線JSONデータURL
         }
     } else {
         for (i = 0; i <= stationElement.options.length; i++) {
@@ -43,7 +43,7 @@ function setMenuItem(isLine, code) {
         if (code == 0) {
             stationElement.options[0] = new Option(initStationMessage, 0);	//駅OPTIONを空に
         } else {
-            s.src = "http://www.ekidata.jp/api/l/" + code + ".json";	//駅JSONデータURL
+            s.src = "https://www.ekidata.jp/api/l/" + code + ".json";	//駅JSONデータURL
         }
     }
     xml.onload = function (data) {
