@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Config;
  */
 class Helper
 {
-    const URL_FOR_LINE = 'http://www.ekidata.jp/api/l/';
-    const URL_FOR_STATION = 'http://www.ekidata.jp/api/s/';
+    const URL_FOR_LINE = 'https://www.ekidata.jp/api/l/';
+    const URL_FOR_STATION = 'https://www.ekidata.jp/api/s/';
     const DATA_TYPE_XML = '.xml';
     const NO_DATA = 'データなし';
     const CACHE_MINUTES = 1440 * 7; // 1日 * 7 = 1週間
