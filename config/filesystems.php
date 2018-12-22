@@ -66,4 +66,6 @@ return [
 
     ],
 
+    'local_path' => env('LOCAL_IMG_PATH'),
+
 ];

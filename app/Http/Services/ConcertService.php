@@ -179,7 +179,13 @@ class ConcertService implements ConcertInterface
         if (empty($request->file('concert_img'))) {
             $inputData['concert_img'] = $concertImg;
         } else {
-            $filePath = Storage::putFile(self::LOCAL_STORAGE_PATH, $request->file('concert_img'), 'public');
+            $img = $request->file('concert_img');
+
+            //S3とローカルの両方に画像を保存する
+            $filePath = Storage::putFile(self::S3_STORAGE_PATH, $img, 'public');
+            Storage::disk('public')->putFile(self::LOCAL_STORAGE_PATH, $img);
+
+            //S3のパスをDBに保存
             $inputData['concert_img'] = Storage::url($filePath);
         }
 

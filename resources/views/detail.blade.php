@@ -15,7 +15,7 @@
             <br>
             <div class="row">
                 <div class="col-md-6 detail-pic">
-                    <img src="{{ asset('storage/images/'.$detail_info->concert_img) }}" style="width: 100%;">
+                    <img src="{{ asset($detail_info->concert_img) }}" style="width: 100%;">
                 </div>
                 <div class="col-md-6">
                     <br>

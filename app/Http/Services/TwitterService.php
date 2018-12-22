@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 class TwitterService
 {
@@ -21,15 +22,21 @@ class TwitterService
             Config::get('keys.twitter.client_id_access_token_secret')
         );
 
-        $media = $twitter->upload('media/upload', ['media' => '/vagrant/src/public/storage/images/' . basename($detailInfo->concert_img)]);
+        //ローカルストレージにある画像パスを指定
+        $media = $twitter->upload('media/upload',
+            ['media' => Config::get('filesystems.local_path') . basename($detailInfo->concert_img)]);
 
         $twitter->post("statuses/update", [
             "status" =>
                 $detailInfo->concert_date . "開催！" .
                 $detailInfo->band_name . "の新ライブをお見逃しなく！詳しくは下記のリンクをクリック！" . PHP_EOL .
-                'http://soundalive.com/detail/' . $concert->id . PHP_EOL .
+                Config::get('app.url') . '/detail/' . $concert->id . PHP_EOL .
                 "#$detailInfo->band_name #ライブ #soundalive",
             "media_ids" => implode(',', [$media->media_id_string])
         ]);
+
+        $res = Storage::disk('public')->delete('/images/' . basename($detailInfo->concert_img));
+        logs()->info('投稿画像:' . basename($detailInfo->concert_img));
+        logs()->info('削除結果:' . $res);
     }
 }
