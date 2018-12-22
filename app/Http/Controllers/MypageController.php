@@ -6,9 +6,8 @@ use App\Http\Requests\CreateConcertValidation;
 use App\Http\Requests\UpdateConcertValidation;
 use App\Http\Services\ConcertService;
 use App\Http\Services\TwitterService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
@@ -66,7 +65,7 @@ class MypageController extends Controller
         $registerdConcert = $this->concertService->createConcert($concertArray);
 
         //SNS告知
-        if ($request->get('sns')) {
+        if (!is_null($request->get('sns'))) {
             $twitterService->tweet($registerdConcert);
         }
 

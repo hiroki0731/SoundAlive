@@ -40,6 +40,9 @@ class ConcertService implements ConcertInterface
         'movie_id',
     ];
 
+    const LOCAL_STORAGE_PATH = '/images';
+    const S3_STORAGE_PATH = '/';
+
     /**
      * コンストラクタ
      * @param Concert $concert
@@ -176,8 +179,8 @@ class ConcertService implements ConcertInterface
         if (empty($request->file('concert_img'))) {
             $inputData['concert_img'] = $concertImg;
         } else {
-            $filePath = Storage::putFile('/images', $request->file('concert_img'));
-            $inputData['concert_img'] = basename($filePath);
+            $filePath = Storage::putFile(self::LOCAL_STORAGE_PATH, $request->file('concert_img'), 'public');
+            $inputData['concert_img'] = Storage::url($filePath);
         }
 
         //抽出した値をjsonにパース

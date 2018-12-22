@@ -82,7 +82,7 @@
                                     <div class="col-sm-12">
                                         <div class="concert-img" @click="moveToDetail({{ $concert->id }})">
                                             <div style="max-height: 350px">
-                                                <img src="{{ asset('storage/images/'. $detail_info->concert_img) }}"
+                                                <img src="{{ asset($detail_info->concert_img) }}"
                                                      width="100%" height="">
                                             </div>
                                             <div class="mask">

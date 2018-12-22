@@ -94,7 +94,7 @@
                             <div class="search-concert-list-wrapper">
                                 <div class="row search-concert-list pointer" @click="moveToDetail({{$concert->id}})">
                                     <div class="col-md-3 icon-img">
-                                        <img src={{ asset('storage/images/'. $detail_info->concert_img) }} style="width:100%">
+                                        <img src={{ asset($detail_info->concert_img) }} style="width:100%">
                                     </div>
                                     <div class="col-md-9">
                                         <p>開催日：{{ Helper::formatConcertDate($detail_info->concert_date) }}</p>

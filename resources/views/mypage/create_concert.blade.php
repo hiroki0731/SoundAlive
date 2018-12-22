@@ -124,9 +124,9 @@
                         <h3>このライブをSoundAlive公式SNSに投稿できます！</h3>
                         <p>あなたのライブを公式SNSへ投稿しても宜しいですか？<br>(公式SNS投稿は1ライブ1回のみになります)</p>
                         <p>※ライブタイトルとライブ紹介画像が告知内容に使用されます</p>
-                        <button type="submit" name="sns" value="true"><i class="fab fa-twitter-square fa-lg"></i> はい、公式SNSで告知する</button>
+                        <button type="submit" name="sns" value=true><i class="fab fa-twitter-square fa-lg"></i> はい、公式SNSで告知する</button>
                         <br>
-                        <button type="submit" name="sns" value="false">いいえ、公式SNSで告知しない</button>
+                        <button type="submit">いいえ、公式SNSで告知しない</button>
                         <br>
                         <button type="button" @click="closePopup()">キャンセルして編集する</button>
                     </div>

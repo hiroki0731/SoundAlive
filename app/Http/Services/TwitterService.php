@@ -20,7 +20,8 @@ class TwitterService
             Config::get('keys.twitter.client_id_access_token'),
             Config::get('keys.twitter.client_id_access_token_secret')
         );
-        $media = $twitter->upload('media/upload', ['media' => '/vagrant/src/public/storage/images/' . $detailInfo->concert_img]);
+
+        $media = $twitter->upload('media/upload', ['media' => '/vagrant/src/public/storage/images/' . basename($detailInfo->concert_img)]);
 
         $twitter->post("statuses/update", [
             "status" =>
