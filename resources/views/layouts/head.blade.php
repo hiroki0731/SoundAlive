@@ -26,6 +26,7 @@
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
 <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 <link href="{{ asset('css/mypage.css') }}" rel="stylesheet">
 <link href="{{ asset('css/search.css') }}" rel="stylesheet">

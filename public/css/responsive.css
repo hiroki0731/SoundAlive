@@ -1,9 +1,5 @@
 /* スマホ向けレイアウト */
 @media all and (max-width: 670px) {
-    input, textarea {
-        min-height: 50px;
-    }
-
     .menu-icon {
         display: block;
     }
@@ -76,7 +72,7 @@
 
     .search-wrapper input {
         border-radius: 0;
-        height: 50px;
+        min-height: 50px;
     }
 
     .mypage-menu-panel {
