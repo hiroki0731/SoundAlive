@@ -148,9 +148,9 @@ class ConcertService implements ConcertInterface
     /**
      * idで検索して削除
      * @param int $id
-     * @return Model
+     * @return mixed
      */
-    public function deleteById(int $id): Model
+    public function deleteById(int $id)
     {
         return $this->model->deleteById($id);
     }

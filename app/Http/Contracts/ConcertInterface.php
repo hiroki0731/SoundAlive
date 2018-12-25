@@ -53,7 +53,7 @@ interface ConcertInterface
     /**
      * idで検索して削除
      * @param int $id
-     * @return Model
+     * @return mixed bool or Model
      */
-    public function deleteById(int $id): Model;
+    public function deleteById(int $id);
 }
