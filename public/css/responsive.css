@@ -1,5 +1,9 @@
 /* スマホ向けレイアウト */
 @media all and (max-width: 670px) {
+    input, textarea, select {
+        min-height: 30px;
+    }
+
     .menu-icon {
         display: block;
     }
