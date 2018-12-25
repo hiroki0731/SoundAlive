@@ -21,6 +21,7 @@ input, textarea {
     border: 1px solid #218BC3;
     background-color: transparent;
     color: #FFFFFF;
+    min-height: 30px;
 }
 
 input[type="submit"] {
