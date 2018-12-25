@@ -106,7 +106,7 @@
             <p>※画像は最大1MB、出来れば横長の画像にしてください。画像軽量化は<a href="https://tinypng.com/">こちらのサイト</a>から簡単にできます。</p>
 
             <div class="row concertInput">
-                <label class="col-sm-2"><i class="far fa-star"></i>YouTube</label>
+                <label class="col-sm-2">YouTube</label>
                 <input class="col-sm-10" name="movie_id" type="text" placeholder="任意でYouTube動画リンクを入力。例)https://www.youtube.com/watch?v=ZpbkJTdgVzA">
             </div>
 
