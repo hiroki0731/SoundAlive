@@ -38,7 +38,7 @@ class UpdateConcertValidation extends FormRequest
             'station' => 'required',
 //            'place_url' => 'required',
             'place_address' => 'required',
-            'concert_img' => 'image|max:1000',
+            'concert_img' => 'image|max:3000',
             'concert_introduction' => 'required',
         ];
     }
@@ -61,7 +61,7 @@ class UpdateConcertValidation extends FormRequest
             'place_address.required' => '会場住所は必須です',
             'concert_img.required' => 'ライブ紹介画像は必須です',
             'concert_img.image' => '画像ファイルを選択してください',
-            'concert_img.max' => '画像ファイルは最大1MBです',
+            'concert_img.max' => '画像ファイルは最大3MBです',
             'concert_introduction.required' => 'ライブ説明は必須です',
         ];
     }
