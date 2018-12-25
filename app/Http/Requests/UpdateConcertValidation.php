@@ -59,7 +59,6 @@ class UpdateConcertValidation extends FormRequest
             'line.required' => '路線は必須です',
             'station.required' => '最寄駅は必須です',
             'place_address.required' => '会場住所は必須です',
-            'concert_img.required' => 'ライブ紹介画像は必須です',
             'concert_img.image' => '画像ファイルを選択してください',
             'concert_img.max' => '画像ファイルは最大3MBです',
             'concert_introduction.required' => 'ライブ説明は必須です',

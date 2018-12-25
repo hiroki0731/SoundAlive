@@ -15,7 +15,7 @@
             <div class="mypage-concert-list-wrapper" @click="moveToDetail({{ $concert->id }})">
                 <div class="row mypage-concert-list pointer">
                     <div class="col-md-3 icon-img">
-                        <img src={{ asset($detail_info->concert_img) }} style="width:100%">
+                        <img src={{ asset($detail_info->concert_img ?? '/img/no_image.png') }} style="width:100%">
                     </div>
                     <div class="col-md-9">
                         <p>タイトル：{{ $detail_info->concert_name }}</p>

@@ -100,10 +100,10 @@
             <p>※ライブ会場の住所を正しく入力すると、アクセスマップにピンが立って検索されやすくなります。</p>
 
             <div class="row concertInput">
-                <label class="col-sm-2"><i class="far fa-star"></i>ライブ画像</label>
+                <label class="col-sm-2">ライブ画像</label>
                 <input name="concert_img" type="file">
             </div>
-            <p>※画像は最大1MB、出来れば横長の画像にしてください。画像軽量化は<a href="https://tinypng.com/">こちらのサイト</a>から簡単にできます。</p>
+            <p>※画像は最大3MBです。未登録時はNoImageと表示されます。画像軽量化は<a href="https://tinypng.com/">こちらのサイト</a>から簡単にできます。</p>
 
             <div class="row concertInput">
                 <label class="col-sm-2">YouTube</label>

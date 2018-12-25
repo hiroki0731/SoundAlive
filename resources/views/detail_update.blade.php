@@ -33,7 +33,7 @@
                     <div class="col-md-6">
                         <div>
                             <p class="card-title">※ライブ紹介用の画像を選んでください。</p>
-                            <img v-show="!uploadedImage" src="{{ asset($detail_info->concert_img) }}"
+                            <img v-show="!uploadedImage" src="{{ asset($detail_info->concert_img ?? '/img/no_image.png') }}"
                                  style="width: 100%;">
                             <img v-show="uploadedImage" :src="uploadedImage" style="width: 100%;"/>
                             <input type="file" @change="onFileChange" name="concert_img"
