@@ -22,17 +22,22 @@ class TwitterService
             Config::get('keys.twitter.client_id_access_token_secret')
         );
 
-        //ローカルストレージにある画像パスを指定
-        $media = $twitter->upload('media/upload',
-            ['media' => Config::get('filesystems.local_path') . basename($detailInfo->concert_img)]);
+        if (!is_null($detailInfo->concert_img)) {
+            //ローカルストレージにある画像パスを指定
+            $media = $twitter->upload('media/upload',
+                ['media' => Config::get('filesystems.local_path') . basename($detailInfo->concert_img)]);
+        }
+
+        //ハッシュタグ用に半角・全角空白を除去
+        $hash = preg_replace("/( |　)/", "", $detailInfo->band_name);
 
         $twitter->post("statuses/update", [
             "status" =>
                 $detailInfo->concert_date . "開催！" .
                 $detailInfo->band_name . "の新ライブをお見逃しなく！詳しくは下記のリンクをクリック！" . PHP_EOL .
                 Config::get('app.url') . '/detail/' . $concert->id . PHP_EOL .
-                "#$detailInfo->band_name #ライブ #soundalive",
-            "media_ids" => implode(',', [$media->media_id_string])
+                "#$hash #ライブ #soundalive",
+            "media_ids" => implode(',', [$media->media_id_string ?? ''])
         ]);
 
         $res = Storage::disk('public')->delete('/images/' . basename($detailInfo->concert_img));

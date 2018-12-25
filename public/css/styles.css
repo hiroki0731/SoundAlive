@@ -570,5 +570,5 @@ footer {
 
 .search-wrapper select, input{
     border-radius: 3px;
-    min-height: 50px;
+    /*min-height: 50px;*/
 }

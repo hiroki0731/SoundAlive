@@ -57,9 +57,9 @@
             <div class="row concertInput">
                 <label class="col-sm-2"><i class="far fa-star"></i>音楽ジャンル</label>
                 <select class="col-sm-10" name="music_type" id="music_type">
-                    <option value="" selected>一番近いジャンルを選択</option>
+                    <option value="">一番近いジャンルを選択</option>
                     @foreach(Helper::getMusicType() as $key => $val)
-                        <option value={{ $key }}>{{ $val }}</option>
+                        <option value={{ $key }} @if(old('music_type') == $key) selected @endif>{{ $val }}</option>
                     @endforeach
                 </select>
             </div>
@@ -73,9 +73,9 @@
                 <label class="col-sm-2"><i class="far fa-star"></i>会場最寄駅</label>
                 <div class="col-sm-10" style="text-align: left">
                     <select name="pref" id="pref" onChange="setMenuItem(false, this[this.selectedIndex].value)">
-                        <option value="0" selected>都道府県を選択</option>
+                        <option value="0">都道府県を選択</option>
                         @foreach(Helper::getPref() as $key => $val)
-                            <option value={{ $key }}>{{ $val }}</option>
+                            <option value={{ $key }} @if(old('pref') == $key) selected @endif>{{ $val }}</option>
                         @endforeach
                     </select>
                     <select name="line" id="line" onChange="setMenuItem(true, this[this.selectedIndex].value)">

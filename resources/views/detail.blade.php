@@ -87,7 +87,7 @@
                                 <p>■ 会場URL</p>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ $detail_info->place_url ?? ''}}</p>
+                                <a href="{{ $detail_info->place_url ?? ''}}">{{ $detail_info->place_url ?? ''}}</a>
                             </div>
                         </div>
                     </div>
