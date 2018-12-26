@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('/js/mypage.js') }}"></script>
-    <script src="{{ asset('/js/area.js') }}"></script>
+    <script src="{{ asset('/js/mypage.js') }}" defer></script>
+    <script src="{{ asset('/js/area.js') }}" defer></script>
 
 @endsection

@@ -117,6 +117,6 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('/js/area.js') }}"></script>
-    <script src="{{ asset('/js/search.js') }}"></script>
+    <script src="{{ asset('/js/area.js') }}" defer></script>
+    <script src="{{ asset('/js/search.js') }}" defer></script>
 @endsection

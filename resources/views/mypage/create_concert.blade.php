@@ -15,7 +15,7 @@
         @endif
 
         @if(Session::has('completed'))
-            <script>
+            <script type="text/javascript">
                 alert('登録完了しました');
                 sessionStorage.removeItem('prefVal');
                 sessionStorage.removeItem('lineVal');

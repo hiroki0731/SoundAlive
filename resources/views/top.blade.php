@@ -113,5 +113,5 @@
             </div>
         @endif
     </div>
-    <script src="{{ asset('js/top.js') }}"></script>
+    <script src="{{ asset('js/top.js') }}" defer></script>
 @endsection
