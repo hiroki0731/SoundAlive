@@ -1,3 +1,33 @@
+/* タブレット向けレイアウト */
+@media all and (max-width: 800px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .header-right {
+        display: none;
+    }
+    
+    #mobile-menu {
+        display: block;
+        position: fixed;
+        top: 65px;
+        right: 0;
+        padding-top: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 10;
+        transition: all 0.5s;
+    }
+
+    #mobile-menu ul {
+        list-style-type: none;
+    }
+
+    #mobile-menu a {
+        font-size: 18px;
+    }
+}
+
 /* スマホ向けレイアウト */
 @media all and (max-width: 670px) {
     input, textarea, select {
