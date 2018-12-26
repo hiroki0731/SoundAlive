@@ -5,7 +5,6 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="SoundAlive"/>
 <meta property="og:description" content="ライブ総合検索・告知サイト"/>
-{{--<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />--}}
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,7 +14,6 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>--}}
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="https://fonts.gstatic.com">
