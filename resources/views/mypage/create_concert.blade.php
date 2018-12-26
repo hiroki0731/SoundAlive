@@ -14,6 +14,15 @@
             </div>
         @endif
 
+        @if(Session::has('completed'))
+            <script>
+                alert('登録完了しました');
+                sessionStorage.removeItem('prefVal');
+                sessionStorage.removeItem('lineVal');
+                sessionStorage.removeItem('stationVal');
+            </script>
+        @endif
+
         <form name="concertForm" class="createForm" enctype="multipart/form-data" action="/mypage/create" method="post">
             {{ csrf_field() }}
 

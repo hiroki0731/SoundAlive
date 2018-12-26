@@ -22,12 +22,12 @@
             },
             watch: {
                 nowDisp: function () {
-                    localStorage.setItem('nowDisp', JSON.stringify(this.nowDisp));
+                    sessionStorage.setItem('nowDisp', JSON.stringify(this.nowDisp));
                 }
             },
             //直前に表示していたページを表示する
             mounted: function () {
-                this.nowDisp = JSON.parse(localStorage.getItem('nowDisp')) || 'dispNonList';
+                this.nowDisp = JSON.parse(sessionStorage.getItem('nowDisp')) || 'dispNonList';
                 this.switchDisplay(this.nowDisp);
             },
             methods: {
@@ -70,6 +70,9 @@
                     reader.readAsDataURL(file);
                 },
                 popupToggle: function() {
+                    sessionStorage.setItem('prefVal', JSON.stringify(document.getElementById('pref').value));
+                    sessionStorage.setItem('lineVal', JSON.stringify(document.getElementById('line').value));
+                    sessionStorage.setItem('stationVal', JSON.stringify(document.getElementById('station').value));
                     this.popupOpacity.opacity = '1';
                     this.popupOpacity["pointer-events"] = 'auto';
                 },

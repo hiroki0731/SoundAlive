@@ -1,3 +1,14 @@
+window.onload = function () {
+    let prefValue = JSON.parse(sessionStorage.getItem('prefVal'));
+
+    if (prefValue != null){
+        let lineValue = JSON.parse(sessionStorage.getItem('lineVal'));
+        let stationValue = JSON.parse(sessionStorage.getItem('stationVal'));
+        setMenuItem(false, prefValue, prefValue, lineValue, stationValue);
+        setMenuItem(true, lineValue, prefValue, lineValue, stationValue);
+    }
+};
+
 // 下記、駅データjpのAPIを用いるためのScript
 
 var xml = {};
@@ -7,7 +18,7 @@ var xml = {};
  * @param isLine　変更が沿線である場合true, それ以外はfalse
  * @param code
  */
-function setMenuItem(isLine, code) {
+function setMenuItem(isLine, code, prefVal = null, lineVal = null, stationVal = null) {
     //初期表示メッセージ
     let initLineMessage = "路線を選択";
     let initStationMessage = "駅を選択";
@@ -46,6 +57,7 @@ function setMenuItem(isLine, code) {
             s.src = "https://www.ekidata.jp/api/l/" + code + ".json";	//駅JSONデータURL
         }
     }
+
     xml.onload = function (data) {
         var line = data["line"];
         var station_l = data["station_l"];
@@ -55,7 +67,11 @@ function setMenuItem(isLine, code) {
                 ii = i + 1	//OPTIONは2番目から表示
                 var op_line_name = line[i].line_name;
                 var op_line_cd = line[i].line_cd;
-                lineElement.options[ii] = new Option(op_line_name, op_line_cd);
+                if (op_line_cd == lineVal) {
+                    lineElement.options[ii] = new Option(op_line_name, op_line_cd, true, true);
+                } else {
+                    lineElement.options[ii] = new Option(op_line_name, op_line_cd);
+                }
             }
         }
         if (station_l != null) {
@@ -64,7 +80,11 @@ function setMenuItem(isLine, code) {
                 ii = i + 1	//OPTIONは2番目から表示
                 var op_station_name = station_l[i].station_name;
                 var op_station_cd = station_l[i].station_cd;
-                stationElement.options[ii] = new Option(op_station_name, op_station_cd);
+                if (op_station_cd == stationVal) {
+                    stationElement.options[ii] = new Option(op_station_name, op_station_cd, true, true);
+                } else {
+                    stationElement.options[ii] = new Option(op_station_name, op_station_cd);
+                }
             }
         }
     }

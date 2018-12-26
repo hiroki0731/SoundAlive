@@ -8,6 +8,7 @@ use App\Http\Services\ConcertService;
 use App\Http\Services\TwitterService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class MypageController extends Controller
 {
@@ -68,6 +69,8 @@ class MypageController extends Controller
         if (!is_null($request->get('sns'))) {
             $twitterService->tweet($registerdConcert);
         }
+
+        $request->session()->flash('completed', '登録完了');
 
         return redirect('/mypage');
     }
