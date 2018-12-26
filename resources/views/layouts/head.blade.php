@@ -13,7 +13,8 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>　ローカル用--}}
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="https://fonts.gstatic.com">
