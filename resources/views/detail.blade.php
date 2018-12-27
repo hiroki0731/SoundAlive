@@ -29,7 +29,7 @@
                                 <p>■ 日付</p>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ $detail_info->concert_date }} </p>
+                                <p>{{ Helper::formatConcertDate($detail_info->concert_date) }} </p>
                             </div>
                         </div>
                         <div class="row">
