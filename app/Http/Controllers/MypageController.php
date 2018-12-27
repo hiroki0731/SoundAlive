@@ -139,7 +139,7 @@ class MypageController extends Controller
      */
     public function changeUserName(ChangeProfileValidation $request, UserService $userService)
     {
-        $userService->updateUserName(Auth::id(), $request->get('user_name'));
+        $userService->updateUserName(Auth::id(), $request->get('new_user_name'));
         $request->session()->flash('name_changed', '名前変更完了');
         return redirect('/mypage');
     }
