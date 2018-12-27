@@ -9,11 +9,11 @@
 
             <div class="row concertInput">
                 <label class="col-sm-2">新ユーザ名</label>
-                <input class="col-sm-9" name="user_name" type="text"
-                       placeholder="新しいユーザ名" value="{{old('user_name')}}">
+                <input class="col-sm-9" name="new_user_name" type="text"
+                       placeholder="新しいユーザ名" value="{{old('new_user_name')}}">
             </div>
-            @if($errors->has('user_name'))
-                <p class="alert alert-danger">{{ $errors->first('user_name') }}</p>
+            @if($errors->has('new_user_name'))
+                <p class="alert alert-danger">{{ $errors->first('new_user_name') }}</p>
             @endif
 
             <input type="submit" value="変更する">

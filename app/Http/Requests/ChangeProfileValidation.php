@@ -24,14 +24,14 @@ class ChangeProfileValidation extends FormRequest
     public function rules()
     {
         return [
-            'user_name' => 'required|max:255',
+            'new_user_name' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'concert_name.required' => 'ユーザ名は必須です',
+            'new_user_name.required' => 'ユーザ名は必須です',
         ];
     }
 }
