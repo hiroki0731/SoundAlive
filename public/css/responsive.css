@@ -112,6 +112,11 @@
     .mypage-wrapper input[type="text"],input[type="date"],input[type="time"] {
         border-radius: 0;
         min-height: 50px;
+        width: 100%;
+    }
+
+    .mypage-wrapper input[type="file"] {
+        width: 100%;
     }
 
     .mypage-menu-panel {
