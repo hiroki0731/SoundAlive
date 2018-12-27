@@ -7,7 +7,7 @@
     .header-right {
         display: none;
     }
-    
+
     #mobile-menu {
         display: block;
         position: fixed;
@@ -105,6 +105,11 @@
     }
 
     .search-wrapper input {
+        border-radius: 0;
+        min-height: 50px;
+    }
+
+    .mypage-wrapper input {
         border-radius: 0;
         min-height: 50px;
     }
