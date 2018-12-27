@@ -14,11 +14,11 @@
                             <div class="form-group row">
                                 <label for="name"
                                        class="col-md-4 col-form-label text-md-right">ユーザ名</label>
-
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                            name="name" value="{{ old('name') }}" required autofocus>
+                                    <span>※ユーザ名はあなた以外に公開されない任意の名前です</span>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-3">
                                     <button type="submit" class="btn btn-primary">
-                                       登録する
+                                        登録する
                                     </button>
                                 </div>
                             </div>
