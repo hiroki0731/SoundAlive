@@ -15,10 +15,9 @@
                                 <label for="name"
                                        class="col-md-4 col-form-label text-md-right">ユーザ名</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text"
+                                    <input id="name" type="text" placeholder="マイページに表示する任意の名前"
                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                            name="name" value="{{ old('name') }}" required autofocus>
-                                    <span>※ユーザ名はあなた以外に公開されない任意の名前です</span>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -33,7 +32,7 @@
                                        class="col-md-4 col-form-label text-md-right">メールアドレス</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email"
+                                    <input id="email" type="email" placeholder="メールアドレス"
                                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                            name="email" value="{{ old('email') }}" required>
 
@@ -50,7 +49,7 @@
                                        class="col-md-4 col-form-label text-md-right">パスワード</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password"
+                                    <input id="password" type="password" placeholder="パスワード"
                                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                            name="password" required>
 
@@ -67,7 +66,7 @@
                                        class="col-md-4 col-form-label text-md-right">パスワード再入力</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input id="password-confirm" type="password" class="form-control" placeholder="パスワード再入力"
                                            name="password_confirmation" required>
                                 </div>
                             </div>
