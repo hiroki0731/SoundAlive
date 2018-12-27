@@ -44,6 +44,7 @@ Route::post('/search', 'SearchController@search');
 Route::prefix('/mypage')->group(function () {
     Route::get('/', 'MypageController@index')->name('mypage');
     Route::post('/create', 'MypageController@createConcert');
+    Route::post('/change', 'MypageController@changeUserName');
     Route::get('/update/{concertId}', 'MypageController@showUpdate')->where('id', '[1-9][0-9]*');
     Route::post('/update/{concertId}', 'MypageController@updateConcert')->where('id', '[1-9][0-9]*');
     Route::get('/delete/{concertId}', 'MypageController@deleteConcert')->where('id', '[1-9][0-9]*');

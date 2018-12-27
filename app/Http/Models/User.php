@@ -38,4 +38,17 @@ class User extends Authenticatable
     {
         $this->notify(new SendPasswordReset($token));
     }
+
+    /**
+     * ユーザ名の変更
+     * @param $id
+     * @param $name
+     * @return bool
+     */
+    public function updateUserName($id, $name)
+    {
+        $user = $this->find($id);
+        $user->name = $name;
+        return $user->save();
+    }
 }

@@ -13,10 +13,13 @@
                 displays: {
                     list: 'dispNonList',
                     create: 'dispNonCreate',
+                    change: 'dispNonChange',
                 },
-                activateArray: {
+                //falseで表示、trueで非表示
+                dispNonArray: {
                     dispNonList: false,
                     dispNonCreate: true,
+                    dispNonChange: true,
                 },
                 uploadedImage: '',
             },
@@ -33,7 +36,7 @@
             methods: {
                 //ページの切り替え
                 switchDisplay: function (name) {
-                    let obj = this.activateArray;
+                    let obj = this.dispNonArray;
                     Object.keys(obj).forEach(function (key) {
                         if (key === name) {
                             obj[key] = false;
@@ -42,7 +45,7 @@
                         }
                     });
                     this.nowDisp = name;
-                    this.activateArray = obj;
+                    this.dispNonArray = obj;
                 },
                 //最寄駅編集ようのセレクトボックスを表示する
                 toggleSelectBox: function () {

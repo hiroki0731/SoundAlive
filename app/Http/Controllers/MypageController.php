@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeProfileValidation;
 use App\Http\Requests\CreateConcertValidation;
 use App\Http\Requests\UpdateConcertValidation;
 use App\Http\Services\ConcertService;
 use App\Http\Services\TwitterService;
+use App\Http\Services\UserService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class MypageController extends Controller
 {
@@ -127,6 +128,19 @@ class MypageController extends Controller
         }
 
         $this->concertService->deleteById($concert->id);
+        return redirect('/mypage');
+    }
+
+    /**
+     * ユーザ名の変更
+     * @param ChangeProfileValidation $request
+     * @param UserService $userService
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function changeUserName(ChangeProfileValidation $request, UserService $userService)
+    {
+        $userService->updateUserName(Auth::id(), $request->get('user_name'));
+        $request->session()->flash('name_changed', '名前変更完了');
         return redirect('/mypage');
     }
 }
