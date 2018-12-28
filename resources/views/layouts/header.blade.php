@@ -15,7 +15,7 @@
             </div>
             <i class="fas fa-bars menu-icon" @click="toggleMobileMenu"></i>
             <div class="header-right">
-                <a href="{{ url('/search') }}"><i class="fas fa-search"></i> ライブ検索</a>
+                <a href="{{ url('/search') }}"><i class="fas fa-search"></i> ライブ・イベント検索</a>
                 <a href="{{ url('/about') }}"><i class="fas fa-book"></i> このサイトについて</a>
                 <?php $check = \Illuminate\Support\Facades\Auth::check(); ?>
                 @if(!$check)

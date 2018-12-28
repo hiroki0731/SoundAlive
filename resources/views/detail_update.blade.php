@@ -10,7 +10,7 @@
         {{ csrf_field() }}
 
         <div class="detail-wrapper detail-update">
-            <h4 class="text-center">ライブ編集ページ</h4>
+            <h4 class="text-center">ライブ・イベント編集ページ</h4>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="detail-title"><input class="text-center" type="text" name="concert_name"
-                                                        value="{{ $detail_info->concert_name }}" placeholder="ライブタイトル">
+                                                        value="{{ $detail_info->concert_name }}" placeholder="ライブ・イベントタイトル">
                         </h1>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div>
-                            <p class="card-title">※ライブ紹介用の画像を選んでください。</p>
+                            <p class="card-title">※ライブ・イベント紹介用の画像を選んでください。</p>
                             <img v-show="!uploadedImage" src="{{ asset($detail_info->concert_img ?? '/img/no_image.png') }}"
                                  style="width: 100%;">
                             <img v-show="uploadedImage" :src="uploadedImage" style="width: 100%;"/>
@@ -44,17 +44,17 @@
                         <div class="text-center">
                             <h2>
                                 <input class="text-center" type="text" name="band_name"
-                                       value="{{ $detail_info->band_name }}" placeholder="バンド名">
+                                       value="{{ $detail_info->band_name }}" placeholder="アーティスト名">
                             </h2>
                             <p>
                                 <input class="text-center" type="text" name="band_member"
                                        value="{{ $detail_info->band_member }}"
-                                       placeholder="バンドメンバー (例) 高田大輝 (pf), 辰巳浩之 (dr), 牛山健太郎 (bs)">
+                                       placeholder="メンバー (例) 高田大輝 (pf), 辰巳浩之 (dr), 牛山健太郎 (bs)">
                             </p>
                         </div>
                         <div class="detail-border">
                             <div class="input-group">
-                                <p class="input-group-addon">ライブ日程：</p>
+                                <p class="input-group-addon">ライブ・イベント日程：</p>
                                 <input class="form-control" type="date" name="concert_date"
                                        value="{{ $detail_info->concert_date }}">
                             </div>
@@ -66,7 +66,7 @@
                                        value="{{ $detail_info->end_time ?? ''}}">
                             </div>
                             <div class="input-group">
-                                <p class="input-group-addon">ライブ会場：</p>
+                                <p class="input-group-addon">ライブ・イベント会場：</p>
                                 <input class="form-control" type="text" name="place_name"
                                        value="{{ $detail_info->place_name ?? ''}}" placeholder="例) ライブハウス○○">
                             </div>
@@ -127,9 +127,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="detail-introduction">
-                            <label for="title">ライブ説明</label>
+                            <label for="title">ライブ・イベント説明</label>
                             <textarea name="concert_introduction"
-                                      placeholder="例) ライブを自由に紹介してください。(200文字以内)">{!! $detail_info->concert_introduction ?? '' !!}</textarea>
+                                      placeholder="例) ライブ・イベントを自由に紹介してください。(200文字以内)">{!! $detail_info->concert_introduction ?? '' !!}</textarea>
                         </div>
                     </div>
                 </div>

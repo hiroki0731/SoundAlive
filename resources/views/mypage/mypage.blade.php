@@ -11,9 +11,9 @@
                             <div class="card-header">{{ $userName }}のマイページ</div>
                             <div class="card-body mypage-menu">
                                 <p @click='switchDisplay(displays.list)'
-                                   :class="{active_page: !dispNonArray.dispNonList}">ライブ一覧</p>
+                                   :class="{active_page: !dispNonArray.dispNonList}">ライブ・イベント一覧</p>
                                 <p @click='switchDisplay(displays.create)'
-                                   :class="{active_page: !dispNonArray.dispNonCreate}">ライブ新規作成</p>
+                                   :class="{active_page: !dispNonArray.dispNonCreate}">ライブ・イベント新規作成</p>
                                 <p @click='switchDisplay(displays.change)'
                                    :class="{active_page: !dispNonArray.dispNonChange}">ユーザ名変更</p>
                             </div>

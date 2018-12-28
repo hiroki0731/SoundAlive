@@ -70,7 +70,7 @@ return [
         "pref" => "都道府県",
         "line" => "路線名",
         "station" => "駅名",
-        "band_name" => "バンド名",
+        "band_name" => "アーティスト名",
         "place_name" => "会場名",
         "concert_date" => "開催日付",
         "music_type" => "音楽ジャンル",

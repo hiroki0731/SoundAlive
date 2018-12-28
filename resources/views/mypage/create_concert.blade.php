@@ -19,7 +19,7 @@
             {{ csrf_field() }}
 
             <div class="row concertInput">
-                <label class="col-sm-2"><i class="far fa-star"></i>ライブタイトル</label>
+                <label class="col-sm-2"><i class="far fa-star"></i>タイトル</label>
                 <input class="col-sm-10" name="concert_name" type="text"
                        placeholder="例) 必見！○○バンド東京初ワンマン！(キャッチコピーと考えてください)" value="{{old('concert_name')}}">
             </div>
@@ -28,8 +28,8 @@
             @endif
 
             <div class="row concertInput">
-                <label class="col-sm-2"><i class="far fa-star"></i>バンド名</label>
-                <input class="col-sm-10" name="band_name" type="text" placeholder="例) 高田大輝TORIO"
+                <label class="col-sm-2"><i class="far fa-star"></i>アーティスト名</label>
+                <input class="col-sm-10" name="band_name" type="text" placeholder="例) バンド名など。クラブイベント等の場合はイベント名になります"
                        value="{{old('band_name')}}">
             </div>
             @if($errors->has('band_name'))
@@ -39,14 +39,14 @@
             <div class="row concertInput">
                 <label class="col-sm-2"><i class="far fa-star"></i>メンバー</label>
                 <input class="col-sm-10" name="band_member" type="text"
-                       placeholder="例) 高田大輝 (pf), 辰巳浩之 (dr), 牛山健太郎 (bs)" value="{{old('band_member')}}">
+                       placeholder="バンドメンバーや出演DJを記入。(例)高田大輝 (pf), 殿木拳人 (gt)" value="{{old('band_member')}}">
             </div>
             @if($errors->has('band_member'))
                 <p class="alert alert-danger">{{ $errors->first('band_member') }}</p>
             @endif
 
             <div class="row concertInput">
-                <label class="col-sm-2"><i class="far fa-star"></i>ライブ日付</label>
+                <label class="col-sm-2"><i class="far fa-star"></i>開催日付</label>
                 <input class="col-sm-10" name="concert_date" type="date" value="{{old('concert_date')}}">
             </div>
             @if($errors->has('concert_date'))

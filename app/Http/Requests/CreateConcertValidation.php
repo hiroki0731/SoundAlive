@@ -46,8 +46,8 @@ class CreateConcertValidation extends FormRequest
     {
         return [
             'concert_name.required' => 'ライブタイトルは必須です',
-            'band_name.required' => 'バンド名は必須です',
-            'band_member.required' => 'バンドメンバーは必須です',
+            'band_name.required' => 'アーティスト名は必須です',
+            'band_member.required' => 'メンバーは必須です',
             'concert_date.required' => 'ライブ日付は必須です',
             'start_time.required' => '開始時間は必須です',
             'end_time.required' => '終了時間は必須です',

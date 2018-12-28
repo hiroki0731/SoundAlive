@@ -53,9 +53,9 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="search-selectbox">
-                                        <label>バンド名で検索</label>
+                                        <label>アーティスト名で検索</label>
                                         <br>
-                                        <input type="text" name="band_name" placeholder="バンド名を入力"
+                                        <input type="text" name="band_name" placeholder="アーティスト名を入力"
                                                value="{{old('band_name')}}">
                                         <br>
                                         <label style="margin-top: 5px">ライブ会場名で検索</label>
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <p>日付：{{ Helper::formatConcertDate($detail_info->concert_date) }}</p>
-                                        <p>バンド名：{{ $detail_info->band_name }}</p>
+                                        <p>アーティスト名：{{ $detail_info->band_name }}</p>
                                         <p>音楽ジャンル：{{ $music_type }}</p>
                                         <p>最寄アクセス：{{ $pref_name }} {{ $station_line }} {{ $station_name }}駅</p>
                                         <p>ライブタイトル：{{ $detail_info->concert_name }}</p>

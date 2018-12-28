@@ -43,7 +43,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <p>■ ライブ会場</p>
+                                <p>■ ライブ・イベント会場</p>
                             </div>
                             <div class="col-md-8">
                                 <p>{{ $detail_info->place_name ?? ''}}</p>
@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="detail-introduction">
-                        <label for="title">ライブ説明</label>
+                        <label for="title">ライブ・イベント説明</label>
                         <p>{!! nl2br(e($detail_info->concert_introduction)) !!}</p>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="detail-introduction">
-                        <label for="title">ライブを共有しよう</label>
+                        <label for="title">ライブ・イベントを共有しよう</label>
                         <div class="row">
                             {{-- FBシェアボタン --}}
                             <div class="col-md-2">

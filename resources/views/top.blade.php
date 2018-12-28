@@ -5,12 +5,12 @@
             <div class="container">
                 <h1>Sound A<span style="color: #ffe70a;">LIVE</span></h1>
                 <h2>音楽は、<span style="color: #ffe70a;">生</span>きている</h2>
-                <p>サウンドアライブは「もっとライブを身近に。」をモットーにした「総合ライブ検索・登録サービス」です。</p>
-                <p>有名バンドやフェス以外にも、素敵なライブがそこかしこで開かれています。</p>
-                <p>さあ、近場のライブを検索してみましょう！</p>
-                <p>ミュージシャンは自分のライブを告知してみましょう！</p>
+                <p>サウンドアライブは「<span style="color: #ffe70a;">生の音楽体験をもっと身近に</span>」をモットーにした「ライブ・イベントの告知/検索サービス」です。</p>
+                <p>有名アーティストやフェス以外にも、素敵なライブやクラブイベントがそこかしこで開かれています。</p>
+                <p>さあ、近場のライブ・イベントを検索して、生の音楽体験を味わいましょう！</p>
+                <p>ライブスペースオーナーやミュージシャン、イベント広報の方はどんどんライブ・イベントを告知しましょう！</p>
                 <a href="{{ url('/register') }}" class="top-btn signup"><i class="fas fa-address-book"></i>
-                    ミュージシャンはこちらから無料登録</a>
+                    こちらから無料登録して告知する</a>
             </div>
         </div>
         <div class="content-wrapper">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="contents row">
                     <div class="content col-md-4" @click="moveToSearch()">
-                        <h3>すぐにライブを検索しよう</h3>
+                        <h3>すぐにライブ・イベントを検索しよう</h3>
                         <div class="content-icon concert-img">
                             <img src="{{ asset('/img/search.png') }}" width="100%">
                             <div class="mask">
@@ -28,11 +28,11 @@
                             </div>
                         </div>
                         <p class="text-contents">
-                            ライブをジャンル・場所・日時などで検索しましょう。近場のライブハウスやジャズバーでは、今日も魂の込もった音楽が演奏されて、誰かの心を動かしています。
+                            ライブ・イベントをジャンル・場所・日時などで検索しましょう。近場のライブハウスやジャズバーでは、今日も魂の込もった音楽が演奏されて、誰かの心を動かしています。
                         </p>
                     </div>
                     <div class="content col-md-4" @click="moveToRegister()">
-                        <h3>登録してライブを告知しよう</h3>
+                        <h3>登録してライブ・イベントを告知しよう</h3>
                         <div class="content-icon concert-img">
                             <img src="{{ asset('/img/regist.png') }}" width="100%">
                             <div class="mask">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <p class="text-contents">
-                            ミュージシャンは無料登録をして自分のライブをどんどん告知しましょう。ライブハウスのウェブサイトや自分のSNS以外の強力な広告ツールとして活用してください。
+                            ライブスペースオーナーやミュージシャン・イベント広報担当者の方々は無料登録をしてライブ・イベントをどんどん告知しましょう。ライブハウスのウェブサイトや自分のSNS以外の強力な広告ツールとして活用してください。
                         </p>
                     </div>
                     <div class="content col-md-4" @click="moveToAbout()">
@@ -62,7 +62,7 @@
         @if(count($concerts) > 0)
             <div class="container" style="text-align: center;">
                 <div class="heading">
-                    <h2>新着ライブ！</h2>
+                    <h2>新着ライブ・イベント！</h2>
                 </div>
             </div>
             <div class="concert-wrapper">
@@ -86,7 +86,7 @@
                                                      width="100%" height="">
                                             </div>
                                             <div class="mask">
-                                                <div class="caption">ライブの詳細をみる</div>
+                                                <div class="caption">この詳細をみる</div>
                                             </div>
                                         </div>
                                     </div>
