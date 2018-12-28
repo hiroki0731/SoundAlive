@@ -66,7 +66,7 @@
                                        value="{{ $detail_info->end_time ?? ''}}">
                             </div>
                             <div class="input-group">
-                                <p class="input-group-addon">ライブ・イベント会場：</p>
+                                <p class="input-group-addon">会場名：</p>
                                 <input class="form-control" type="text" name="place_name"
                                        value="{{ $detail_info->place_name ?? ''}}" placeholder="例) ライブハウス○○">
                             </div>

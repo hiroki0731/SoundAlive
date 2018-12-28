@@ -43,7 +43,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <p>■ ライブ・イベント会場</p>
+                                <p>■ 会場名</p>
                             </div>
                             <div class="col-md-8">
                                 <p>{{ $detail_info->place_name ?? ''}}</p>
